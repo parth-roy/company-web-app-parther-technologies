@@ -1,0 +1,80 @@
+name: Enterprise Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Next.js to DigitalOcean
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Execute Server Deployment Script
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script_stop: true
+          script: |
+            echo "======================================"
+            echo "Starting Enterprise Deployment..."
+            echo "======================================"
+
+            # Define variables
+            PROJECT_DIR="/var/www/company-web-app-parther-technologies"
+            REPO_URL="https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/parth-roy/company-web-app-parther-technologies.git"
+            PM2_APP_NAME="parther-next-app"
+
+            # Step 1: Ensure Node.js and PM2 are available
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            
+            if ! command -v pm2 &> /dev/null; then
+              echo "Installing PM2 globally..."
+              npm install -g pm2
+            fi
+
+            # Step 2: Handle Directory & Git Checkout (Robust Edge Case Handling)
+            if [ -d "$PROJECT_DIR" ]; then
+              echo "Directory exists. Fetching latest changes..."
+              cd $PROJECT_DIR
+              
+              # Force reset to ensure no local server changes block the pull
+              git fetch --all
+              git reset --hard origin/main
+            else
+              echo "Directory does not exist. Cloning repository..."
+              cd /var/www
+              git clone $REPO_URL $PROJECT_DIR
+              cd $PROJECT_DIR
+            fi
+
+            # Step 3: Install Dependencies
+            echo "Installing Dependencies..."
+            npm ci || npm install --legacy-peer-deps
+
+            # Step 4: Build Next.js Architecture
+            echo "Building Next.js Application..."
+            npm run build
+
+            # Step 5: PM2 Zero-Downtime Reload
+            echo "Restarting Node Server..."
+            if pm2 describe $PM2_APP_NAME > /dev/null; then
+              echo "Reloading existing PM2 process for zero-downtime..."
+              pm2 reload $PM2_APP_NAME --update-env
+            else
+              echo "Starting new PM2 process..."
+              pm2 start npm --name "$PM2_APP_NAME" -- run start
+              pm2 save
+            fi
+
+            echo "======================================"
+            echo "Deployment Pipeline Complete!"
+            echo "======================================"

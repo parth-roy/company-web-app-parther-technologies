@@ -12,7 +12,8 @@ export default function Home() {
             <Link href="/">Parther Technologies</Link>
           </div>
           <div className="hidden md:flex gap-8 items-center text-sm font-medium text-cf-text-secondary">
-            <Link href="#services" className="hover:text-cf-text transition-colors">Services</Link>
+            <Link href="/services" className="hover:text-cf-text transition-colors">Services</Link>
+            <Link href="/industries" className="hover:text-cf-text transition-colors">Industries</Link>
             <Link href="#locations" className="hover:text-cf-text transition-colors">Locations</Link>
           </div>
           <Button variant="default" className="hidden md:flex">

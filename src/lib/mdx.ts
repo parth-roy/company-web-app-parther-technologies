@@ -4,46 +4,56 @@ import matter from 'gray-matter';
 
 const contentDirectory = path.join(process.cwd(), 'content');
 
-export interface LocationData {
+export interface CollectionData {
   id: string;
   title: string;
   description: string;
   seoTitle: string;
   seoDescription: string;
   content: string;
+  [key: string]: any;
 }
 
-export function getLocationIds() {
-  const locationsDirectory = path.join(contentDirectory, 'locations');
-  if (!fs.existsSync(locationsDirectory)) return [];
-  const fileNames = fs.readdirSync(locationsDirectory);
+export function getCollectionIds(collection: string) {
+  const collectionDir = path.join(contentDirectory, collection);
+  if (!fs.existsSync(collectionDir)) return [];
+  const fileNames = fs.readdirSync(collectionDir);
   return fileNames.map((fileName) => {
     return {
       params: {
-        city: fileName.replace(/\.mdx$/, ''),
+        slug: fileName.replace(/\.mdx$/, ''),
       },
     };
   });
 }
 
-export async function getLocationData(id: string): Promise<LocationData | null> {
-  const fullPath = path.join(contentDirectory, 'locations', `${id}.mdx`);
+export async function getCollectionData(collection: string, slug: string): Promise<CollectionData | null> {
+  const fullPath = path.join(contentDirectory, collection, `${slug}.mdx`);
   
   if (!fs.existsSync(fullPath)) {
     return null;
   }
   
   const fileContents = fs.readFileSync(fullPath, 'utf8');
-  
-  // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
   
   return {
-    id,
+    id: slug,
     content: matterResult.content,
     title: matterResult.data.title,
     description: matterResult.data.description,
     seoTitle: matterResult.data.seoTitle,
     seoDescription: matterResult.data.seoDescription,
+    ...matterResult.data
   };
+}
+
+// Backward compatibility for locations (which used 'city' as param)
+export function getLocationIds() {
+  const ids = getCollectionIds('locations');
+  return ids.map(id => ({ params: { city: id.params.slug } }));
+}
+
+export async function getLocationData(city: string) {
+  return getCollectionData('locations', city);
 }
