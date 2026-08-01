@@ -43,6 +43,13 @@ jobs:
               export PATH=$PATH:/usr/local/bin:/usr/bin
             fi
 
+            # Auto-provision Node.js if it's completely missing from the server
+            if ! command -v npm &> /dev/null; then
+              echo "Node.js/NPM not found! Auto-installing Node.js 20..."
+              curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+              apt-get install -y nodejs
+            fi
+
             if ! command -v pm2 &> /dev/null; then
               echo "Installing PM2 globally..."
               npm install -g pm2
