@@ -47,9 +47,43 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/services" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
-            Services
-          </Link>
+          {/* Services Dropdown */}
+          <div className="relative group/services">
+            {/* The trigger area needs some padding so the hover doesn't break when moving to the menu */}
+            <div className="py-2"> 
+              <Link href="/services" className="flex items-center gap-1 text-sm font-semibold text-cf-text-secondary group-hover/services:text-cf-text transition-colors">
+                Services
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover/services:rotate-180">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </Link>
+            </div>
+
+            {/* Dropdown Menu */}
+            <div className="absolute top-[100%] left-0 w-64 bg-white border border-gray-100 shadow-xl rounded-md opacity-0 invisible group-hover/services:opacity-100 group-hover/services:visible transition-all duration-200 transform translate-y-2 group-hover/services:translate-y-0 z-50">
+              <ul className="flex flex-col py-1">
+                {[
+                  { name: 'Custom Software', href: '/services/custom-software-engineering' },
+                  { name: 'ERP Systems', href: '/services/erp-systems' },
+                  { name: 'CRM Development', href: '/services/crm' },
+                  { name: 'Mobile Apps', href: '/services/mobile-app-development' },
+                  { name: 'Cloud Architecture', href: '/services/enterprise-cloud' },
+                ].map((service, idx) => (
+                  <li key={service.name} className={`border-gray-100 ${idx !== 4 ? 'border-b' : ''}`}>
+                    <Link 
+                      href={service.href}
+                      className="block px-6 py-3 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors flex items-center justify-between group/link"
+                    >
+                      {service.name}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all text-blue-600">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
           <Link href="/industries" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
             Industries
           </Link>
