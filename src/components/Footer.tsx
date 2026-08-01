@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -8,11 +9,16 @@ export default function Footer() {
           
           {/* Brand Col */}
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-white text-[#111111] flex items-center justify-center font-serif-display font-bold text-xl rounded-sm">
-                P
+            <Link href="/" className="flex items-center gap-3 mb-6">
+              <div className="relative w-12 h-12 bg-white rounded-lg p-1 shrink-0">
+                <Image 
+                  src="/logo.png" 
+                  alt="Parther Technologies" 
+                  fill
+                  className="object-contain p-1.5" 
+                />
               </div>
-              <span className="font-serif-display text-xl font-bold tracking-tight">
+              <span className="font-serif-display text-2xl font-bold tracking-tight text-white">
                 Parther Technologies
               </span>
             </Link>

@@ -5,22 +5,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Navigation (Simplified) */}
-      <nav className="w-full border-b border-cf-border bg-cf-bg/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="container-main py-4 flex items-center justify-between">
-          <div className="font-serif-display text-h4 font-bold text-cf-text">
-            <Link href="/">Parther Technologies</Link>
-          </div>
-          <div className="hidden md:flex gap-8 items-center text-sm font-medium text-cf-text-secondary">
-            <Link href="/services" className="hover:text-cf-text transition-colors">Services</Link>
-            <Link href="/industries" className="hover:text-cf-text transition-colors">Industries</Link>
-            <Link href="#locations" className="hover:text-cf-text transition-colors">Locations</Link>
-          </div>
-          <Button variant="default" className="hidden md:flex">
-            Get Technical Assessment
-          </Button>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-32 pixel-bg-hero">
@@ -106,21 +90,7 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Footer / Internal SEO Links */}
-      <footer id="locations" className="py-12 bg-cf-bg border-t border-cf-border">
-        <div className="container-main">
-          <h3 className="font-serif-display text-h4 mb-6">Regional Knowledge Hubs</h3>
-          <p className="text-sm text-cf-text-secondary mb-6 max-w-2xl">
-            Explore our specialized architectural solutions tailored for the specific industrial corridors of West Bengal.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Link href="/locations/howrah" className="text-sm text-cf-text hover:text-primary underline decoration-cf-border underline-offset-4">Howrah Operations</Link>
-            <Link href="/locations/kolkata" className="text-sm text-cf-text hover:text-primary underline decoration-cf-border underline-offset-4">Kolkata Headquarters</Link>
-            <Link href="/locations/salt-lake" className="text-sm text-cf-text hover:text-primary underline decoration-cf-border underline-offset-4">Salt Lake / Sector V</Link>
-            <Link href="/locations/dankuni" className="text-sm text-cf-text hover:text-primary underline decoration-cf-border underline-offset-4">Dankuni Logistics</Link>
-          </div>
-        </div>
-      </footer>
+
     </main>
   );
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
@@ -29,11 +30,17 @@ export default function Navbar() {
     >
       <div className="container-main flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-cf-text text-cf-bg flex items-center justify-center font-serif-display font-bold text-xl rounded-sm transition-transform group-hover:scale-105">
-            P
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative w-10 h-10 transition-transform group-hover:scale-105">
+            <Image 
+              src="/logo.png" 
+              alt="Parther Technologies" 
+              fill
+              className="object-contain" 
+              priority
+            />
           </div>
-          <span className="font-serif-display text-xl font-bold tracking-tight text-cf-text">
+          <span className="font-serif-display text-2xl font-bold tracking-tight text-cf-text">
             Parther Technologies
           </span>
         </Link>
