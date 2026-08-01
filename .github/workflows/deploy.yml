@@ -24,45 +24,31 @@ jobs:
           script_stop: true
           script: |
             echo "======================================"
-            echo "Starting Enterprise Deployment..."
+            echo "Starting Enterprise Deployment Pipeline..."
             echo "======================================"
+
+            # Source bash profiles to load all Node/PM2 paths correctly in non-interactive SSH
+            source ~/.bashrc 2>/dev/null || true
+            source ~/.profile 2>/dev/null || true
+            export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/snap/bin
 
             # Define variables
             PROJECT_DIR="/var/www/company-web-app-parther-technologies"
             REPO_URL="https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/parth-roy/company-web-app-parther-technologies.git"
             PM2_APP_NAME="parther-next-app"
 
-            # Step 1: Ensure Node.js and PM2 are available
-            export NVM_DIR="$HOME/.nvm"
-            if [ -s "$NVM_DIR/nvm.sh" ]; then
-              \. "$NVM_DIR/nvm.sh"
-            fi
-            
-            # Fallback to absolute paths if nvm didn't load npm into PATH
-            if ! command -v npm &> /dev/null; then
-              export PATH=$PATH:/usr/local/bin:/usr/bin
-            fi
+            echo "Checking environment..."
+            node -v || echo "Node not found in PATH"
+            npm -v || echo "NPM not found in PATH"
+            pm2 -v || echo "PM2 not found in PATH"
 
-            # Auto-provision Node.js if it's completely missing from the server
-            if ! command -v npm &> /dev/null; then
-              echo "Node.js/NPM not found! Auto-installing Node.js 20..."
-              curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-              apt-get install -y nodejs
-            fi
-
-            if ! command -v pm2 &> /dev/null; then
-              echo "Installing PM2 globally..."
-              npm install -g pm2
-            fi
-
-            # Step 2: Handle Directory & Git Checkout (Robust Edge Case Handling)
+            # Step 2: Handle Directory & Git Checkout
             if [ -d "$PROJECT_DIR" ]; then
               echo "Directory exists. Fetching latest changes..."
               cd $PROJECT_DIR
-              
-              # Force reset to ensure no local server changes block the pull
               git fetch --all
               git reset --hard origin/main
+              git pull origin main
             else
               echo "Directory does not exist. Cloning repository..."
               cd /var/www
@@ -72,7 +58,7 @@ jobs:
 
             # Step 3: Install Dependencies
             echo "Installing Dependencies..."
-            npm ci || npm install --legacy-peer-deps
+            npm install --legacy-peer-deps
 
             # Step 4: Build Next.js Architecture
             echo "Building Next.js Application..."
@@ -80,7 +66,7 @@ jobs:
 
             # Step 5: PM2 Zero-Downtime Reload
             echo "Restarting Node Server..."
-            if pm2 describe $PM2_APP_NAME > /dev/null; then
+            if pm2 describe $PM2_APP_NAME > /dev/null 2>&1; then
               echo "Reloading existing PM2 process for zero-downtime..."
               pm2 reload $PM2_APP_NAME --update-env
             else
