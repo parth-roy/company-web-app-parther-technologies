@@ -93,6 +93,9 @@ export default function Navbar() {
           <Link href="/about" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
             About
           </Link>
+          <Link href="/pricing" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
+            Pricing
+          </Link>
         </nav>
 
         {/* CTA & Mobile Toggle */}
@@ -135,6 +138,7 @@ export default function Navbar() {
             <Link href="/industries" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2 border-b border-cf-border-light">Industries</Link>
             <Link href="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2 border-b border-cf-border-light">Case Studies</Link>
             <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2 border-b border-cf-border-light">About</Link>
+            <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2 border-b border-cf-border-light">Pricing</Link>
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-bg bg-cf-text text-center py-3 rounded-xl mt-4">Start a Project</Link>
           </nav>
         </div>
