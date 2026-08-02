@@ -15,6 +15,7 @@ export default function Footer() {
                   src="/logo.png" 
                   alt="Parther Technologies" 
                   fill
+                  sizes="48px"
                   className="object-contain p-1.5" 
                 />
               </div>

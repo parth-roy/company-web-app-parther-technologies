@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Syncopate } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const syncopate = Syncopate({
+  weight: ['400', '700'],
+  variable: "--font-syncopate",
   subsets: ["latin"],
 });
 
@@ -71,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full antialiased`}
+      className={`${inter.variable} ${syncopate.variable} h-full antialiased`}
     >
       <head>
         <script
@@ -79,7 +85,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-cf-bg pt-20">
+      <body className="min-h-full flex flex-col bg-cf-bg">
         <Navbar />
         <main className="flex-grow">
           {children}

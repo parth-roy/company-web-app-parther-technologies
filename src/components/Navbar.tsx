@@ -2,15 +2,21 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  if (pathname === '/test') {
+    return null;
+  }
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 80) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -24,7 +30,7 @@ export default function Navbar() {
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-cf-bg/80 backdrop-blur-md border-b border-cf-border shadow-sm py-4' 
+          ? 'bg-white/60 backdrop-blur-xl border-b border-white/20 shadow-sm py-4' 
           : 'bg-transparent py-6'
       }`}
     >
@@ -36,6 +42,7 @@ export default function Navbar() {
               src="/logo.png" 
               alt="Parther Technologies" 
               fill
+              sizes="40px"
               className="object-contain" 
               priority
             />

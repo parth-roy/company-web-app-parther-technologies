@@ -1,0 +1,9 @@
+export { default as HeroSection } from './HeroSection';
+export { default as HeroBackground } from './HeroBackground';
+export { default as HeroContent } from './HeroContent';
+export { default as HeroIllustration } from './HeroIllustration';
+export { default as HeroEffects } from './HeroEffects';
+export { default as HeroOverlay } from './HeroOverlay';
+export { default as HeroIllustrationZones } from './HeroIllustrationZones';
+export { default as TopRightIllustration } from './TopRightIllustration';
+export { default as BottomRightIllustration } from './BottomRightIllustration';

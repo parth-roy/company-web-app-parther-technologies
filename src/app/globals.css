@@ -176,6 +176,9 @@
     font-family: var(--font-serif);
     word-spacing: -0.02em;
   }
+  .font-syncopate {
+    font-family: var(--font-syncopate), sans-serif;
+  }
   .font-mono-caps {
     font-family: var(--font-mono);
     text-transform: uppercase;
@@ -233,6 +236,7 @@
 .hero-stagger {
   animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: calc(var(--stagger, 0) * 120ms + 200ms);
+  will-change: transform, opacity;
 }
 
 @keyframes float {
