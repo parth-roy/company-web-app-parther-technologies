@@ -2,10 +2,9 @@ import HeroIllustration from "./HeroIllustration";
 
 export default function HeroContent() {
   return (
-    <div className="container-main grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-6 gap-y-16 items-center w-full min-h-[90vh] py-24 lg:py-0">
-
+    <div className="container-main flex flex-col lg:flex-row gap-12 lg:gap-8 items-center justify-between w-full min-h-[90vh] py-24 lg:py-0">
       {/* Left Column: Core Value Proposition */}
-      <div className="z-10 relative flex flex-col items-start col-span-4 md:col-span-6 lg:col-span-6 xl:col-span-5 h-full justify-center">
+      <div className="z-10 relative flex flex-col items-start w-full lg:w-3/5 xl:w-1/2 h-full justify-center shrink-0">
 
         {/* Badge */}
         <div
@@ -15,9 +14,8 @@ export default function HeroContent() {
           Enterprise Architecture · GEO · AI-First Engineering
         </div>
 
-        {/* Headline */}
         <h1
-          className="font-syncopate uppercase tracking-tight font-bold text-h2 sm:text-h1 lg:text-[64px] leading-[1.10] mb-8 text-cf-text hero-stagger"
+          className="font-syncopate uppercase tracking-tight font-bold text-4xl sm:text-5xl lg:text-5xl xl:text-6xl leading-[1.10] mb-8 text-cf-text hero-stagger break-words hyphens-auto"
           style={{ "--stagger": 1 } as React.CSSProperties}
         >
           We Architect Scalable Digital Infrastructure.
@@ -56,7 +54,7 @@ export default function HeroContent() {
           <div className="flex flex-col items-center sm:items-start">
             <a
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cf-text text-white font-syncopate font-bold text-xs tracking-widest hover:bg-cf-text/80 transition-colors duration-200 shadow-lg"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cf-text text-white font-syncopate font-bold text-xs tracking-widest hover:bg-cf-text/80 transition-colors duration-200 shadow-lg whitespace-nowrap"
             >
               REQUEST TECHNICAL AUDIT →
             </a>
@@ -64,51 +62,20 @@ export default function HeroContent() {
           </div>
           <a
             href="/case-studies"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-cf-text text-cf-text font-syncopate font-bold text-xs tracking-widest hover:bg-cf-text hover:text-white transition-colors duration-200"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-cf-text text-cf-text font-syncopate font-bold text-xs tracking-widest hover:bg-cf-text hover:text-white transition-colors duration-200 whitespace-nowrap"
           >
             VIEW CASE STUDIES
           </a>
         </div>
 
-        {/* Trust Badges — AWS / NASSCOM / Certified */}
-        <div
-          className="flex flex-col gap-4 hero-stagger mt-2 pt-8 border-t border-cf-border/40 w-full"
-          style={{ "--stagger": 4 } as React.CSSProperties}
-        >
-          <p className="text-[10px] sm:text-xs font-mono-caps text-cf-text-tertiary tracking-[0.2em] uppercase">
-            Certified Infrastructure Partners
-          </p>
-          <div className="flex flex-wrap gap-4 items-center">
-            {[
-              { label: "AWS", sub: "Cloud Partner" },
-              { label: "NASSCOM", sub: "Registered" },
-              { label: "IBM", sub: "Technology" },
-              { label: "Google", sub: "Cloud Ready" },
-            ].map((badge) => (
-              <div
-                key={badge.label}
-                className="flex items-center gap-2 bg-white border border-cf-border rounded-lg px-3 py-2 shadow-sm"
-              >
-                <div className="w-6 h-6 bg-cf-border/30 rounded flex items-center justify-center text-[9px] font-bold font-mono text-cf-text shrink-0">
-                  {badge.label[0]}
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold font-mono text-cf-text leading-none">
-                    {badge.label}
-                  </div>
-                  <div className="text-[9px] text-cf-text-tertiary leading-none mt-0.5">
-                    {badge.sub}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+
       </div>
 
       {/* Right Column: Interactive Element */}
-      <div className="z-10 relative col-span-4 md:col-span-8 lg:col-span-5 lg:col-start-8 xl:col-start-8">
-        <HeroIllustration />
+      <div className="z-10 relative w-full lg:w-2/5 xl:w-1/2 flex justify-center lg:justify-end shrink-0">
+        <div className="w-full max-w-[448px]">
+          <HeroIllustration />
+        </div>
       </div>
 
     </div>
