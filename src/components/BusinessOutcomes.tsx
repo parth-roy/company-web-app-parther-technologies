@@ -20,7 +20,6 @@ export function BusinessOutcomes() {
     offset: ["start 80%", "end 20%"],
   });
 
-  // Lower stiffness = fewer intermediate frames on scroll = smoother
   const spring = useSpring(scrollYProgress, {
     stiffness: 80,
     damping: 25,
@@ -63,8 +62,6 @@ export function BusinessOutcomes() {
                 key={item.id}
                 item={item}
                 index={index}
-                total={outcomes.length}
-                spring={spring}
                 isLeft={index % 2 === 0}
               />
             ))}
@@ -76,25 +73,21 @@ export function BusinessOutcomes() {
 }
 
 function OutcomeCard({
-  item, index, total, spring, isLeft,
+  item, index, isLeft,
 }: {
   item: (typeof outcomes)[number];
   index: number;
-  total: number;
-  spring: ReturnType<typeof useSpring>;
   isLeft: boolean;
 }) {
-  const revealStart = (index / total) * 0.9;
-  const revealEnd = revealStart + 0.14;
-
-  const opacity = useTransform(spring, [revealStart, revealEnd], [0, 1]);
-  const x = useTransform(spring, [revealStart, revealEnd], [isLeft ? -20 : 20, 0]);
-
   return (
-    <div className={`relative flex items-center py-8 gap-8 ${isLeft ? "flex-row" : "flex-row-reverse"}`}>
-      {/* transition-colors only — NOT transition-all. FM handles opacity/x. */}
-      <motion.article
-        style={{ opacity, x, willChange: "transform, opacity" }}
+    <motion.div
+      className={`relative flex items-center py-8 gap-8 ${isLeft ? "flex-row" : "flex-row-reverse"}`}
+      initial={{ opacity: 0, x: isLeft ? -20 : 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+    >
+      <article
         className={`
           flex-1 bg-cf-card border border-cf-border clip-corner p-6
           hover:border-blue-400 hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
@@ -107,16 +100,13 @@ function OutcomeCard({
           {item.title}
         </h3>
         <p className="text-cf-text-secondary text-sm leading-relaxed">{item.description}</p>
-      </motion.article>
+      </article>
 
-      <motion.div
-        style={{ opacity, willChange: "opacity" }}
-        className="relative z-10 shrink-0 w-10 h-10 bg-cf-bg border-2 border-blue-500 flex items-center justify-center font-syncopate font-bold text-xs text-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.4)]"
-      >
+      <div className="relative z-10 shrink-0 w-10 h-10 bg-cf-bg border-2 border-blue-500 flex items-center justify-center font-syncopate font-bold text-xs text-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.4)]">
         {item.num}
-      </motion.div>
+      </div>
 
       <div className="flex-1" />
-    </div>
+    </motion.div>
   );
 }

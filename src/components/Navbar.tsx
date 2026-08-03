@@ -14,15 +14,15 @@ export default function Navbar() {
   
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  if (pathname === '/test') {
-    return null;
-  }
-
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 80);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (pathname === '/test') {
+    return null;
+  }
 
   const handleMouseEnter = (menu: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
