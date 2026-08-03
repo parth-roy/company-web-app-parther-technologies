@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -122,7 +122,7 @@ export default function Navbar() {
           {/* Mega Menu Dropdown */}
           <AnimatePresence>
             {(activeMegaMenu === 'services' || activeMegaMenu === 'industries') && (
-              <m.div 
+              <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -153,7 +153,7 @@ export default function Navbar() {
                   <span className="text-xs font-medium text-gray-500">Need something custom?</span>
                   <Link href="/contact" className="text-xs font-bold text-blue-600 hover:text-blue-700">Request Technical Audit →</Link>
                 </div>
-              </m.div>
+              </motion.div>
             )}
           </AnimatePresence>
         </nav>
@@ -195,7 +195,7 @@ export default function Navbar() {
       {/* Mobile Nav Dropdown */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <m.div 
+          <motion.div 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -210,7 +210,7 @@ export default function Navbar() {
               <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Pricing</Link>
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-white bg-black text-center py-4 rounded-xl mt-4">Start a Project</Link>
             </nav>
-          </m.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </header>
