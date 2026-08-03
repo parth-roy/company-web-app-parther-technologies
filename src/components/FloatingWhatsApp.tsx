@@ -4,17 +4,13 @@ import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
 
 export function FloatingWhatsApp() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Delay the appearance of the WhatsApp button so it's non-intrusive on immediate load
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 2500);
-    return () => clearTimeout(timer);
+    setIsMounted(true);
   }, []);
 
-  if (!isVisible) return null;
+  if (!isMounted) return null;
 
   return (
     <a

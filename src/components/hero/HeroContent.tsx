@@ -2,9 +2,9 @@ import HeroIllustration from "./HeroIllustration";
 
 export default function HeroContent() {
   return (
-    <div className="container-main flex flex-col lg:flex-row gap-12 lg:gap-8 items-center justify-between w-full min-h-[90vh] py-24 lg:py-0">
+    <div className="container-main flex flex-col xl:flex-row gap-8 xl:gap-12 items-center xl:justify-between w-full min-h-0 xl:min-h-[calc(100vh-80px)] pt-8 pb-16 xl:py-0">
       {/* Left Column: Core Value Proposition */}
-      <div className="z-10 relative flex flex-col items-start w-full lg:w-3/5 xl:w-1/2 h-full justify-center shrink-0">
+      <div className="z-10 relative flex flex-col items-start w-full xl:w-[55%] h-full justify-center shrink-0 min-w-0">
 
         {/* Badge */}
         <div
@@ -15,7 +15,7 @@ export default function HeroContent() {
         </div>
 
         <h1
-          className="font-syncopate uppercase tracking-tight font-bold text-4xl sm:text-5xl lg:text-5xl xl:text-6xl leading-[1.10] mb-8 text-cf-text hero-stagger break-words hyphens-auto"
+          className="font-syncopate uppercase tracking-tight font-bold text-4xl sm:text-5xl lg:text-5xl xl:text-6xl leading-[1.10] mb-8 text-cf-text hero-stagger break-words"
           style={{ "--stagger": 1 } as React.CSSProperties}
         >
           We Architect Scalable Digital Infrastructure.
@@ -72,7 +72,7 @@ export default function HeroContent() {
       </div>
 
       {/* Right Column: Interactive Element */}
-      <div className="z-10 relative w-full lg:w-2/5 xl:w-1/2 flex justify-center lg:justify-end shrink-0">
+      <div className="z-10 relative w-full xl:w-[45%] flex justify-center xl:justify-end shrink-0 mt-8 xl:mt-0">
         <div className="w-full max-w-[448px]">
           <HeroIllustration />
         </div>

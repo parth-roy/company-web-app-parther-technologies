@@ -25,7 +25,6 @@ const FORM_STORAGE_KEY = "parther_lead_form_cache";
 
 export default function MultiStepForm() {
   const [step, setStep] = useState(1);
-  const [isMounted, setIsMounted] = useState(false);
 
   // Initialize react-hook-form
   const {
@@ -51,7 +50,6 @@ export default function MultiStepForm() {
 
   // ─── LocalStorage Caching (WCAG 3.3.7 Redundant Entry) ───────────────────
   useEffect(() => {
-    setIsMounted(true);
     const cachedData = localStorage.getItem(FORM_STORAGE_KEY);
     if (cachedData) {
       try {
@@ -68,10 +66,8 @@ export default function MultiStepForm() {
 
   // Save to localStorage on change
   useEffect(() => {
-    if (isMounted) {
-      localStorage.setItem(FORM_STORAGE_KEY, JSON.stringify(formValues));
-    }
-  }, [formValues, isMounted]);
+    localStorage.setItem(FORM_STORAGE_KEY, JSON.stringify(formValues));
+  }, [formValues]);
 
   // ─── Step Navigation ──────────────────────────────────────────────────────
   const handleNext = async () => {
@@ -97,8 +93,7 @@ export default function MultiStepForm() {
     setStep(4);
   };
 
-  // Prevent hydration mismatch on initial render
-  if (!isMounted) return null;
+
 
   return (
     <Card className="w-full max-w-md mx-auto bg-cf-card border-cf-border shadow-float">
