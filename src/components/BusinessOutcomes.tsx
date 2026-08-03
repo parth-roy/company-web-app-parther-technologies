@@ -1,7 +1,4 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import React from "react";
 
 const outcomes = [
   { id: 1, num: "01", title: "Increase Operational Efficiency", description: "Streamline your core processes and remove friction from daily operations.", icon: "⚡" },
@@ -13,25 +10,9 @@ const outcomes = [
 ];
 
 export function BusinessOutcomes() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 80%", "end 20%"],
-  });
-
-  const spring = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
-    restDelta: 0.001,
-  });
-
-  const lineScaleY = useTransform(spring, [0, 1], [0, 1]);
-
   return (
     <section
       id="outcomes"
-      ref={sectionRef}
       className="relative z-10 bg-cf-bg text-cf-text py-28 border-t border-cf-border"
     >
       <div className="container-main">
@@ -48,65 +29,44 @@ export function BusinessOutcomes() {
         </div>
 
         <div className="relative max-w-3xl mx-auto">
+          {/* Static timeline line — always visible */}
           <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-cf-border" />
-
-          {/* scaleY is GPU-composited — no paint, no layout */}
-          <motion.div
-            className="absolute left-1/2 -translate-x-px top-0 w-[2px] bg-gradient-to-b from-blue-400 via-blue-500 to-blue-700 origin-top"
-            style={{ scaleY: lineScaleY, height: "100%", willChange: "transform" }}
-          />
+          <div className="absolute left-1/2 -translate-x-px top-0 w-[2px] h-full bg-gradient-to-b from-blue-400 via-blue-500 to-blue-700" />
 
           <div className="relative z-10">
-            {outcomes.map((item, index) => (
-              <OutcomeCard
-                key={item.id}
-                item={item}
-                index={index}
-                isLeft={index % 2 === 0}
-              />
-            ))}
+            {outcomes.map((item, index) => {
+              const isLeft = index % 2 === 0;
+              return (
+                <div
+                  key={item.id}
+                  className={`relative flex items-center py-8 gap-8 ${isLeft ? "flex-row" : "flex-row-reverse"}`}
+                >
+                  <article
+                    className={`
+                      flex-1 bg-cf-card border border-cf-border p-6
+                      hover:border-blue-400 hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
+                      transition-colors duration-200 group cursor-pointer
+                      ${isLeft ? "text-right" : "text-left"}
+                    `}
+                  >
+                    <div className={`text-3xl mb-4 ${isLeft ? "text-right" : "text-left"}`}>{item.icon}</div>
+                    <h3 className="font-syncopate font-bold text-base tracking-tight mb-2 group-hover:text-blue-500 transition-colors duration-200 leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-cf-text-secondary text-sm leading-relaxed">{item.description}</p>
+                  </article>
+
+                  <div className="relative z-10 shrink-0 w-10 h-10 bg-cf-bg border-2 border-blue-500 flex items-center justify-center font-syncopate font-bold text-xs text-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.4)]">
+                    {item.num}
+                  </div>
+
+                  <div className="flex-1" />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function OutcomeCard({
-  item, index, isLeft,
-}: {
-  item: (typeof outcomes)[number];
-  index: number;
-  isLeft: boolean;
-}) {
-  return (
-    <motion.div
-      className={`relative flex items-center py-8 gap-8 ${isLeft ? "flex-row" : "flex-row-reverse"}`}
-      initial={{ opacity: 0, x: isLeft ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
-    >
-      <article
-        className={`
-          flex-1 bg-cf-card border border-cf-border clip-corner p-6
-          hover:border-blue-400 hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
-          transition-colors duration-200 group cursor-pointer
-          ${isLeft ? "text-right" : "text-left"}
-        `}
-      >
-        <div className={`text-3xl mb-4 ${isLeft ? "text-right" : "text-left"}`}>{item.icon}</div>
-        <h3 className="font-syncopate font-bold text-base tracking-tight mb-2 group-hover:text-blue-500 transition-colors duration-200 leading-snug">
-          {item.title}
-        </h3>
-        <p className="text-cf-text-secondary text-sm leading-relaxed">{item.description}</p>
-      </article>
-
-      <div className="relative z-10 shrink-0 w-10 h-10 bg-cf-bg border-2 border-blue-500 flex items-center justify-center font-syncopate font-bold text-xs text-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.4)]">
-        {item.num}
-      </div>
-
-      <div className="flex-1" />
-    </motion.div>
   );
 }
