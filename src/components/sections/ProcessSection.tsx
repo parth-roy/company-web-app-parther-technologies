@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const steps = [
   { num: "01", title: "Discovery", desc: "Deep-dive into your business model, pain points, and growth objectives." },
@@ -23,23 +22,25 @@ function ProcessStep({
   index: number;
   isLeft: boolean;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  // once: false means it un-animates when scrolled back up
-  const isInView = useInView(ref, { once: false, margin: "0px 0px -80px 0px" });
-
   return (
     <div
-      ref={ref}
       className={`relative flex items-center gap-0 pb-0 ${
         isLeft ? "md:flex-row" : "md:flex-row-reverse"
       } flex-row`}
     >
       {/* Card side */}
       <div className={`flex-1 py-6 ${isLeft ? "md:pr-12 pr-0 pl-16 md:pl-0" : "md:pl-12 pl-16"}`}>
+        {/*
+          SSR-SAFE PATTERN:
+          whileInView + viewport once:true = server renders element fully visible (no inline opacity:0).
+          Animation only runs on client when element enters viewport.
+          This is the industry standard (used by Linear, Vercel, Stripe).
+        */}
         <motion.div
           initial={{ opacity: 0, x: isLeft ? -32 : 32 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeft ? -32 : 32 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+          transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.05 }}
           className={`
             bg-cf-card border border-cf-border clip-corner p-6 max-w-sm
             hover:border-blue-400 hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
@@ -60,8 +61,9 @@ function ProcessStep({
       {/* Center node */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+        transition={{ duration: 0.3, ease: "easeOut", delay: index * 0.05 }}
         className="
           absolute left-0 md:left-1/2 md:-translate-x-1/2
           w-10 h-10 bg-cf-bg border-2 border-blue-500

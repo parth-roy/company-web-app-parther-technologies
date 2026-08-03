@@ -48,6 +48,7 @@ export const metadata: Metadata = {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { MotionProvider } from "@/components/MotionProvider";
 
 export default function RootLayout({
   children,
@@ -141,12 +142,14 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-cf-bg text-cf-text min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1 mt-[80px]">
-          {children}
-        </main>
-        <Footer />
-        <FloatingWhatsApp />
+        <MotionProvider>
+          <Navbar />
+          <main className="flex-1 mt-[80px]">
+            {children}
+          </main>
+          <Footer />
+          <FloatingWhatsApp />
+        </MotionProvider>
       </body>
     </html>
   );
