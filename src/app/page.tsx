@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { HeroSection } from "@/components/hero";
 import { ServicesCarousel } from "@/components/ServicesCarousel";
 import { BusinessOutcomes } from "@/components/BusinessOutcomes";
@@ -9,6 +10,36 @@ import { TechStackSection } from "@/components/sections/TechStackSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
+
+// ─── Homepage SEO ────────────────────────────────────────────────────────────
+// Target: broad enterprise intent, NOT city-specific queries.
+// City queries are handled by /locations/[city] to avoid cannibalization.
+export const metadata: Metadata = {
+  title: "Enterprise Software Architecture & Digital Transformation | Parther Technologies",
+  description:
+    "Parther Technologies architects scalable digital infrastructure — custom SaaS, ERP systems, Agentic Workflows, and Generative Engine Optimization (GEO) for enterprises across Eastern India.",
+  alternates: {
+    canonical: "https://parthertech.com",
+  },
+  keywords: [
+    "enterprise software company Eastern India",
+    "custom software development West Bengal",
+    "SaaS platform development India",
+    "Generative Engine Optimization GEO",
+    "ERP development Eastern India",
+    "agentic workflow automation",
+    "digital transformation West Bengal",
+    "Parther Technologies",
+  ],
+  openGraph: {
+    title: "Parther Technologies | Enterprise Software Architecture",
+    description: "We architect scalable digital infrastructure for enterprises in Eastern India.",
+    url: "https://parthertech.com",
+    siteName: "Parther Technologies",
+    locale: "en_IN",
+    type: "website",
+  },
+};
 
 export default function Home() {
   return (

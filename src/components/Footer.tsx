@@ -28,7 +28,7 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-2">
               <span className="text-xs font-mono-caps text-gray-500">Contact</span>
-              <a href="mailto:hello@parthertech.com" className="text-sm hover:text-white transition-colors">hello@parthertech.com</a>
+              <a href="mailto:hello@parthertech.com" className="text-sm hover:text-white transition-colors inline-block py-1 min-h-[24px]">hello@parthertech.com</a>
             </div>
           </div>
 
@@ -36,11 +36,11 @@ export default function Footer() {
           <div>
             <h4 className="font-serif-display text-lg mb-6">Core Services</h4>
             <ul className="flex flex-col gap-3">
-              <li><Link href="/services/custom-software-engineering" className="text-sm text-gray-400 hover:text-white transition-colors">Custom Software</Link></li>
-              <li><Link href="/services/erp-systems" className="text-sm text-gray-400 hover:text-white transition-colors">ERP Systems</Link></li>
-              <li><Link href="/services/crm" className="text-sm text-gray-400 hover:text-white transition-colors">CRM Development</Link></li>
-              <li><Link href="/services/mobile-app-development" className="text-sm text-gray-400 hover:text-white transition-colors">Mobile Apps</Link></li>
-              <li><Link href="/services/enterprise-cloud" className="text-sm text-gray-400 hover:text-white transition-colors">Cloud Architecture</Link></li>
+              <li><Link href="/services/custom-software-engineering" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Custom Software</Link></li>
+              <li><Link href="/services/erp-systems" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">ERP Systems</Link></li>
+              <li><Link href="/services/crm" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">CRM Development</Link></li>
+              <li><Link href="/services/mobile-app-development" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Mobile Apps</Link></li>
+              <li><Link href="/services/enterprise-cloud" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Cloud Architecture</Link></li>
             </ul>
           </div>
 
@@ -48,11 +48,11 @@ export default function Footer() {
           <div>
             <h4 className="font-serif-display text-lg mb-6">Industries</h4>
             <ul className="flex flex-col gap-3">
-              <li><Link href="/industries/manufacturing" className="text-sm text-gray-400 hover:text-white transition-colors">Manufacturing</Link></li>
-              <li><Link href="/industries/healthcare" className="text-sm text-gray-400 hover:text-white transition-colors">Healthcare</Link></li>
-              <li><Link href="/industries/fintech" className="text-sm text-gray-400 hover:text-white transition-colors">FinTech</Link></li>
-              <li><Link href="/industries/education" className="text-sm text-gray-400 hover:text-white transition-colors">EdTech</Link></li>
-              <li><Link href="/industries/ecommerce-retail" className="text-sm text-gray-400 hover:text-white transition-colors">Retail & eCommerce</Link></li>
+              <li><Link href="/industries/manufacturing" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Manufacturing</Link></li>
+              <li><Link href="/industries/healthcare" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Healthcare</Link></li>
+              <li><Link href="/industries/fintech" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">FinTech</Link></li>
+              <li><Link href="/industries/education" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">EdTech</Link></li>
+              <li><Link href="/industries/ecommerce-retail" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Retail & eCommerce</Link></li>
             </ul>
           </div>
 
@@ -60,9 +60,9 @@ export default function Footer() {
           <div>
             <h4 className="font-serif-display text-lg mb-6">Locations</h4>
             <ul className="flex flex-col gap-3">
-              <li><Link href="/locations/bengal-silicon-valley" className="text-sm text-gray-400 hover:text-white transition-colors">Bengal Silicon Valley</Link></li>
-              <li><Link href="/locations/siliguri" className="text-sm text-gray-400 hover:text-white transition-colors">Siliguri Tech Hub</Link></li>
-              <li><Link href="/locations/durgapur-asansol" className="text-sm text-gray-400 hover:text-white transition-colors">Durgapur-Asansol</Link></li>
+              <li><Link href="/locations/bengal-silicon-valley" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Bengal Silicon Valley</Link></li>
+              <li><Link href="/locations/siliguri" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Siliguri Tech Hub</Link></li>
+              <li><Link href="/locations/durgapur-asansol" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Durgapur-Asansol</Link></li>
             </ul>
           </div>
         </div>
@@ -70,11 +70,11 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Parther Technologies. All rights reserved.
+            &copy; 2026 Parther Technologies. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="text-sm text-gray-500 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-sm text-gray-500 hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="text-sm text-gray-500 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Privacy Policy</Link>
+            <Link href="/terms" className="text-sm text-gray-500 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Terms of Service</Link>
           </div>
         </div>
       </div>

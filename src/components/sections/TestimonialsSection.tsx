@@ -51,7 +51,7 @@ export function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <figure
               key={i}
-              className="bg-cf-card border border-cf-border clip-corner p-8 flex flex-col gap-6 hover:border-blue-400 hover:shadow-[0_4px_30px_rgba(59,130,246,0.1)] transition-all duration-200"
+              className="bg-cf-card border border-cf-border clip-corner p-8 flex flex-col gap-6 hover:border-blue-400 hover:shadow-[0_4px_30px_rgba(59,130,246,0.1)] transition-colors duration-200"
             >
               {/* Quote mark */}
               <div className="text-5xl font-serif text-blue-200 leading-none select-none">"</div>

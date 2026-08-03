@@ -1,62 +1,112 @@
 import { MetadataRoute } from 'next';
 import { getCollectionIds } from '@/lib/mdx';
 
+// ─── Hardcoded last-modified dates per collection ───────────────────────────
+// Using fixed dates avoids new Date() issues with Cache Components.
+const DATES = {
+  home:       '2026-08-03',
+  services:   '2026-08-03',
+  industries: '2026-08-01',
+  locations:  '2026-08-01',
+  static:     '2026-07-15',
+};
+
+// ─── Priority mapping ────────────────────────────────────────────────────────
+// Designed to signal crawl priority to Googlebot and Bingbot.
+// Location pages are high-priority (0.85) for local SEO dominance.
+// Industries are high (0.8) for vertical GEO authority.
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://parthertech.com';
+  const base = 'https://parthertech.com';
 
-  // Get dynamic slugs
-  const serviceIds = getCollectionIds('services');
-  const industryIds = getCollectionIds('industries');
-  const locationIds = getCollectionIds('locations');
+  const serviceIds   = getCollectionIds('services');
+  const industryIds  = getCollectionIds('industries');
+  const locationIds  = getCollectionIds('locations');
 
-  const servicesMap = serviceIds.map((id) => ({
-    url: `${baseUrl}/services/${id.params.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-  }));
-
-  const industriesMap = industryIds.map((id) => ({
-    url: `${baseUrl}/industries/${id.params.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
-
-  const locationsMap = locationIds.map((id) => ({
-    url: `${baseUrl}/locations/${id.params.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
-
-  return [
+  // ─── Core static pages ───────────────────────────────────────────────────
+  const staticPages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: base,
+      lastModified: DATES.home,
       changeFrequency: 'daily',
-      priority: 1,
+      priority: 1.0,
     },
     {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      url: `${base}/about`,
+      lastModified: DATES.static,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${base}/services`,
+      lastModified: DATES.services,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
+      url: `${base}/industries`,
+      lastModified: DATES.industries,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${base}/case-studies`,
+      lastModified: DATES.services,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${base}/pricing`,
+      lastModified: DATES.static,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${base}/contact`,
+      lastModified: DATES.static,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
+      url: `${base}/technologies`,
+      lastModified: DATES.static,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
-    {
-      url: `${baseUrl}/industries`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    ...servicesMap,
-    ...industriesMap,
-    ...locationsMap,
+  ];
+
+  // ─── Programmatic: Services (/services/[slug]) ───────────────────────────
+  // High priority — money pages for conversion.
+  const servicesPages: MetadataRoute.Sitemap = serviceIds.map(({ params }) => ({
+    url: `${base}/services/${params.slug}`,
+    lastModified: DATES.services,
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }));
+
+  // ─── Programmatic: Industries (/industries/[slug]) ───────────────────────
+  // High priority — vertical GEO authority pages.
+  const industriesPages: MetadataRoute.Sitemap = industryIds.map(({ params }) => ({
+    url: `${base}/industries/${params.slug}`,
+    lastModified: DATES.industries,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  // ─── Programmatic: Locations (/locations/[city]) ─────────────────────────
+  // High priority — local SEO dominance within 40km radius of Barrackpore.
+  // These pages target specific geo-intent queries (e.g. "ERP software Dankuni").
+  const locationsPages: MetadataRoute.Sitemap = locationIds.map(({ params }) => ({
+    url: `${base}/locations/${params.slug}`,
+    lastModified: DATES.locations,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }));
+
+  return [
+    ...staticPages,
+    ...servicesPages,
+    ...industriesPages,
+    ...locationsPages,
   ];
 }

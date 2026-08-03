@@ -3,28 +3,55 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   if (pathname === '/test') {
     return null;
   }
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 80);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleMouseEnter = (menu: string) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActiveMegaMenu(menu);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveMegaMenu(null);
+    }, 150); // slight delay to prevent flickering
+  };
+
+  const services = [
+    { name: 'Custom Software', href: '/services/custom-software-engineering', desc: 'Enterprise apps & legacy modernization.' },
+    { name: 'ERP Systems', href: '/services/erp-systems', desc: 'Supply chain & logistics architecture.' },
+    { name: 'AI Automation', href: '/services/ai-automation', desc: 'Custom AI agent orchestration.' },
+    { name: 'CRM Development', href: '/services/crm', desc: 'Sales & operational pipelines.' },
+    { name: 'Mobile Apps', href: '/services/mobile-app-development', desc: 'React Native & iOS scaling.' },
+    { name: 'Cloud Architecture', href: '/services/enterprise-cloud', desc: 'Zero-trust AWS/GCP setups.' },
+  ];
+
+  const industries = [
+    { name: 'Logistics', href: '/industries/logistics', desc: 'Freight mapping & booking.' },
+    { name: 'Manufacturing', href: '/industries/manufacturing', desc: 'Factory automation ERPs.' },
+    { name: 'Healthcare', href: '/industries/healthcare', desc: 'Compliance-first portals.' },
+    { name: 'FinTech', href: '/industries/fintech', desc: 'Secure payment pipelines.' },
+    { name: 'Education', href: '/industries/education', desc: 'EdTech learning systems.' },
+    { name: 'Retail', href: '/industries/ecommerce-retail', desc: 'Headless eCommerce.' },
+  ];
 
   return (
     <header 
@@ -33,6 +60,7 @@ export default function Navbar() {
           ? 'bg-white/60 backdrop-blur-xl border-b border-white/20 shadow-sm py-4' 
           : 'bg-transparent py-6'
       }`}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="container-main flex items-center justify-between">
         {/* Logo */}
@@ -53,56 +81,81 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {/* Services Dropdown */}
-          <div className="relative group/services">
-            {/* The trigger area needs some padding so the hover doesn't break when moving to the menu */}
-            <div className="py-2"> 
-              <Link href="/services" className="flex items-center gap-1 text-sm font-semibold text-cf-text-secondary group-hover/services:text-cf-text transition-colors">
-                Services
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover/services:rotate-180">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </Link>
-            </div>
-
-            {/* Dropdown Menu */}
-            <div className="absolute top-[100%] left-0 w-64 bg-white border border-gray-100 shadow-xl rounded-md opacity-0 invisible group-hover/services:opacity-100 group-hover/services:visible transition-all duration-200 transform translate-y-2 group-hover/services:translate-y-0 z-50">
-              <ul className="flex flex-col py-1">
-                {[
-                  { name: 'Custom Software', href: '/services/custom-software-engineering' },
-                  { name: 'ERP Systems', href: '/services/erp-systems' },
-                  { name: 'CRM Development', href: '/services/crm' },
-                  { name: 'Mobile Apps', href: '/services/mobile-app-development' },
-                  { name: 'Cloud Architecture', href: '/services/enterprise-cloud' },
-                ].map((service, idx) => (
-                  <li key={service.name} className={`border-gray-100 ${idx !== 4 ? 'border-b' : ''}`}>
-                    <Link 
-                      href={service.href}
-                      className="block px-6 py-3 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors flex items-center justify-between group/link"
-                    >
-                      {service.name}
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all text-blue-600">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <nav className="hidden md:flex items-center gap-8 relative">
+          
+          {/* Services Mega Menu Trigger */}
+          <div 
+            className="py-2 cursor-pointer"
+            onMouseEnter={() => handleMouseEnter('services')}
+          > 
+            <Link href="/services" className="flex items-center gap-1 text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
+              Services
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${activeMegaMenu === 'services' ? 'rotate-180' : ''}`}>
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </Link>
           </div>
-          <Link href="/industries" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
-            Industries
-          </Link>
-          <Link href="/case-studies" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
+
+          {/* Industries Mega Menu Trigger */}
+          <div 
+            className="py-2 cursor-pointer"
+            onMouseEnter={() => handleMouseEnter('industries')}
+          > 
+            <Link href="/industries" className="flex items-center gap-1 text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
+              Industries
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${activeMegaMenu === 'industries' ? 'rotate-180' : ''}`}>
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </Link>
+          </div>
+
+          <Link href="/case-studies" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors" onMouseEnter={() => handleMouseEnter('none')}>
             Case Studies
           </Link>
-          <Link href="/about" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
+          <Link href="/about" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors" onMouseEnter={() => handleMouseEnter('none')}>
             About
           </Link>
-          <Link href="/pricing" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
+          <Link href="/pricing" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors" onMouseEnter={() => handleMouseEnter('none')}>
             Pricing
           </Link>
+
+          {/* Mega Menu Dropdown */}
+          <AnimatePresence>
+            {(activeMegaMenu === 'services' || activeMegaMenu === 'industries') && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] mt-4 bg-white border border-gray-100 shadow-2xl rounded-2xl overflow-hidden z-50"
+                onMouseEnter={() => handleMouseEnter(activeMegaMenu)}
+              >
+                <div className="p-6 grid grid-cols-2 gap-4">
+                  {(activeMegaMenu === 'services' ? services : industries).map((item) => (
+                    <Link 
+                      key={item.name}
+                      href={item.href}
+                      className="group flex flex-col p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      onClick={() => setActiveMegaMenu(null)}
+                    >
+                      <span className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors flex items-center gap-1">
+                        {item.name}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                          <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                      </span>
+                      <span className="text-xs text-gray-500 mt-1">{item.desc}</span>
+                    </Link>
+                  ))}
+                </div>
+                <div className="bg-gray-50 p-4 border-t border-gray-100 flex justify-between items-center">
+                  <span className="text-xs font-medium text-gray-500">Need something custom?</span>
+                  <Link href="/contact" className="text-xs font-bold text-blue-600 hover:text-blue-700">Request Technical Audit →</Link>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </nav>
 
         {/* CTA & Mobile Toggle */}
@@ -116,8 +169,10 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden p-2 text-cf-text"
+            className="md:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-cf-text rounded-md hover:bg-gray-100"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               {mobileMenuOpen ? (
@@ -138,18 +193,26 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Nav Dropdown */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-cf-bg border-b border-cf-border shadow-lg animate-in slide-in-from-top-2">
-          <nav className="flex flex-col p-6 gap-4">
-            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2 border-b border-cf-border-light">Services</Link>
-            <Link href="/industries" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2 border-b border-cf-border-light">Industries</Link>
-            <Link href="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2 border-b border-cf-border-light">Case Studies</Link>
-            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2 border-b border-cf-border-light">About</Link>
-            <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2 border-b border-cf-border-light">Pricing</Link>
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-bg bg-cf-text text-center py-3 rounded-xl mt-4">Start a Project</Link>
-          </nav>
-        </div>
-      )}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden absolute top-full left-0 w-full bg-white border-b border-cf-border shadow-lg overflow-hidden"
+          >
+            <nav className="flex flex-col p-6 gap-2">
+              <span className="text-xs font-mono-caps text-gray-500 mb-2">Navigation</span>
+              <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Services</Link>
+              <Link href="/industries" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Industries</Link>
+              <Link href="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Case Studies</Link>
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">About</Link>
+              <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Pricing</Link>
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-white bg-black text-center py-4 rounded-xl mt-4">Start a Project</Link>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

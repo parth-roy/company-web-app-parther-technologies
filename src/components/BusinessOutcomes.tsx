@@ -4,48 +4,12 @@ import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 const outcomes = [
-  {
-    id: 1,
-    num: "01",
-    title: "Increase Operational Efficiency",
-    description: "Streamline your core processes and remove friction from daily operations.",
-    icon: "⚡",
-  },
-  {
-    id: 2,
-    num: "02",
-    title: "Reduce Manual Work",
-    description: "Automate repetitive tasks so your team can focus on high-value strategy.",
-    icon: "🤖",
-  },
-  {
-    id: 3,
-    num: "03",
-    title: "Generate More Qualified Leads",
-    description: "Turn your digital presence into a high-converting acquisition engine.",
-    icon: "🎯",
-  },
-  {
-    id: 4,
-    num: "04",
-    title: "Rank Better in AI & Google",
-    description: "Ensure your brand is cited correctly by ChatGPT and search algorithms.",
-    icon: "📈",
-  },
-  {
-    id: 5,
-    num: "05",
-    title: "Scale Without Rebuilding",
-    description: "Future-proof architectures that grow infinitely without crashing.",
-    icon: "🏗️",
-  },
-  {
-    id: 6,
-    num: "06",
-    title: "Faster Time to Market",
-    description: "Deploy new features and products at lightning speed to outpace competitors.",
-    icon: "🚀",
-  },
+  { id: 1, num: "01", title: "Increase Operational Efficiency", description: "Streamline your core processes and remove friction from daily operations.", icon: "⚡" },
+  { id: 2, num: "02", title: "Reduce Manual Work", description: "Automate repetitive tasks so your team can focus on high-value strategy.", icon: "🤖" },
+  { id: 3, num: "03", title: "Generate More Qualified Leads", description: "Turn your digital presence into a high-converting acquisition engine.", icon: "🎯" },
+  { id: 4, num: "04", title: "Rank Better in AI & Google", description: "Ensure your brand is cited correctly by ChatGPT and search algorithms.", icon: "📈" },
+  { id: 5, num: "05", title: "Scale Without Rebuilding", description: "Future-proof architectures that grow infinitely without crashing.", icon: "🏗️" },
+  { id: 6, num: "06", title: "Faster Time to Market", description: "Deploy new features and products at lightning speed to outpace competitors.", icon: "🚀" },
 ];
 
 export function BusinessOutcomes() {
@@ -56,14 +20,13 @@ export function BusinessOutcomes() {
     offset: ["start 80%", "end 20%"],
   });
 
-  // Smooth spring physics — glides, doesn't snap
+  // Lower stiffness = fewer intermediate frames on scroll = smoother
   const spring = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
+    stiffness: 80,
+    damping: 25,
     restDelta: 0.001,
   });
 
-  // The line height goes from 0% → 100% as you scroll through the section
   const lineScaleY = useTransform(spring, [0, 1], [0, 1]);
 
   return (
@@ -73,7 +36,6 @@ export function BusinessOutcomes() {
       className="relative z-10 bg-cf-bg text-cf-text py-28 border-t border-cf-border"
     >
       <div className="container-main">
-        {/* Header */}
         <div className="text-center mb-20">
           <span className="inline-block text-sm font-semibold tracking-widest text-blue-500 uppercase mb-4">
             Your Returns
@@ -86,23 +48,16 @@ export function BusinessOutcomes() {
           </p>
         </div>
 
-        {/* Timeline */}
         <div className="relative max-w-3xl mx-auto">
-          {/* Ghost track — always visible full height */}
           <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-cf-border" />
 
-          {/* Animated line — grows downward as user scrolls */}
+          {/* scaleY is GPU-composited — no paint, no layout */}
           <motion.div
             className="absolute left-1/2 -translate-x-px top-0 w-[2px] bg-gradient-to-b from-blue-400 via-blue-500 to-blue-700 origin-top"
-            style={{
-              scaleY: lineScaleY,
-              height: "100%",
-              boxShadow: "0 0 12px 2px rgba(59,130,246,0.5)",
-            }}
+            style={{ scaleY: lineScaleY, height: "100%", willChange: "transform" }}
           />
 
-          {/* Outcome cards */}
-          <div className="relative z-10 space-y-0">
+          <div className="relative z-10">
             {outcomes.map((item, index) => (
               <OutcomeCard
                 key={item.id}
@@ -121,11 +76,7 @@ export function BusinessOutcomes() {
 }
 
 function OutcomeCard({
-  item,
-  index,
-  total,
-  spring,
-  isLeft,
+  item, index, total, spring, isLeft,
 }: {
   item: (typeof outcomes)[number];
   index: number;
@@ -133,53 +84,38 @@ function OutcomeCard({
   spring: ReturnType<typeof useSpring>;
   isLeft: boolean;
 }) {
-  // This card becomes visible when the line reaches it
   const revealStart = (index / total) * 0.9;
-  const revealEnd = revealStart + 0.12;
+  const revealEnd = revealStart + 0.14;
 
   const opacity = useTransform(spring, [revealStart, revealEnd], [0, 1]);
-  const x = useTransform(
-    spring,
-    [revealStart, revealEnd],
-    [isLeft ? -24 : 24, 0]
-  );
+  const x = useTransform(spring, [revealStart, revealEnd], [isLeft ? -20 : 20, 0]);
 
   return (
-    <div
-      className={`relative flex items-center py-8 gap-8 ${
-        isLeft ? "flex-row" : "flex-row-reverse"
-      }`}
-    >
-      {/* Card */}
+    <div className={`relative flex items-center py-8 gap-8 ${isLeft ? "flex-row" : "flex-row-reverse"}`}>
+      {/* transition-colors only — NOT transition-all. FM handles opacity/x. */}
       <motion.article
-        style={{ opacity, x }}
+        style={{ opacity, x, willChange: "transform, opacity" }}
         className={`
           flex-1 bg-cf-card border border-cf-border clip-corner p-6
-          hover:border-blue-400 hover:shadow-[0_4px_24px_rgba(59,130,246,0.12)]
-          transition-all duration-500 group cursor-pointer
+          hover:border-blue-400 hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
+          transition-colors duration-200 group cursor-pointer
           ${isLeft ? "text-right" : "text-left"}
         `}
       >
-        <div className={`text-3xl mb-4 ${isLeft ? "text-right" : "text-left"}`}>
-          {item.icon}
-        </div>
-        <h3 className="font-syncopate font-bold text-base tracking-tight mb-2 group-hover:text-blue-500 transition-colors leading-snug">
+        <div className={`text-3xl mb-4 ${isLeft ? "text-right" : "text-left"}`}>{item.icon}</div>
+        <h3 className="font-syncopate font-bold text-base tracking-tight mb-2 group-hover:text-blue-500 transition-colors duration-200 leading-snug">
           {item.title}
         </h3>
-        <p className="text-cf-text-secondary text-sm leading-relaxed">
-          {item.description}
-        </p>
+        <p className="text-cf-text-secondary text-sm leading-relaxed">{item.description}</p>
       </motion.article>
 
-      {/* Center node — glows blue as line passes */}
       <motion.div
-        style={{ opacity }}
-        className="relative z-10 shrink-0 w-10 h-10 bg-cf-bg border-2 border-blue-500 flex items-center justify-center font-syncopate font-bold text-xs text-blue-500 shadow-[0_0_16px_rgba(59,130,246,0.5)]"
+        style={{ opacity, willChange: "opacity" }}
+        className="relative z-10 shrink-0 w-10 h-10 bg-cf-bg border-2 border-blue-500 flex items-center justify-center font-syncopate font-bold text-xs text-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.4)]"
       >
         {item.num}
       </motion.div>
 
-      {/* Spacer on the other side */}
       <div className="flex-1" />
     </div>
   );

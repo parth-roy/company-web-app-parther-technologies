@@ -3,6 +3,15 @@ import MultiStepForm from '@/components/MultiStepForm';
 import { getCollectionIds, getCollectionData } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
+import ROICalculator from '@/components/ROICalculator';
+import ArchitectureDiagram from '@/components/ArchitectureDiagram';
+import GitHubStats from '@/components/GitHubStats';
+
+const mdxComponents = {
+  ROICalculator,
+  ArchitectureDiagram,
+  GitHubStats,
+};
 
 export async function generateStaticParams() {
   const paths = getCollectionIds('services');
@@ -95,7 +104,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       {/* Dynamic Content Section */}
       <section className="py-24 bg-cf-card prose prose-lg dark:prose-invert max-w-none prose-headings:font-serif-display prose-headings:text-cf-text prose-p:text-cf-text-secondary">
         <div className="container-main max-w-4xl">
-          <MDXRemote source={serviceData.content} />
+          <MDXRemote source={serviceData.content} components={mdxComponents} />
         </div>
       </section>
     </div>

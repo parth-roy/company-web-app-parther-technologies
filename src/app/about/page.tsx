@@ -7,8 +7,40 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.parthertech.com/#organization",
+        "name": "Parther Technologies Pvt Ltd",
+        "url": "https://www.parthertech.com",
+        "logo": "https://www.parthertech.com/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-94323-50334",
+          "contactType": "customer service"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.parthertech.com/#founder",
+        "name": "Founder Name",
+        "jobTitle": "Founder & CEO",
+        "worksFor": {
+          "@id": "https://www.parthertech.com/#organization"
+        },
+        "url": "https://www.parthertech.com/about"
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-white selection:bg-primary selection:text-primary-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       
       {/* 1. Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-[#f4f4f0] border-b border-cf-border">
@@ -58,9 +90,9 @@ export default function AboutPage() {
             </div>
             <div className="p-8 border border-cf-border bg-cf-card rounded-xl hover:shadow-md transition-shadow">
               <div className="text-4xl font-serif-display text-cf-text mb-4">100 GCCs</div>
-              <h3 className="font-bold text-cf-text mb-2">By 2030 Roadmap</h3>
+              <h3 className="font-bold text-cf-text mb-2">Proven Scale & Reliability</h3>
               <p className="text-cf-text-secondary text-sm">
-                We position ourselves upstream as a specialized implementation partner for incoming Global Capability Centers requiring localized DevOps and AI automation.
+                We engineer scalable infrastructure, evidenced by our product GoMyTruck — a SaaS logistics platform processing 500+ verified drivers with a 2-minute average booking time across Kolkata.
               </p>
             </div>
           </div>
