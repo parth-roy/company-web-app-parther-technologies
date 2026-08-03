@@ -1,17 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
 
 export function FloatingWhatsApp() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   return (
     <a
       href="https://wa.me/919331488999?text=Hi%20Parther%20Technologies,%20I'd%20like%20to%20request%20a%20Technical%20Audit."

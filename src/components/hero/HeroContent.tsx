@@ -2,7 +2,7 @@ import HeroIllustration from "./HeroIllustration";
 
 export default function HeroContent() {
   return (
-    <div className="container-main flex flex-col xl:flex-row gap-8 xl:gap-12 items-center xl:justify-between w-full min-h-0 xl:min-h-[calc(100vh-80px)] pt-8 pb-16 xl:py-0">
+    <div className="container-main flex flex-col xl:flex-row gap-8 xl:gap-12 items-center xl:justify-between w-full min-h-0 pt-8 pb-16 xl:pt-8 xl:pb-16">
       {/* Left Column: Core Value Proposition */}
       <div className="z-10 relative flex flex-col items-start w-full xl:w-[55%] h-full justify-center shrink-0 min-w-0">
 
