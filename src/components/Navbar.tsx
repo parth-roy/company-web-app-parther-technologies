@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -53,6 +52,8 @@ export default function Navbar() {
     { name: 'Retail', href: '/industries/ecommerce-retail', desc: 'Headless eCommerce.' },
   ];
 
+  const isMegaMenuOpen = activeMegaMenu === 'services' || activeMegaMenu === 'industries';
+
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -62,7 +63,7 @@ export default function Navbar() {
       }`}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="container-main flex items-center justify-between">
+      <div className="container-main flex items-center justify-between relative">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 transition-transform group-hover:scale-105">
@@ -120,42 +121,36 @@ export default function Navbar() {
           </Link>
 
           {/* Mega Menu Dropdown */}
-          <AnimatePresence>
-            {(activeMegaMenu === 'services' || activeMegaMenu === 'industries') && (
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.15, ease: "easeOut" }}
-                className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] mt-4 bg-white border border-gray-100 shadow-2xl rounded-2xl overflow-hidden z-50"
-                onMouseEnter={() => handleMouseEnter(activeMegaMenu)}
-              >
-                <div className="p-6 grid grid-cols-2 gap-4">
-                  {(activeMegaMenu === 'services' ? services : industries).map((item) => (
-                    <Link 
-                      key={item.name}
-                      href={item.href}
-                      className="group flex flex-col p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                      onClick={() => setActiveMegaMenu(null)}
-                    >
-                      <span className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors flex items-center gap-1">
-                        {item.name}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-                          <line x1="5" y1="12" x2="19" y2="12"></line>
-                          <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                      </span>
-                      <span className="text-xs text-gray-500 mt-1">{item.desc}</span>
-                    </Link>
-                  ))}
-                </div>
-                <div className="bg-gray-50 p-4 border-t border-gray-100 flex justify-between items-center">
-                  <span className="text-xs font-medium text-gray-500">Need something custom?</span>
-                  <Link href="/contact" className="text-xs font-bold text-blue-600 hover:text-blue-700">Request Technical Audit →</Link>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div 
+            className={`absolute top-full left-1/2 -translate-x-1/2 w-[600px] mt-4 bg-white border border-gray-100 shadow-2xl rounded-2xl overflow-hidden transition-all duration-200 origin-top ${
+              isMegaMenuOpen ? 'opacity-100 visible translate-y-0 scale-100' : 'opacity-0 invisible translate-y-2 scale-95 pointer-events-none'
+            }`}
+            onMouseEnter={() => activeMegaMenu && handleMouseEnter(activeMegaMenu)}
+          >
+            <div className="p-6 grid grid-cols-2 gap-4">
+              {(activeMegaMenu === 'services' ? services : industries).map((item) => (
+                <Link 
+                  key={item.name}
+                  href={item.href}
+                  className="group flex flex-col p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  onClick={() => setActiveMegaMenu(null)}
+                >
+                  <span className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors flex items-center gap-1">
+                    {item.name}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                  <span className="text-xs text-gray-500 mt-1">{item.desc}</span>
+                </Link>
+              ))}
+            </div>
+            <div className="bg-gray-50 p-4 border-t border-gray-100 flex justify-between items-center">
+              <span className="text-xs font-medium text-gray-500">Need something custom?</span>
+              <Link href="/contact" className="text-xs font-bold text-blue-600 hover:text-blue-700">Request Technical Audit →</Link>
+            </div>
+          </div>
         </nav>
 
         {/* CTA & Mobile Toggle */}
@@ -193,26 +188,21 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Nav Dropdown */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden absolute top-full left-0 w-full bg-white border-b border-cf-border shadow-lg overflow-hidden"
-          >
-            <nav className="flex flex-col p-6 gap-2">
-              <span className="text-xs font-mono-caps text-gray-500 mb-2">Navigation</span>
-              <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Services</Link>
-              <Link href="/industries" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Industries</Link>
-              <Link href="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Case Studies</Link>
-              <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">About</Link>
-              <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Pricing</Link>
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-white bg-black text-center py-4 rounded-xl mt-4">Start a Project</Link>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div 
+        className={`md:hidden absolute top-full left-0 w-full bg-white border-b border-cf-border shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileMenuOpen ? 'max-h-[500px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+        }`}
+      >
+        <nav className="flex flex-col p-6 gap-2">
+          <span className="text-xs font-mono-caps text-gray-500 mb-2">Navigation</span>
+          <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Services</Link>
+          <Link href="/industries" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Industries</Link>
+          <Link href="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Case Studies</Link>
+          <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">About</Link>
+          <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Pricing</Link>
+          <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-white bg-black text-center py-4 rounded-xl mt-4">Start a Project</Link>
+        </nav>
+      </div>
     </header>
   );
 }

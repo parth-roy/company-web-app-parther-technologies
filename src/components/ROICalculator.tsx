@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 
 export default function ROICalculator() {
   const [employees, setEmployees] = useState(50);
@@ -71,17 +70,12 @@ export default function ROICalculator() {
         {/* Results */}
         <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100 flex flex-col justify-center">
           <div className="space-y-6">
-            <motion.div 
-              key={annualSavings}
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center"
-            >
+            <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center transform transition-transform duration-100 hover:scale-[1.02]">
               <div className="text-xs font-mono-caps text-gray-500 uppercase tracking-widest mb-1">Projected Annual Savings</div>
               <div className="text-4xl font-syncopate font-bold text-green-500">
                 ${annualSavings.toLocaleString()}
               </div>
-            </motion.div>
+            </div>
             
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm text-center">

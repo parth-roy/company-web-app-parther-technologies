@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { Reveal } from '@/components/Reveal';
 
 interface RepoStats {
   stars: number;
@@ -59,22 +59,30 @@ export default function GitHubStats({ repo = 'vercel/next.js' }: { repo?: string
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1 }} className="p-4 rounded-lg bg-white/5 border border-white/10">
-            <div className="text-gray-400 text-xs font-mono uppercase mb-1">Stars</div>
-            <div className="text-white font-bold text-xl">{stats.stars.toLocaleString()}</div>
-          </motion.div>
-          <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }} className="p-4 rounded-lg bg-white/5 border border-white/10">
-            <div className="text-gray-400 text-xs font-mono uppercase mb-1">Forks</div>
-            <div className="text-white font-bold text-xl">{stats.forks.toLocaleString()}</div>
-          </motion.div>
-          <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }} className="p-4 rounded-lg bg-white/5 border border-white/10">
-            <div className="text-gray-400 text-xs font-mono uppercase mb-1">Active Issues</div>
-            <div className="text-white font-bold text-xl">{stats.openIssues.toLocaleString()}</div>
-          </motion.div>
-          <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="p-4 rounded-lg bg-white/5 border border-white/10">
-            <div className="text-gray-400 text-xs font-mono uppercase mb-1">Last Deploy</div>
-            <div className="text-white font-bold text-sm mt-1">{stats.lastUpdate}</div>
-          </motion.div>
+          <Reveal direction="up" delay={100} duration="500">
+            <div className="p-4 rounded-lg bg-white/5 border border-white/10 h-full">
+              <div className="text-gray-400 text-xs font-mono uppercase mb-1">Stars</div>
+              <div className="text-white font-bold text-xl">{stats.stars.toLocaleString()}</div>
+            </div>
+          </Reveal>
+          <Reveal direction="up" delay={200} duration="500">
+            <div className="p-4 rounded-lg bg-white/5 border border-white/10 h-full">
+              <div className="text-gray-400 text-xs font-mono uppercase mb-1">Forks</div>
+              <div className="text-white font-bold text-xl">{stats.forks.toLocaleString()}</div>
+            </div>
+          </Reveal>
+          <Reveal direction="up" delay={300} duration="500">
+            <div className="p-4 rounded-lg bg-white/5 border border-white/10 h-full">
+              <div className="text-gray-400 text-xs font-mono uppercase mb-1">Active Issues</div>
+              <div className="text-white font-bold text-xl">{stats.openIssues.toLocaleString()}</div>
+            </div>
+          </Reveal>
+          <Reveal direction="up" delay={500} duration="500">
+            <div className="p-4 rounded-lg bg-white/5 border border-white/10 h-full">
+              <div className="text-gray-400 text-xs font-mono uppercase mb-1">Last Deploy</div>
+              <div className="text-white font-bold text-sm mt-1">{stats.lastUpdate}</div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </div>
