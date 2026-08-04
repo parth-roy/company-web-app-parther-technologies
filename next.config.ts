@@ -3,8 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // ─── TTFB: Partial Prerendering (PPR) ────────────────────────────────────
   // Streams static shell instantly, hydrates dynamic parts after.
-  // In Next.js 16, PPR is enabled via cacheComponents (replaces experimental.ppr)
-  cacheComponents: true,
+  // Disabled to prevent hydration crashes on production Next.js 16/React 19 builds
+  cacheComponents: false,
 
   // ─── LCP: Image Optimisation ─────────────────────────────────────────────
   // Serve AVIF first (50% smaller than WebP), WebP fallback.
