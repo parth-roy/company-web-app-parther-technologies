@@ -30,6 +30,13 @@ export default function Footer() {
               <span className="text-xs font-mono-caps text-gray-500">Contact</span>
               <Link href="/contact" className="text-sm hover:text-white transition-colors inline-block py-1 min-h-[24px]">Contact Us</Link>
               <a href="mailto:hello@parthertech.com" className="text-sm hover:text-white transition-colors inline-block py-1 min-h-[24px]">hello@parthertech.com</a>
+              <div className="text-sm text-gray-400 flex flex-wrap gap-1.5 py-1">
+                <a href="tel:9432350334" className="hover:text-white transition-colors">94323 50334</a>
+                <span>/</span>
+                <a href="tel:9331488999" className="hover:text-white transition-colors">9331488999</a>
+                <span>/</span>
+                <a href="tel:9749112684" className="hover:text-white transition-colors">9749112684</a>
+              </div>
             </div>
           </div>
 
