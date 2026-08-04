@@ -127,6 +127,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${syncopate.variable} h-full antialiased`}
     >
       <head>
@@ -140,7 +141,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-cf-bg text-cf-text min-h-screen flex flex-col">
+      <body suppressHydrationWarning className="bg-cf-bg text-cf-text min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1 mt-[80px]">
           {children}
