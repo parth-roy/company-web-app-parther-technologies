@@ -47,6 +47,7 @@ jobs:
               echo "Directory exists. Fetching latest changes..."
               cd $PROJECT_DIR
               git fetch --all
+              git clean -fd
               git reset --hard origin/main
               git pull origin main
             else
