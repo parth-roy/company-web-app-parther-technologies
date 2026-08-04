@@ -123,7 +123,7 @@ export default function Navbar() {
           {/* Mega Menu Dropdown */}
           <div 
             className={`absolute top-full left-1/2 -translate-x-1/2 w-[600px] mt-4 bg-white border border-gray-100 shadow-2xl rounded-2xl overflow-hidden transition-all duration-200 origin-top ${
-              isMegaMenuOpen ? 'opacity-100 visible translate-y-0 scale-100' : 'opacity-0 invisible translate-y-2 scale-95 pointer-events-none'
+              isMegaMenuOpen ? 'opacity-100 pointer-events-auto translate-y-0 scale-100' : 'opacity-0 pointer-events-none translate-y-2 scale-95'
             }`}
             onMouseEnter={() => activeMegaMenu && handleMouseEnter(activeMegaMenu)}
           >
@@ -190,7 +190,7 @@ export default function Navbar() {
       {/* Mobile Nav Dropdown */}
       <div 
         className={`md:hidden absolute top-full left-0 w-full bg-white border-b border-cf-border shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileMenuOpen ? 'max-h-[500px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+          mobileMenuOpen ? 'max-h-[500px] opacity-100 pointer-events-auto' : 'max-h-0 opacity-0 pointer-events-none'
         }`}
       >
         <nav className="flex flex-col p-6 gap-2">
