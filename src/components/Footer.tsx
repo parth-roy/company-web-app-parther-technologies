@@ -5,10 +5,10 @@ export default function Footer() {
   return (
     <footer className="bg-[#111111] text-white pt-24 pb-12 mt-auto">
       <div className="container-main">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           
           {/* Brand Col */}
-          <div className="md:col-span-1">
+          <div className="md:col-span-1 lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-6">
               <div className="relative w-12 h-12 bg-white rounded-lg p-1 shrink-0">
                 <Image 
@@ -28,6 +28,7 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-2">
               <span className="text-xs font-mono-caps text-gray-500">Contact</span>
+              <Link href="/contact" className="text-sm hover:text-white transition-colors inline-block py-1 min-h-[24px]">Contact Us</Link>
               <a href="mailto:hello@parthertech.com" className="text-sm hover:text-white transition-colors inline-block py-1 min-h-[24px]">hello@parthertech.com</a>
             </div>
           </div>
@@ -60,9 +61,10 @@ export default function Footer() {
           <div>
             <h4 className="font-serif-display text-lg mb-6">Locations</h4>
             <ul className="flex flex-col gap-3">
-              <li><Link href="/locations/bengal-silicon-valley" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Bengal Silicon Valley</Link></li>
-              <li><Link href="/locations/siliguri" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Siliguri Tech Hub</Link></li>
-              <li><Link href="/locations/durgapur-asansol" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Durgapur-Asansol</Link></li>
+              <li><Link href="/locations/barrackpore" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Barrackpore</Link></li>
+              <li><Link href="/locations/barasat" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Barasat</Link></li>
+              <li><Link href="/locations/saltlake" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Saltlake</Link></li>
+              <li><Link href="/locations/dankuni" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Dankuni</Link></li>
             </ul>
           </div>
         </div>

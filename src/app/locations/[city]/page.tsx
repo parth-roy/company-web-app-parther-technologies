@@ -80,14 +80,6 @@ export default async function LocationPage({ params }: { params: Promise<{ city:
               {locationData.description}
             </p>
 
-            <div className="mt-12 flex flex-col gap-3">
-              <p className="text-xs font-mono-caps text-cf-text-tertiary">Trusted by regional leaders</p>
-              <div className="flex gap-6 opacity-60 grayscale mix-blend-multiply items-center">
-                <div className="h-8 w-24 bg-cf-border/50 rounded flex items-center justify-center text-xs font-bold font-mono">ITC</div>
-                <div className="h-8 w-24 bg-cf-border/50 rounded flex items-center justify-center text-xs font-bold font-mono">Apollo</div>
-                <div className="h-8 w-24 bg-cf-border/50 rounded flex items-center justify-center text-xs font-bold font-mono">Shyam</div>
-              </div>
-            </div>
           </div>
 
           <div className="z-10 relative bg-cf-card p-6 md:p-8 rounded-2xl border border-cf-border shadow-float">

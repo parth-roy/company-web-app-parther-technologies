@@ -14,20 +14,20 @@ import {
 const techCategories = [
   {
     label: "Frontend",
-    heading: "Modern Web Interfaces",
+    heading: "Pixel-Perfect Interfaces",
     description:
-      "Pixel-perfect, performant UIs built with the world's most advanced frontend stack. We craft experiences that convert visitors into customers.",
+      "We build lightning-fast, accessible, and dynamic frontends. Experience buttery smooth animations and sub-second load times.",
     color: "#3B82F6",
     centerLabel: "UI",
     innerItems: [
-      { name: "Next.js",    symbol: "N",   bg: "#000000", fg: "#ffffff" },
-      { name: "React",      symbol: "⚛",   bg: "#61DAFB", fg: "#000000" },
+      { name: "Next.js",    symbol: "N",   icon: "/tech/vercel.svg", bg: "#000000", fg: "#ffffff" },
+      { name: "React",      symbol: "⚛",   icon: "/tech/react-clean.svg", bg: "#61DAFB", fg: "#000000" },
     ],
     outerItems: [
-      { name: "TypeScript", symbol: "TS",  bg: "#3178C6", fg: "#ffffff" },
-      { name: "Tailwind",   symbol: "TW",  bg: "#06B6D4", fg: "#ffffff" },
-      { name: "Framer",     symbol: "FM",  bg: "#0055FF", fg: "#ffffff" },
-      { name: "Vue.js",     symbol: "V",   bg: "#42B883", fg: "#ffffff" },
+      { name: "TypeScript", symbol: "TS",  icon: "/tech/typescript-clean.svg", bg: "#3178C6", fg: "#ffffff" },
+      { name: "Tailwind",   symbol: "TW",  icon: "/tech/tailwind-clean.svg", bg: "#06B6D4", fg: "#ffffff" },
+      { name: "Framer",     symbol: "FM",  icon: "/tech/framer-clean.svg", bg: "#0055FF", fg: "#ffffff" },
+      { name: "Vue.js",     symbol: "V",   icon: "/tech/vue-js.svg", bg: "#42B883", fg: "#ffffff" },
     ],
   },
   {
@@ -38,14 +38,14 @@ const techCategories = [
     color: "#8B5CF6",
     centerLabel: "API",
     innerItems: [
-      { name: "Node.js",  symbol: "N",   bg: "#339933", fg: "#ffffff" },
-      { name: "Python",   symbol: "🐍",  bg: "#3776AB", fg: "#ffffff" },
+      { name: "Node.js",  symbol: "N",   icon: "/tech/node-js.svg", bg: "#339933", fg: "#ffffff" },
+      { name: "Python",   symbol: "🐍",  icon: "/tech/python.svg", bg: "#3776AB", fg: "#ffffff" },
     ],
     outerItems: [
-      { name: "FastAPI",  symbol: "FA",  bg: "#009688", fg: "#ffffff" },
-      { name: "Express",  symbol: "Ex",  bg: "#303030", fg: "#ffffff" },
-      { name: "GraphQL",  symbol: "GQ",  bg: "#E10098", fg: "#ffffff" },
-      { name: "REST",     symbol: "RE",  bg: "#6C757D", fg: "#ffffff" },
+      { name: "FastAPI",  symbol: "FA",  icon: "/tech/fast-api.webp", bg: "#009688", fg: "#ffffff" },
+      { name: "Express",  symbol: "Ex",  icon: "/tech/express-js.webp", bg: "#303030", fg: "#ffffff" },
+      { name: "GraphQL",  symbol: "GQ",  icon: "/tech/graphql.svg", bg: "#E10098", fg: "#ffffff" },
+      { name: "REST",     symbol: "RE",  icon: "/tech/restapi.webp", bg: "#6C757D", fg: "#ffffff" },
     ],
   },
   {
@@ -56,14 +56,14 @@ const techCategories = [
     color: "#06B6D4",
     centerLabel: "☁",
     innerItems: [
-      { name: "AWS",        symbol: "AWS", bg: "#FF9900", fg: "#ffffff" },
-      { name: "GCP",        symbol: "G",   bg: "#4285F4", fg: "#ffffff" },
+      { name: "AWS",        symbol: "AWS", icon: "/tech/aws.svg", bg: "#FF9900", fg: "#ffffff" },
+      { name: "GCP",        symbol: "G",   icon: "/tech/gcp.webp", bg: "#4285F4", fg: "#ffffff" },
     ],
     outerItems: [
-      { name: "Vercel",     symbol: "V▲",  bg: "#000000", fg: "#ffffff" },
-      { name: "Cloudflare", symbol: "CF",  bg: "#F38020", fg: "#ffffff" },
-      { name: "Docker",     symbol: "🐳",  bg: "#2496ED", fg: "#ffffff" },
-      { name: "Nginx",      symbol: "Nx",  bg: "#009639", fg: "#ffffff" },
+      { name: "Vercel",     symbol: "V▲",  icon: "/tech/vercel.svg", bg: "#000000", fg: "#ffffff" },
+      { name: "Cloudflare", symbol: "CF",  icon: "/tech/cloudflare.webp", bg: "#F38020", fg: "#ffffff" },
+      { name: "Docker",     symbol: "🐳",  icon: "/tech/docker.webp", bg: "#2496ED", fg: "#ffffff" },
+      { name: "Nginx",      symbol: "Nx",  icon: "/tech/nginx.svg", bg: "#009639", fg: "#ffffff" },
     ],
   },
   {
@@ -74,14 +74,14 @@ const techCategories = [
     color: "#F59E0B",
     centerLabel: "AI",
     innerItems: [
-      { name: "OpenAI",     symbol: "✦",  bg: "#412991", fg: "#ffffff" },
-      { name: "LangChain",  symbol: "LC", bg: "#1C3A5E", fg: "#ffffff" },
+      { name: "ChatGPT",    symbol: "GPT", icon: "/tech/chatgpt-clean.svg", bg: "#10A37F", fg: "#ffffff" },
+      { name: "LangChain",  symbol: "LC", icon: "/tech/python.svg", bg: "#1C3A5E", fg: "#ffffff" },
     ],
     outerItems: [
-      { name: "n8n",       symbol: "n8",  bg: "#EA4B71", fg: "#ffffff" },
-      { name: "Zapier",    symbol: "Z",   bg: "#FF4A00", fg: "#ffffff" },
-      { name: "Vertex AI", symbol: "VA",  bg: "#4285F4", fg: "#ffffff" },
-      { name: "HuggingFace", symbol: "🤗", bg: "#FFD21E", fg: "#000000" },
+      { name: "n8n",        symbol: "n8n", icon: "/tech/n8n.webp", bg: "#FF6D5A", fg: "#ffffff" },
+      { name: "Zapier",     symbol: "Z",   icon: "/tech/zapier-clean.svg", bg: "#FF4A00", fg: "#ffffff" },
+      { name: "Vertex AI",  symbol: "VA",  icon: "/tech/gcp.webp", bg: "#4285F4", fg: "#ffffff" },
+      { name: "HuggingFace",symbol: "🤗",  icon: "/tech/huggingface.webp", bg: "#FFD21E", fg: "#000000" },
     ],
   },
   {
@@ -92,14 +92,14 @@ const techCategories = [
     color: "#10B981",
     centerLabel: "DB",
     innerItems: [
-      { name: "PostgreSQL", symbol: "🐘", bg: "#336791", fg: "#ffffff" },
-      { name: "MongoDB",    symbol: "M",  bg: "#47A248", fg: "#ffffff" },
+      { name: "PostgreSQL", symbol: "PG", icon: "/tech/postgresql-inc-2.svg", bg: "#336791", fg: "#ffffff" },
+      { name: "MongoDB",    symbol: "M",  icon: "/tech/mongodb-clean.svg", bg: "#47A248", fg: "#ffffff" },
     ],
     outerItems: [
-      { name: "Redis",      symbol: "R",  bg: "#DC382D", fg: "#ffffff" },
-      { name: "Supabase",   symbol: "SB", bg: "#3ECF8E", fg: "#ffffff" },
-      { name: "MySQL",      symbol: "My", bg: "#4479A1", fg: "#ffffff" },
-      { name: "PlanetScale",symbol: "PS", bg: "#000000", fg: "#ffffff" },
+      { name: "Redis",      symbol: "R",  icon: "/tech/redis.svg", bg: "#DC382D", fg: "#ffffff" },
+      { name: "Supabase",   symbol: "SB", icon: "/tech/supabase.webp", bg: "#3ECF8E", fg: "#ffffff" },
+      { name: "MySQL",      symbol: "My", icon: "/tech/14426785.webp", bg: "#4479A1", fg: "#ffffff" },
+      { name: "PlanetScale",symbol: "PS", icon: "/tech/269245_planetscale-logo-icon.webp", bg: "#000000", fg: "#ffffff" },
     ],
   },
   {
@@ -110,14 +110,14 @@ const techCategories = [
     color: "#EF4444",
     centerLabel: "📱",
     innerItems: [
-      { name: "React Native", symbol: "RN", bg: "#61DAFB", fg: "#000000" },
-      { name: "Flutter",      symbol: "F",  bg: "#54C5F8", fg: "#ffffff" },
+      { name: "React Native", symbol: "RN", icon: "/tech/reactnative.webp", bg: "#61DAFB", fg: "#000000" },
+      { name: "Flutter",      symbol: "F",  icon: "/tech/flutter-clean.png", bg: "#54C5F8", fg: "#ffffff" },
     ],
     outerItems: [
-      { name: "Expo",    symbol: "Ex", bg: "#000020", fg: "#ffffff" },
-      { name: "iOS",     symbol: "🍎", bg: "#555555", fg: "#ffffff" },
-      { name: "Android", symbol: "🤖", bg: "#3DDC84", fg: "#000000" },
-      { name: "PWA",     symbol: "PW", bg: "#5A0FC8", fg: "#ffffff" },
+      { name: "Expo",    symbol: "Ex", icon: "/tech/expo.webp", bg: "#000020", fg: "#ffffff" },
+      { name: "iOS",     symbol: "🍎", icon: "/tech/apple.svg", bg: "#555555", fg: "#ffffff" },
+      { name: "Android", symbol: "🤖", icon: "/tech/android.webp", bg: "#3DDC84", fg: "#000000" },
+      { name: "PWA",     symbol: "PW", icon: "/tech/pwa.webp", bg: "#5A0FC8", fg: "#ffffff" },
     ],
   },
   {
@@ -128,14 +128,14 @@ const techCategories = [
     color: "#64748B",
     centerLabel: "CI",
     innerItems: [
-      { name: "GitHub Actions", symbol: "GA",  bg: "#2088FF", fg: "#ffffff" },
-      { name: "Kubernetes",     symbol: "K8s", bg: "#326CE5", fg: "#ffffff" },
+      { name: "GitHub Actions", symbol: "GA",  icon: "/tech/githubactions.webp", bg: "#2088FF", fg: "#ffffff" },
+      { name: "Kubernetes",     symbol: "K8s", icon: "/tech/kubernetes.webp", bg: "#326CE5", fg: "#ffffff" },
     ],
     outerItems: [
-      { name: "Terraform",  symbol: "TF",  bg: "#7B42BC", fg: "#ffffff" },
-      { name: "Prometheus", symbol: "Pr",  bg: "#E6522C", fg: "#ffffff" },
-      { name: "Grafana",    symbol: "Gr",  bg: "#F46800", fg: "#ffffff" },
-      { name: "Nginx",      symbol: "Nx",  bg: "#009639", fg: "#ffffff" },
+      { name: "Terraform",  symbol: "TF",  icon: "/tech/images-(1).webp", bg: "#7B42BC", fg: "#ffffff" },
+      { name: "Prometheus", symbol: "Pr",  icon: "/tech/images.webp", bg: "#E6522C", fg: "#ffffff" },
+      { name: "Grafana",    symbol: "Gr",  icon: "/tech/instagram-logo-social-media-icon-3d_556172-1303.webp", bg: "#F46800", fg: "#ffffff" },
+      { name: "Nginx",      symbol: "Nx",  icon: "/tech/nginx.svg", bg: "#009639", fg: "#ffffff" },
     ],
   },
 ];
@@ -148,13 +148,15 @@ function DualOrbit({
   color,
 }: {
   centerLabel: string;
-  innerItems: { name: string; symbol: string; bg: string; fg: string }[];
-  outerItems: { name: string; symbol: string; bg: string; fg: string }[];
+  innerItems: { name: string; symbol: string; bg: string; fg: string; icon?: string }[];
+  outerItems: { name: string; symbol: string; bg: string; fg: string; icon?: string }[];
   color: string;
 }) {
-  const innerRadius = 72;
-  const outerRadius = 136;
-  const totalSize = outerRadius * 2 + 56; // 56px = icon diameter
+  const innerRadius = 115;
+  const outerRadius = 195;
+  const iconSize = 60; // 60px diameter for orbiting icons
+  const halfIcon = iconSize / 2;
+  const totalSize = outerRadius * 2 + iconSize;
 
   return (
     <div
@@ -167,7 +169,7 @@ function DualOrbit({
         style={{
           width: outerRadius * 2,
           height: outerRadius * 2,
-          borderColor: color + "55",
+          borderColor: color + "44",
         }}
       />
       {/* Inner dashed ring */}
@@ -190,34 +192,36 @@ function DualOrbit({
           left: "50%",
           marginTop: -innerRadius,
           marginLeft: -innerRadius,
-          animation: "dual-inner 12s linear infinite",
+          animation: "dual-inner 15s linear infinite",
           willChange: "transform",
           transform: "translateZ(0)",
         }}
       >
         {innerItems.map((item, i) => {
           const angle = (i / innerItems.length) * 2 * Math.PI;
-          const x = innerRadius + Math.cos(angle) * innerRadius - 22;
-          const y = innerRadius + Math.sin(angle) * innerRadius - 22;
+          const x = innerRadius + Math.cos(angle) * innerRadius - halfIcon;
+          const y = innerRadius + Math.sin(angle) * innerRadius - halfIcon;
           return (
             <div
               key={item.name}
               className="absolute"
-              style={{ left: x, top: y, width: 44, height: 44 }}
+              style={{ left: x, top: y, width: iconSize, height: iconSize }}
               title={item.name}
             >
               <div
-                className="w-11 h-11 rounded-full flex items-center justify-center text-xs font-bold select-none"
+                className="w-full h-full rounded-full flex items-center justify-center font-bold select-none overflow-hidden bg-white"
                 style={{
-                  backgroundColor: item.bg,
-                  color: item.fg,
-                  animation: "dual-inner-rev 12s linear infinite",
-                  fontSize: item.symbol.length > 2 ? "9px" : "12px",
+                  animation: "dual-inner-rev 15s linear infinite",
                   willChange: "transform",
-                  boxShadow: `0 2px 8px ${item.bg}55`,
+                  boxShadow: `0 4px 14px ${item.bg}55`,
+                  border: `2px solid ${item.bg}22`,
                 }}
               >
-                {item.symbol}
+                {item.icon ? (
+                  <img src={item.icon} alt={item.name} className="w-10 h-10 object-contain drop-shadow-sm" />
+                ) : (
+                  <span style={{ color: item.bg, fontSize: item.symbol.length > 2 ? "12px" : "16px" }}>{item.symbol}</span>
+                )}
               </div>
             </div>
           );
@@ -234,34 +238,36 @@ function DualOrbit({
           left: "50%",
           marginTop: -outerRadius,
           marginLeft: -outerRadius,
-          animation: "dual-outer 18s linear infinite",
+          animation: "dual-outer 25s linear infinite",
           willChange: "transform",
           transform: "translateZ(0)",
         }}
       >
         {outerItems.map((item, i) => {
           const angle = (i / outerItems.length) * 2 * Math.PI;
-          const x = outerRadius + Math.cos(angle) * outerRadius - 22;
-          const y = outerRadius + Math.sin(angle) * outerRadius - 22;
+          const x = outerRadius + Math.cos(angle) * outerRadius - halfIcon;
+          const y = outerRadius + Math.sin(angle) * outerRadius - halfIcon;
           return (
             <div
               key={item.name}
               className="absolute"
-              style={{ left: x, top: y, width: 44, height: 44 }}
+              style={{ left: x, top: y, width: iconSize, height: iconSize }}
               title={item.name}
             >
               <div
-                className="w-11 h-11 rounded-full flex items-center justify-center text-xs font-bold select-none"
+                className="w-full h-full rounded-full flex items-center justify-center font-bold select-none overflow-hidden bg-white"
                 style={{
-                  backgroundColor: item.bg,
-                  color: item.fg,
-                  animation: "dual-outer-rev 18s linear infinite",
-                  fontSize: item.symbol.length > 2 ? "9px" : "12px",
+                  animation: "dual-outer-rev 25s linear infinite",
                   willChange: "transform",
-                  boxShadow: `0 2px 8px ${item.bg}55`,
+                  boxShadow: `0 4px 14px ${item.bg}55`,
+                  border: `2px solid ${item.bg}22`,
                 }}
               >
-                {item.symbol}
+                {item.icon ? (
+                  <img src={item.icon} alt={item.name} className="w-10 h-10 object-contain drop-shadow-sm" />
+                ) : (
+                  <span style={{ color: item.bg, fontSize: item.symbol.length > 2 ? "12px" : "16px" }}>{item.symbol}</span>
+                )}
               </div>
             </div>
           );
@@ -270,10 +276,16 @@ function DualOrbit({
 
       {/* Center hub */}
       <div
-        className="relative z-10 w-16 h-16 rounded-full flex flex-col items-center justify-center border-4 border-white shadow-[0_0_24px_rgba(0,0,0,0.15)]"
-        style={{ backgroundColor: color }}
+        className="relative z-10 w-32 h-32 rounded-full flex flex-col items-center justify-center shadow-2xl border border-white/50 bg-white/80 backdrop-blur-xl overflow-hidden"
+        style={{
+          boxShadow: `0 20px 40px ${color}33, inset 0 0 0 8px ${color}15`
+        }}
       >
-        <span className="font-syncopate font-bold text-white text-sm leading-none">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundColor: color }}></div>
+        <span 
+          className="relative z-10 font-syncopate font-black text-4xl md:text-5xl tracking-tighter leading-none drop-shadow-sm" 
+          style={{ color: color }}
+        >
           {centerLabel}
         </span>
       </div>

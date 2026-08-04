@@ -63,7 +63,7 @@ export default function Navbar() {
       }`}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="container-main flex items-center justify-between relative">
+      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 flex items-center justify-between relative">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 transition-transform group-hover:scale-105">
@@ -76,20 +76,20 @@ export default function Navbar() {
               priority
             />
           </div>
-          <span className="font-serif-display text-2xl font-bold tracking-tight text-cf-text">
+          <span className="font-serif-display text-xl xl:text-2xl font-bold tracking-tight text-cf-text whitespace-nowrap">
             Parther Technologies
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8 relative">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-8 relative">
           
           {/* Services Mega Menu Trigger */}
           <div 
             className="py-2 cursor-pointer"
             onMouseEnter={() => handleMouseEnter('services')}
           > 
-            <Link href="/services" className="flex items-center gap-1 text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
+            <Link href="/services" className="flex items-center gap-1 text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors whitespace-nowrap">
               Services
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${activeMegaMenu === 'services' ? 'rotate-180' : ''}`}>
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -102,7 +102,7 @@ export default function Navbar() {
             className="py-2 cursor-pointer"
             onMouseEnter={() => handleMouseEnter('industries')}
           > 
-            <Link href="/industries" className="flex items-center gap-1 text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors">
+            <Link href="/industries" className="flex items-center gap-1 text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors whitespace-nowrap">
               Industries
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${activeMegaMenu === 'industries' ? 'rotate-180' : ''}`}>
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -110,14 +110,17 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <Link href="/case-studies" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors" onMouseEnter={() => handleMouseEnter('none')}>
+          <Link href="/case-studies" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors whitespace-nowrap" onMouseEnter={() => handleMouseEnter('none')}>
             Case Studies
           </Link>
-          <Link href="/about" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors" onMouseEnter={() => handleMouseEnter('none')}>
+          <Link href="/about" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors whitespace-nowrap" onMouseEnter={() => handleMouseEnter('none')}>
             About
           </Link>
-          <Link href="/pricing" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors" onMouseEnter={() => handleMouseEnter('none')}>
+          <Link href="/pricing" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors whitespace-nowrap" onMouseEnter={() => handleMouseEnter('none')}>
             Pricing
+          </Link>
+          <Link href="/contact" className="text-sm font-semibold text-cf-text-secondary hover:text-cf-text transition-colors whitespace-nowrap" onMouseEnter={() => handleMouseEnter('none')}>
+            Contact
           </Link>
 
           {/* Mega Menu Dropdown */}
@@ -157,14 +160,14 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <Link 
             href="/contact" 
-            className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-cf-bg bg-cf-text hover:bg-cf-text/90 rounded-full transition-all hover:scale-105"
+            className="hidden lg:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-cf-bg bg-cf-text hover:bg-cf-text/90 rounded-full transition-all hover:scale-105 whitespace-nowrap"
           >
             Start a Project
           </Link>
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-cf-text rounded-md hover:bg-gray-100"
+            className="lg:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-cf-text rounded-md hover:bg-gray-100"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
@@ -200,6 +203,7 @@ export default function Navbar() {
           <Link href="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Case Studies</Link>
           <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">About</Link>
           <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Pricing</Link>
+          <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-cf-text py-2">Contact</Link>
           <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-white bg-black text-center py-4 rounded-xl mt-4">Start a Project</Link>
         </nav>
       </div>
