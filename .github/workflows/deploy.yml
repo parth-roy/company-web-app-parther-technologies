@@ -63,6 +63,7 @@ jobs:
 
             # Step 4: Build Next.js Architecture
             echo "Building Next.js Application..."
+            rm -rf .next
             npm run build
 
             # Step 5: PM2 Zero-Downtime Reload
