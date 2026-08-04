@@ -63,20 +63,20 @@ export default function Navbar() {
       }`}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 flex items-center justify-between relative">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between relative">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 transition-transform group-hover:scale-105">
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
+          <div className="relative w-8 h-8 sm:w-10 sm:h-10 transition-transform group-hover:scale-105 shrink-0">
             <Image 
               src="/logo.png" 
               alt="Parther Technologies" 
               fill
-              sizes="40px"
+              sizes="(max-width: 640px) 32px, 40px"
               className="object-contain" 
               priority
             />
           </div>
-          <span className="font-serif-display text-xl xl:text-2xl font-bold tracking-tight text-cf-text whitespace-nowrap">
+          <span className="font-serif-display text-[13px] sm:text-base md:text-xl xl:text-2xl font-bold tracking-tight text-cf-text leading-tight">
             Parther Technologies
           </span>
         </Link>
@@ -157,7 +157,7 @@ export default function Navbar() {
         </nav>
 
         {/* CTA & Mobile Toggle */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <Link 
             href="/contact" 
             className="hidden lg:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-cf-bg bg-cf-text hover:bg-cf-text/90 rounded-full transition-all hover:scale-105 whitespace-nowrap"
@@ -192,7 +192,7 @@ export default function Navbar() {
 
       {/* Mobile Nav Dropdown */}
       <div 
-        className={`md:hidden absolute top-full left-0 w-full bg-white border-b border-cf-border shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`lg:hidden absolute top-full left-0 w-full bg-white border-b border-cf-border shadow-lg overflow-hidden transition-all duration-300 ease-in-out ${
           mobileMenuOpen ? 'max-h-[500px] opacity-100 pointer-events-auto' : 'max-h-0 opacity-0 pointer-events-none'
         }`}
       >

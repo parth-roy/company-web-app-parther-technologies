@@ -1,8 +1,18 @@
 import { Metadata } from 'next';
-import MultiStepForm from '@/components/MultiStepForm';
+import Image from 'next/image';
+import { FloatingFormModal } from '@/components/ui/floating-form-modal';
 import { getCollectionIds, getCollectionData } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
+
+const heroImageMap: Record<string, string> = {
+  'education': '/industries/education.webp',
+  'ecommerce-retail': '/industries/ecommerce-retail.webp',
+  'manufacturing': '/industries/manufacturing.webp',
+  'fintech': '/industries/fintech.webp',
+  'healthcare': '/industries/healthcare.webp',
+  'logistics': '/industries/logistics.webp'
+};
 
 export async function generateStaticParams() {
   const paths = getCollectionIds('industries');
@@ -56,6 +66,8 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
     }
   };
 
+  const heroImage = heroImageMap[slug];
+
   return (
     <div className="animate-hero-in">
       <script
@@ -64,33 +76,33 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-cf-border bg-cf-bg">
-        <div className="container-main grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="z-10 relative">
-            <span className="inline-block px-3 py-1 mb-6 rounded-full border border-cf-border bg-cf-card text-xs font-mono-caps font-semibold text-cf-text-secondary tracking-widest uppercase">
+      <section className="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center pt-24 pb-20 border-b border-cf-border bg-cf-bg">
+        {heroImage && (
+          <div className="absolute inset-0 z-0 opacity-80 mix-blend-darken dark:mix-blend-lighten pointer-events-none">
+            <Image
+              src={heroImage}
+              alt={`${industryData.title} background`}
+              fill
+              className="object-cover object-center w-full h-full"
+              priority
+            />
+          </div>
+        )}
+
+        <div className="w-full px-6 md:px-12 xl:px-24 flex items-center relative z-10 max-w-7xl">
+          <div className="z-10 relative max-w-2xl">
+            <span className="inline-block px-3 py-1 mb-6 rounded-full border border-cf-border bg-cf-card text-xs font-mono-caps font-semibold text-cf-text-secondary tracking-widest uppercase shadow-sm">
               Industry Expertise
             </span>
-            <h1 className="font-serif-display text-h2 md:text-display mt-4 leading-[1.1] text-cf-text">
+            <h1 className="font-serif-display text-h2 md:text-display mt-4 leading-[1.1] text-cf-text drop-shadow-md">
               {industryData.title}
             </h1>
             
-            <p className="mt-6 text-body md:text-h4 text-cf-text-secondary max-w-xl">
+            <p className="mt-6 text-body md:text-h4 text-cf-text-secondary drop-shadow-md">
               {industryData.description}
             </p>
-
-            <div className="mt-12 flex flex-col gap-3">
-              <p className="text-xs font-mono-caps text-cf-text-tertiary">Trusted by industry leaders</p>
-              <div className="flex gap-6 opacity-60 grayscale mix-blend-multiply items-center">
-                <div className="h-8 w-24 bg-cf-border/50 rounded flex items-center justify-center text-xs font-bold font-mono">Client A</div>
-                <div className="h-8 w-24 bg-cf-border/50 rounded flex items-center justify-center text-xs font-bold font-mono">Client B</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="z-10 relative bg-cf-card p-6 md:p-8 rounded-2xl border border-cf-border shadow-float">
-            <h3 className="font-serif-display text-h3 mb-2 text-cf-text">Request Industry Consultation</h3>
-            <p className="text-sm text-cf-text-secondary mb-6">Receive an architectural assessment specific to your industry's compliance and scaling requirements.</p>
-            <MultiStepForm />
+            
+            <FloatingFormModal className="mt-12 z-[100] isolate w-fit" />
           </div>
         </div>
       </section>
