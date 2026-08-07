@@ -4,15 +4,15 @@ import Image from "next/image";
 const caseStudies = [
   {
     tag: "Flagship SaaS Platform",
-    industry: "Logistics & Freight · Kolkata",
-    title: "GoMyTruck — Multi-Tenant Driver Marketplace Built From Ground Up",
+    industry: "Logistics & Freight — Kolkata",
+    title: "GoMyTruck — Full-Stack Digital Freight Marketplace",
     description:
-      "Parther Technologies architected and shipped GoMyTruck, a full-stack logistics SaaS platform. Features driver KYC verification, real-time booking, and a multi-tenant admin architecture serving multiple corporate clients simultaneously.",
+      "Parther Technologies engineered GoMyTruck from first principles: a dual-mode booking engine, four-wallet payment system, automated RazorpayX payouts, ULIP government compliance, and three dedicated Flutter apps — disrupting West Bengal's cartelized trucking sector.",
     metric1: { label: "Verified Drivers Onboarded", value: "500+" },
-    metric2: { label: "Average Booking Time", value: "2 Min" },
-    metric3: { label: "Platform Architecture", value: "Multi-Tenant SaaS" },
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop",
-    slug: "/case-studies",
+    metric2: { label: "Avg. Booking Time", value: "2 Min" },
+    metric3: { label: "Backend Modules", value: "31" },
+    image: "/case-studies/gomytruck/hero-banner.jpg",
+    slug: "/case-studies/gomytruck",
     flagship: true,
   },
   {

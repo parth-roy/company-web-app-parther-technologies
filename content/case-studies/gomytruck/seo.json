@@ -1,0 +1,159 @@
+{
+  "seoTitle": "GoMyTruck Case Study | Digital Freight Marketplace | Parther Technologies",
+  "seoDescription": "How Parther Technologies engineered GoMyTruck — a production-grade digital freight marketplace with real-time GPS tracking, marketplace bidding, 4-wallet payment system with automated RazorpayX payouts, ULIP government compliance, and a workforce management ecosystem for Indian trucking.",
+  "canonicalUrl": "https://parther.tech/case-studies/gomytruck",
+  "slug": "gomytruck",
+  "openGraph": {
+    "title": "GoMyTruck — Full-Stack Digital Freight Marketplace | Parther Technologies",
+    "description": "A forensic breakdown of GoMyTruck: 31 backend modules, 3 Flutter apps, 4-wallet payment system, ULIP government verification, real-time bidding, and automated bank payouts built by Parther Technologies.",
+    "image": "https://parther.tech/case-studies/gomytruck/hero-banner.jpg",
+    "type": "article",
+    "url": "https://parther.tech/case-studies/gomytruck"
+  },
+  "twitterCard": {
+    "card": "summary_large_image",
+    "title": "GoMyTruck — Full-Stack Digital Freight Marketplace",
+    "description": "How Parther Technologies built a production logistics platform: 31 modules, Flutter apps, ULIP compliance, RazorpayX payouts.",
+    "image": "https://parther.tech/case-studies/gomytruck/hero-banner.jpg"
+  },
+  "jsonLd": {
+    "organization": {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Parther Technologies",
+      "url": "https://parther.tech",
+      "logo": "https://parther.tech/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-9331488999",
+        "contactType": "customer service"
+      }
+    },
+    "softwareApplication": {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GoMyTruck",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Android, iOS, Web",
+      "description": "Full-stack digital freight marketplace for intra-city and inter-city commercial logistics in West Bengal, India. Built with Node.js, Flutter, and PostgreSQL.",
+      "offers": {
+        "@type": "Offer",
+        "category": "Logistics Platform"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Parther Technologies"
+      }
+    },
+    "breadcrumbList": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://parther.tech"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Case Studies",
+          "item": "https://parther.tech/case-studies"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "GoMyTruck",
+          "item": "https://parther.tech/case-studies/gomytruck"
+        }
+      ]
+    },
+    "faqPage": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is GoMyTruck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GoMyTruck is a full-stack digital freight marketplace built by Parther Technologies for intra-city and inter-city commercial logistics in West Bengal, India. It supports instant dispatch and private bidding, with real-time GPS tracking, four-wallet payment infrastructure, and government compliance integrations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What technology stack does GoMyTruck use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GoMyTruck uses Node.js + TypeScript + Express v5 on the backend, PostgreSQL with Prisma ORM, Flutter for three mobile apps, React + Vite for the admin panel, Socket.io for real-time, BullMQ for job queues, Razorpay for payments, RazorpayX for automated payouts, and AWS S3 for storage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does GoMyTruck handle driver payments?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GoMyTruck uses a float-based driver wallet model. For online trips, net earnings are credited immediately. For cash trips, the platform commission is debited from the driver's wallet (which can go negative). Withdrawals are automated via RazorpayX with IMPS for amounts under 2 lakh and RTGS for larger amounts."
+          }
+        }
+      ]
+    }
+  },
+  "targetKeywords": [
+    "GoMyTruck",
+    "Logistics Software Development India",
+    "Transportation Management Software",
+    "Fleet Management Software",
+    "Logistics SaaS India",
+    "Supply Chain Software",
+    "Enterprise Logistics Platform",
+    "Logistics Marketplace App",
+    "Fleet Tracking Software",
+    "Truck Booking Platform India",
+    "Driver Management Software",
+    "Workforce Management Software",
+    "Flutter Logistics App",
+    "Node.js Logistics Platform",
+    "Enterprise SaaS Development India",
+    "Custom Logistics Software",
+    "Transport ERP India",
+    "Digital Logistics Platform",
+    "Parther Technologies case study",
+    "RazorpayX logistics",
+    "ULIP integration logistics",
+    "DigiLocker KYC integration"
+  ],
+  "headingStructure": {
+    "h1": "GoMyTruck — Building a Full-Stack Digital Freight Marketplace",
+    "h2": [
+      "Executive Summary",
+      "Client / Product Overview",
+      "Industry Background & Market Dynamics",
+      "Business Challenges",
+      "Product Goals",
+      "Solution Strategy",
+      "Product Architecture",
+      "Database Design",
+      "Key Features",
+      "Security Architecture",
+      "Mobile Applications",
+      "Admin Panel",
+      "Technical Stack",
+      "Deployment Infrastructure",
+      "Conclusion"
+    ]
+  },
+  "suggestedAltTexts": {
+    "hero-banner.jpg": "GoMyTruck digital freight marketplace platform built by Parther Technologies — logistics SaaS with real-time tracking and bidding",
+    "architecture-diagram": "GoMyTruck modular monolith architecture diagram showing 31 backend modules, 3 Flutter apps, and admin panel",
+    "wallet-flow": "GoMyTruck four-wallet payment flow diagram: customer, driver, fleet, and worker wallets with RazorpayX automated payouts",
+    "ulip-flow": "GoMyTruck ULIP government compliance integration flow: SARATHI DL verification and VAHAN RC verification"
+  },
+  "internalLinkSuggestions": [
+    { "anchor": "logistics software development", "target": "/services/erp-systems" },
+    { "anchor": "Flutter mobile app development", "target": "/services/mobile-app-development" },
+    { "anchor": "enterprise cloud solutions", "target": "/services/enterprise-cloud" },
+    { "anchor": "custom software engineering", "target": "/services/custom-software-engineering" }
+  ]
+}

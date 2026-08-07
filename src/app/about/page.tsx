@@ -89,11 +89,81 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="p-8 border border-cf-border bg-cf-card rounded-xl hover:shadow-md transition-shadow">
-              <div className="text-4xl font-serif-display text-cf-text mb-4">100 GCCs</div>
-              <h3 className="font-bold text-cf-text mb-2">Proven Scale & Reliability</h3>
+              <div className="text-4xl font-serif-display text-cf-text mb-4">31</div>
+              <h3 className="font-bold text-cf-text mb-2">Modules in Production</h3>
               <p className="text-cf-text-secondary text-sm">
-                We engineer scalable infrastructure, evidenced by our product GoMyTruck — a SaaS logistics platform processing 500+ verified drivers with a 2-minute average booking time across Kolkata.
+                Our flagship GoMyTruck platform runs 31 backend modules, 3 dedicated Flutter apps, and automated government compliance across ULIP SARATHI &amp; VAHAN APIs.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Proof of Work — GoMyTruck */}
+      <section className="py-24 bg-[#f4f4f0] border-t border-cf-border">
+        <div className="container-main">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="inline-block text-xs font-semibold tracking-widest text-blue-600 uppercase font-mono-caps mb-3">Proof of Work</span>
+            <h2 className="font-serif-display text-4xl text-cf-text mb-4">Deployed. Not Promised.</h2>
+            <p className="text-lg text-cf-text-secondary">
+              Our case studies are based on verified source code, not marketing copy.
+            </p>
+          </div>
+
+          {/* GoMyTruck Card */}
+          <div className="bg-[#0a0f1a] rounded-2xl overflow-hidden border border-cf-border/20 shadow-2xl">
+            <div className="grid md:grid-cols-2 gap-0">
+              <div className="p-10 md:p-14 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-6 flex-wrap">
+                    <span className="text-xs font-bold tracking-widest text-blue-400 uppercase border border-blue-500/40 bg-blue-500/10 px-3 py-1 rounded-full">
+                      Flagship Project
+                    </span>
+                    <span className="text-xs text-white/40">Logistics &amp; Freight — Kolkata</span>
+                  </div>
+                  <h3 className="font-syncopate font-bold text-2xl md:text-3xl text-white tracking-tight mb-5 leading-snug">
+                    GoMyTruck — Full-Stack Digital Freight Marketplace
+                  </h3>
+                  <p className="text-white/60 text-base leading-relaxed mb-8">
+                    A dual-mode booking engine, four-wallet payment system, automated RazorpayX payouts, ULIP government compliance, and three dedicated Flutter apps. Built to disrupt West Bengal&apos;s cartelized trucking sector.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {['Node.js', 'TypeScript', 'Flutter', 'PostgreSQL', 'Socket.io', 'RazorpayX', 'AWS S3', 'Firebase'].map((tech) => (
+                      <span key={tech} className="bg-blue-950 border border-blue-700/50 text-blue-300 rounded-full px-3 py-1 text-xs font-mono">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    href="/case-studies/gomytruck"
+                    className="inline-flex items-center justify-center gap-2 bg-white text-[#0a0f1a] font-bold text-sm px-6 py-3 rounded-full hover:bg-blue-50 transition-colors"
+                  >
+                    Read Full Case Study →
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-semibold text-sm px-6 py-3 rounded-full hover:bg-white/10 transition-colors"
+                  >
+                    Start a Similar Project
+                  </Link>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 md:grid-cols-1 md:grid-rows-3 border-t md:border-t-0 md:border-l border-white/10">
+                <div className="p-8 border-r md:border-r-0 md:border-b border-white/10 flex flex-col justify-center">
+                  <div className="text-4xl font-syncopate font-bold text-white mb-1">500+</div>
+                  <div className="text-white/50 text-sm">Verified Drivers Onboarded</div>
+                </div>
+                <div className="p-8 border-r md:border-r-0 md:border-b border-white/10 flex flex-col justify-center">
+                  <div className="text-4xl font-syncopate font-bold text-white mb-1">2 Min</div>
+                  <div className="text-white/50 text-sm">Avg. Booking Time</div>
+                </div>
+                <div className="p-8 flex flex-col justify-center">
+                  <div className="text-4xl font-syncopate font-bold text-white mb-1">31</div>
+                  <div className="text-white/50 text-sm">Backend API Modules</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

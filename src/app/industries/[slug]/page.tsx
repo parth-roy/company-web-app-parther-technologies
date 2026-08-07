@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 
 const heroImageMap: Record<string, string> = {
   'education': '/industries/education.webp',
-  'ecommerce-retail': '/industries/ecommerce-retail.webp',
+  'ecommerce-retail': '/industries/ecommerce.webp',
   'manufacturing': '/industries/manufacturing.webp',
   'fintech': '/industries/fintech.webp',
   'healthcare': '/industries/healthcare.webp',
