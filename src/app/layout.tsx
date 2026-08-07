@@ -26,6 +26,17 @@ export const metadata: Metadata = {
   title: "Parther Technologies | Enterprise Software & Digital Transformation in West Bengal",
   description:
     "Parther Technologies architects scalable digital infrastructure — custom SaaS, ERP, Agentic Workflows, and Generative Engine Optimization (GEO) for enterprises in Eastern India.",
+  keywords: [
+    "software development company",
+    "enterprise software development company",
+    "top software development companies",
+    "best software development companies",
+    "software dev agency",
+    "software engineering firm",
+    "saas development company",
+    "software development firms",
+    "enterprise application development"
+  ],
   metadataBase: new URL("https://parthertech.com"),
   openGraph: {
     title: "Parther Technologies | Digital Transformation & SaaS",
@@ -64,6 +75,17 @@ export default function RootLayout({
         name: "Parther Technologies",
         url: "https://parthertech.com",
         logo: "https://parthertech.com/logo.png",
+        knowsAbout: [
+          "Software Development",
+          "Enterprise Software Development",
+          "Website Development",
+          "Custom Software Development",
+          "SaaS Development",
+          "CRM Systems",
+          "ERP Systems",
+          "Generative Engine Optimization"
+        ],
+        keywords: "software development company, enterprise software development, top software development companies, saas development company, bespoke software company",
         contactPoint: {
           "@type": "ContactPoint",
           telephone: "+91-9432350334",

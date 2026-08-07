@@ -35,6 +35,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: serviceData.seoTitle,
     description: serviceData.seoDescription,
+    keywords: [
+      serviceData.title,
+      "custom software development",
+      "enterprise software development services",
+      "software development business",
+      "customized software development services",
+      "custom business software"
+    ],
     openGraph: {
       title: serviceData.seoTitle,
       description: serviceData.seoDescription,
@@ -65,10 +73,17 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     '@type': 'Service',
     name: serviceData.title,
     description: serviceData.seoDescription,
+    serviceType: "Enterprise Software Development",
+    areaServed: "IN",
     provider: {
       '@type': 'ITService',
       name: 'Parther Technologies',
       url: 'https://parthertech.com',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: 'Contact for pricing',
+      priceCurrency: 'INR'
     }
   };
 

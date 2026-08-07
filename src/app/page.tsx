@@ -22,14 +22,17 @@ export const metadata: Metadata = {
     canonical: "https://parthertech.com",
   },
   keywords: [
-    "enterprise software company Eastern India",
+    "software development company",
+    "enterprise software development company",
+    "top software development companies",
+    "best software development companies",
+    "software dev agency",
     "custom software development West Bengal",
     "SaaS platform development India",
     "Generative Engine Optimization GEO",
-    "ERP development Eastern India",
     "agentic workflow automation",
     "digital transformation West Bengal",
-    "Parther Technologies",
+    "Parther Technologies"
   ],
   openGraph: {
     title: "Parther Technologies | Enterprise Software Architecture",
