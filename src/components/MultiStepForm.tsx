@@ -30,6 +30,7 @@ interface MultiStepFormProps {
 
 export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier = 'None' }: MultiStepFormProps) {
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Initialize react-hook-form
   const {
@@ -92,6 +93,9 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
   };
 
   const onSubmit = async (data: FormData) => {
+    if (isSubmitting) return; // Prevent double submission
+    setIsSubmitting(true);
+    
     console.log("Final submission:", data);
     
     // Prepare payload with contextual tracking
@@ -119,7 +123,18 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('There was an issue submitting your request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
+  };
+
+  const resetForm = () => {
+    setStep(1);
+    setValue('name', '');
+    setValue('email', '');
+    setValue('industry', '');
+    setValue('companySize', '');
+    setValue('primaryChallenge', '');
   };
 
 
@@ -229,11 +244,9 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
                 variant="outline"
                 className="w-full"
                 type="button"
-                onClick={() => {
-                  console.log("Opening calendar widget");
-                }}
+                onClick={resetForm}
               >
-                Book Priority Discovery Call
+                Submit Another Request
               </Button>
             </div>
           )}
@@ -252,10 +265,10 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
               {step === 3 ? (
                 <Button
                   type="submit"
-                  disabled={!isValid}
+                  disabled={!isValid || isSubmitting}
                   className="bg-accent text-accent-foreground hover:bg-accent/90"
                 >
-                  Complete Request
+                  {isSubmitting ? 'Submitting...' : 'Complete Request'}
                 </Button>
               ) : (
                 <Button
