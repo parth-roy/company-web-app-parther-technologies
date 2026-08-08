@@ -48,11 +48,22 @@ export async function POST(req: Request) {
 
     const sheets = google.sheets({ version: 'v4', auth });
     
-    // Format the current date
+    // 1. Check if headers exist by fetching row 1
+    const getRes = await sheets.spreadsheets.values.get({
+      spreadsheetId: sheetId,
+      range: 'Sheet1!A1:I1',
+    });
+
+    const hasHeaders = getRes.data.values && getRes.data.values.length > 0 && getRes.data.values[0].length > 0;
+
+    // 2. Format the current date
     const submissionDate = new Date().toISOString();
 
+    // Combine primaryChallenge and scope since they serve the same purpose across different forms
+    const combinedScope = primaryChallenge !== 'N/A' ? primaryChallenge : scope;
+
     // Prepare the row data
-    // Columns: [Date, FormType, SourcePage, SourceIdentifier, Name, Email, Industry, CompanySize, Challenge, Scope]
+    // Columns: [Date, FormType, SourcePage, SourceIdentifier, Name, Email, Industry, CompanySize, ProjectScope]
     const rowData = [
       [
         submissionDate,
@@ -63,15 +74,27 @@ export async function POST(req: Request) {
         email,
         industry,
         companySize,
-        primaryChallenge,
-        scope
+        combinedScope
       ]
     ];
 
-    // Append to the sheet (Assumes the sheet is named "Sheet1")
+    // 3. If no headers exist, append them first
+    if (!hasHeaders) {
+      const headers = [
+        ['Date Submitted', 'Form Type', 'Source Page', 'Source ID', 'Name', 'Email', 'Industry', 'Company Size', 'Project Scope/Challenge']
+      ];
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: sheetId,
+        range: 'Sheet1!A1:I1',
+        valueInputOption: 'USER_ENTERED',
+        requestBody: { values: headers },
+      });
+    }
+
+    // 4. Append the actual lead data
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: 'Sheet1!A:J',
+      range: 'Sheet1!A:I',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: rowData,
