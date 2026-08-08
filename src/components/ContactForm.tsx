@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({ name: '', email: '', scope: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', scope: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,7 +24,7 @@ export default function ContactForm() {
       
       if (response.ok) {
         alert('Request received! We will be in touch shortly.');
-        setFormData({ name: '', email: '', scope: '' });
+        setFormData({ name: '', email: '', phone: '', scope: '' });
       } else {
         alert('There was an issue submitting. Please try again.');
       }
@@ -59,6 +59,19 @@ export default function ContactForm() {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
           placeholder="john@company.com"
+          required
+        />
+      </div>
+
+      <div>
+        <label htmlFor="phone" className="block text-sm font-semibold text-cf-text mb-2">Phone Number</label>
+        <input 
+          type="tel" 
+          id="phone" 
+          value={formData.phone}
+          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+          placeholder="+91 98765 43210"
           required
         />
       </div>

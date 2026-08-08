@@ -11,6 +11,7 @@ export async function POST(req: Request) {
       sourceIdentifier = 'None', 
       name = '', 
       email = '', 
+      phone = 'N/A',
       industry = 'N/A', 
       companySize = 'N/A', 
       primaryChallenge = 'N/A',
@@ -63,7 +64,7 @@ export async function POST(req: Request) {
     const combinedScope = primaryChallenge !== 'N/A' ? primaryChallenge : scope;
 
     // Prepare the row data
-    // Columns: [Date, FormType, SourcePage, SourceIdentifier, Name, Email, Industry, CompanySize, ProjectScope]
+    // Columns: [Date, FormType, SourcePage, SourceIdentifier, Name, Email, Phone, Industry, CompanySize, ProjectScope]
     const rowData = [
       [
         submissionDate,
@@ -72,6 +73,7 @@ export async function POST(req: Request) {
         sourceIdentifier,
         name,
         email,
+        phone,
         industry,
         companySize,
         combinedScope
@@ -81,11 +83,11 @@ export async function POST(req: Request) {
     // 3. If no headers exist, append them first
     if (!hasHeaders) {
       const headers = [
-        ['Date Submitted', 'Form Type', 'Source Page', 'Source ID', 'Name', 'Email', 'Industry', 'Company Size', 'Project Scope/Challenge']
+        ['Date Submitted', 'Form Type', 'Source Page', 'Source ID', 'Name', 'Email', 'Phone', 'Industry', 'Company Size', 'Project Scope/Challenge']
       ];
       await sheets.spreadsheets.values.append({
         spreadsheetId: sheetId,
-        range: 'Sheet1!A1:I1',
+        range: 'Sheet1!A1:J1',
         valueInputOption: 'USER_ENTERED',
         requestBody: { values: headers },
       });
@@ -94,7 +96,7 @@ export async function POST(req: Request) {
     // 4. Append the actual lead data
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: 'Sheet1!A:I',
+      range: 'Sheet1!A:J',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: rowData,

@@ -14,6 +14,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid work email"),
+  phone: z.string().min(10, "Please enter a valid phone number"),
   industry: z.string().min(2, "Please enter your industry"),
   companySize: z.string().min(1, "Please enter your company size"),
   primaryChallenge: z.string().min(10, "Please describe your challenge (min 10 chars)"),
@@ -47,6 +48,7 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
       industry: "",
       companySize: "",
       primaryChallenge: "",
@@ -79,7 +81,7 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
   // ─── Step Navigation ──────────────────────────────────────────────────────
   const handleNext = async () => {
     let fieldsToValidate: (keyof FormData)[] = [];
-    if (step === 1) fieldsToValidate = ["name", "email"];
+    if (step === 1) fieldsToValidate = ["name", "email", "phone"];
     if (step === 2) fieldsToValidate = ["industry", "companySize"];
 
     const isStepValid = await trigger(fieldsToValidate);
@@ -184,6 +186,17 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
                   className={errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}
                 />
                 {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone Number</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="+91 98765 43210"
+                  {...register("phone")}
+                  className={errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}
+                />
+                {errors.phone && <p className="text-xs text-red-500">{errors.phone.message}</p>}
               </div>
             </div>
           )}
