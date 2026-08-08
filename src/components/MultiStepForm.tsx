@@ -23,7 +23,12 @@ type FormData = z.infer<typeof formSchema>;
 
 const FORM_STORAGE_KEY = "parther_lead_form_cache";
 
-export default function MultiStepForm() {
+interface MultiStepFormProps {
+  sourcePage?: string;
+  sourceIdentifier?: string;
+}
+
+export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier = 'None' }: MultiStepFormProps) {
   const [step, setStep] = useState(1);
 
   // Initialize react-hook-form
@@ -88,9 +93,33 @@ export default function MultiStepForm() {
 
   const onSubmit = async (data: FormData) => {
     console.log("Final submission:", data);
-    // Clear cache on successful submission
-    localStorage.removeItem(FORM_STORAGE_KEY);
-    setStep(4);
+    
+    // Prepare payload with contextual tracking
+    const payload = {
+      ...data,
+      sourcePage,
+      sourceIdentifier,
+      formType: 'MultiStep'
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      // Clear cache on successful submission
+      localStorage.removeItem(FORM_STORAGE_KEY);
+      setStep(4);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an issue submitting your request. Please try again.');
+    }
   };
 
 

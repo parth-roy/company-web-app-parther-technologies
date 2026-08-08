@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Technical Discovery Call | Parther Technologies',
@@ -75,48 +76,7 @@ export default function ContactPage() {
           <h3 className="font-serif-display text-3xl text-cf-text mb-2">Start a Project</h3>
           <p className="text-cf-text-secondary text-sm mb-8">Secure, high-velocity intake form.</p>
           
-          <form className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-cf-text mb-2">Full Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
-                placeholder="John Doe"
-                required
-              />
-            </div>
-            
-            <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-cf-text mb-2">Work Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
-                placeholder="john@company.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="scope" className="block text-sm font-semibold text-cf-text mb-2">Project Scope (Briefly)</label>
-              <textarea 
-                id="scope" 
-                rows={4}
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-none"
-                placeholder="e.g., We need a custom ERP to manage logistics across 3 warehouses..."
-                required
-              ></textarea>
-            </div>
-
-            <button 
-              type="button" 
-              className="w-full py-4 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-            >
-              Submit & Book Discovery Call
-            </button>
-            <p className="text-center text-xs text-gray-400 mt-4">By submitting, you agree to our Privacy Policy. No spam.</p>
-          </form>
+          <ContactForm />
         </div>
       </section>
       
