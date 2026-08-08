@@ -39,6 +39,7 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
     trigger,
     watch,
     setValue,
+    reset,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -118,6 +119,7 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
       }
 
       // Clear cache on successful submission
+      reset();
       localStorage.removeItem(FORM_STORAGE_KEY);
       setStep(4);
     } catch (error) {
@@ -129,12 +131,9 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
   };
 
   const resetForm = () => {
+    reset();
+    localStorage.removeItem(FORM_STORAGE_KEY);
     setStep(1);
-    setValue('name', '');
-    setValue('email', '');
-    setValue('industry', '');
-    setValue('companySize', '');
-    setValue('primaryChallenge', '');
   };
 
 
