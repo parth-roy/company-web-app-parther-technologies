@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     q: "How do I get started with Parther Technologies?",
-    a: "Click 'Request Technical Audit' on our homepage or visit parthertech.com/contact. We review submissions within 60 seconds via automated routing. A senior engineer will schedule a free 30-minute Technical Discovery Call within 1 business day.",
+    a: "Click 'CALL WITH ENGINEER TEAM' on our homepage or visit parthertech.com/contact. We review submissions within 5 minutes via automated routing. A senior engineer will schedule a free 30-minute Technical Discovery Call within 5 minutes.",
   },
 ];
 

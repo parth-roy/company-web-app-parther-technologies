@@ -4,7 +4,7 @@ import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Technical Discovery Call | Parther Technologies',
-  description: 'Book a technical discovery call. High-velocity routing guarantees a response within 60 seconds.',
+  description: 'Book a technical discovery call. High-velocity routing guarantees a response within 5 minutes.',
 };
 
 export default function ContactPage() {
@@ -27,7 +27,7 @@ export default function ContactPage() {
           <div className="space-y-6 border-l-2 border-blue-600 pl-6">
             <div>
               <h4 className="font-bold text-lg">Speed-to-Lead Guarantee</h4>
-              <p className="text-gray-400 text-sm">Automated scheduling response triggered within 60 seconds of submission.</p>
+              <p className="text-gray-400 text-sm">Automated scheduling response triggered within 5 minutes of submission.</p>
             </div>
             <div>
               <h4 className="font-bold text-lg">AI Data Enrichment</h4>

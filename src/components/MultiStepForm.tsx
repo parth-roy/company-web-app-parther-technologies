@@ -250,7 +250,7 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
               </div>
               <h3 className="font-serif-display text-h3 mb-2 text-cf-text">Analysis Requested</h3>
               <p className="text-cf-text-secondary mb-8">
-                We'll be in touch within 15 minutes with your preliminary technical assessment.
+                We'll be in touch within 5 minutes with your preliminary technical assessment.
               </p>
               <Button
                 variant="outline"

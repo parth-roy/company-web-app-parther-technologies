@@ -71,7 +71,7 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Parther Technologies",
-  "description": "Providing the most affordable and budget-friendly website and app development services across West Bengal.",
+  "description": "Providing the most affordable and budget-friendly website and app development services across West Bengal. Guaranteed engineering response and technical scoping within 5 minutes.",
   "priceRange": "₹4999 - ₹15999",
   "areaServed": [
     { "@type": "City", "name": "Kolkata" },

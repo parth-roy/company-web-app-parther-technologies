@@ -37,10 +37,9 @@ export function FinalCTASection() {
               font-syncopate font-bold text-sm tracking-widest text-white
               transition-colors duration-200
               shadow-[0_0_40px_rgba(59,130,246,0.4)]
-              hover:shadow-[0_0_60px_rgba(59,130,246,0.6)]
             "
           >
-            REQUEST TECHNICAL AUDIT →
+            CALL WITH ENGINEER TEAM &rarr;
           </Link>
           <Link
             href="/case-studies"
@@ -59,7 +58,7 @@ export function FinalCTASection() {
         <div className="mt-16 flex flex-wrap justify-center gap-8 text-white/40 text-xs font-semibold tracking-widest uppercase">
           <span>✓ Free Architecture Review</span>
           <span>✓ Written ROI Projection</span>
-          <span>✓ Response Within 60 Seconds</span>
+          <span>✓ Response Within 5 Minutes</span>
           <span>✓ Based in Eastern India</span>
         </div>
       </div>

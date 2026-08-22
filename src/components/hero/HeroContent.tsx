@@ -56,9 +56,9 @@ export default function HeroContent() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cf-text text-white font-syncopate font-bold text-xs tracking-widest hover:bg-cf-text/80 transition-colors duration-200 shadow-lg whitespace-nowrap"
             >
-              REQUEST TECHNICAL AUDIT →
+              CALL WITH ENGINEER TEAM →
             </a>
-            <span className="mt-2 text-xs text-gray-500 font-mono-caps tracking-wider">Response within 24 hours</span>
+            <span className="mt-2 text-xs text-gray-500 font-mono-caps tracking-wider">Response within 5 minutes</span>
           </div>
           <a
             href="/case-studies"

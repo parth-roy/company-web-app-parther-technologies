@@ -39,7 +39,7 @@ export function FloatingFormModal({
               <X className="h-5 w-5" />
             </button>
             <h3 className="font-serif-display text-h3 mb-2 text-cf-text">Request Technical Scoping</h3>
-            <p className="text-sm text-cf-text-secondary mb-6">Receive your preliminary architectural assessment for this service within 15 minutes.</p>
+            <p className="text-sm text-cf-text-secondary mb-6">Receive your preliminary architectural assessment for this service within 5 minutes.</p>
             <MultiStepForm sourcePage="Service/Industry Page" sourceIdentifier={sourceIdentifier} />
           </div>
         </div>

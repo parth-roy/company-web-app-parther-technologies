@@ -84,7 +84,7 @@ export default async function LocationPage({ params }: { params: Promise<{ city:
 
           <div className="z-10 relative bg-cf-card p-6 md:p-8 rounded-2xl border border-cf-border shadow-float">
             <h3 className="font-serif-display text-h3 mb-2 text-cf-text">Request Technical Assessment</h3>
-            <p className="text-sm text-cf-text-secondary mb-6">Receive your preliminary architectural assessment for your {capitalizedCity} business within 15 minutes.</p>
+            <p className="text-sm text-cf-text-secondary mb-6">Receive your preliminary architectural assessment for your {capitalizedCity} business within 5 minutes.</p>
             <MultiStepForm />
           </div>
         </div>

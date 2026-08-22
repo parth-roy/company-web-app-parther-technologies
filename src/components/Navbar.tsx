@@ -151,7 +151,7 @@ export default function Navbar() {
             </div>
             <div className="bg-gray-50 p-4 border-t border-gray-100 flex justify-between items-center">
               <span className="text-xs font-medium text-gray-500">Need something custom?</span>
-              <Link href="/contact" className="text-xs font-bold text-blue-600 hover:text-blue-700">Request Technical Audit →</Link>
+              <Link href="/contact" className="text-xs font-bold text-blue-600 hover:text-blue-700">CALL WITH ENGINEER TEAM &rarr;</Link>
             </div>
           </div>
         </nav>
