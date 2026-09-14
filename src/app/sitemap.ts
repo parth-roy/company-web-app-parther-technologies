@@ -21,7 +21,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const serviceIds   = getCollectionIds('services');
   const industryIds  = getCollectionIds('industries');
-  const locationIds  = getCollectionIds('locations');
 
   // ─── Core static pages ───────────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
@@ -154,16 +153,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // ─── Programmatic: Locations (/locations/[city]) ─────────────────────────
-  // High priority — local SEO dominance within 40km radius of Barrackpore.
-  // These pages target specific geo-intent queries (e.g. "ERP software Dankuni").
-  const locationsPages: MetadataRoute.Sitemap = locationIds.map(({ params }) => ({
-    url: `${base}/locations/${params.slug}`,
-    lastModified: DATES.locations,
-    changeFrequency: 'monthly' as const,
-    priority: 0.85,
-  }));
-
   // ─── New Global 50-City Dynamic SEO Matrix ─────────────────────────
   const { GOLDEN_CITIES } = await import('@/lib/cities');
   const { SERVICES } = await import('@/lib/services');
@@ -184,7 +173,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticPages,
     ...servicesPages,
     ...industriesPages,
-    ...locationsPages,
     ...dynamicCityServices,
   ];
 }
