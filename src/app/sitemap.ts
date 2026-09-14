@@ -16,7 +16,7 @@ const DATES = {
 // Location pages are high-priority (0.85) for local SEO dominance.
 // Industries are high (0.8) for vertical GEO authority.
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = 'https://parthertech.com';
 
   const serviceIds   = getCollectionIds('services');
@@ -164,10 +164,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  // ─── New 800-City Dynamic SEO Matrix ─────────────────────────
+  const { CITIES } = await import('@/lib/cities');
+  const { SERVICES } = await import('@/lib/services');
+  
+  const dynamicCityServices: MetadataRoute.Sitemap = [];
+  for (const city of CITIES) {
+    for (const service of SERVICES) {
+      dynamicCityServices.push({
+        url: `${base}/${service.slug}-in-${city.slug}`,
+        lastModified: new Date().toISOString().split('T')[0],
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      });
+    }
+  }
+
   return [
     ...staticPages,
     ...servicesPages,
     ...industriesPages,
     ...locationsPages,
+    ...dynamicCityServices,
   ];
 }
