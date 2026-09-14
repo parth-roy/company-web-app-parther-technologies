@@ -2,15 +2,17 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { Search, X, LocateFixed, Building2, Globe } from 'lucide-react';
+import { Search, X, LocateFixed, Building2, Globe, Check } from 'lucide-react';
 import { GOLDEN_CITIES } from '@/lib/cities';
 import { SERVICES } from '@/lib/services';
+import { useCity } from '@/context/CityContext';
 
 export default function CitySelectorModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isDetecting, setIsDetecting] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { currentCity, setCity } = useCity();
 
   useEffect(() => {
     setMounted(true);
@@ -31,7 +33,20 @@ export default function CitySelectorModal() {
 
   const handleAutoDetectClick = async () => {
     setIsDetecting(true);
-    setTimeout(() => setIsDetecting(false), 1500); // Mock detect since global
+    // Mock detect for global demo
+    setTimeout(() => {
+      setIsDetecting(false);
+      const matched = GOLDEN_CITIES.find(c => c.slug === 'raleigh');
+      if (matched) {
+        setCity(matched);
+        setIsOpen(false);
+      }
+    }, 1500);
+  };
+
+  const handleCitySelect = (city: typeof GOLDEN_CITIES[0]) => {
+    setCity(city);
+    setIsOpen(false);
   };
 
   const filteredLocations = useMemo(() => {
@@ -53,8 +68,8 @@ export default function CitySelectorModal() {
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-xs font-semibold text-gray-700 hover:bg-gray-100 transition-colors"
       >
         <img src="/google-maps-icon.webp" alt="Location" width={14} height={14} className="w-3.5 h-3.5 object-contain" />
-        <span className="hidden sm:inline">Select Location</span>
-        <span className="sm:hidden">Location</span>
+        <span className="hidden sm:inline">{currentCity ? currentCity.name : 'Select Location'}</span>
+        <span className="sm:hidden">{currentCity ? currentCity.name : 'Location'}</span>
       </button>
 
       {isOpen && (
@@ -91,7 +106,7 @@ export default function CitySelectorModal() {
             </div>
 
             {/* Content Scroll Area */}
-            <div className="overflow-y-auto p-5 sm:p-7 space-y-7">
+            <div className="overflow-y-auto p-5 sm:p-7 space-y-7 custom-scrollbar">
               
               {/* Auto-detect & Search Bar */}
               <div className="flex flex-col sm:flex-row gap-3">
@@ -156,28 +171,46 @@ export default function CitySelectorModal() {
                 
                 {filteredLocations.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                    {filteredLocations.map((city) => (
-                      <Link
-                        key={city.slug}
-                        href={`/locations/${city.country}/${city.slug}/${defaultService}`}
-                        onClick={() => setIsOpen(false)}
-                        className="flex items-center gap-3 w-full text-left p-2.5 rounded-xl transition-all cursor-pointer group border bg-white hover:bg-slate-50 border-slate-100 hover:border-blue-200"
-                      >
-                        <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors bg-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600">
-                          <img src="/google-maps-icon.webp" alt="City" width={14} height={14} className="w-3.5 h-3.5 object-contain shrink-0" />
-                        </div>
-                        <div className="flex flex-col min-w-0 flex-1">
-                          <div className="flex items-center justify-between gap-1">
-                            <span className="text-xs sm:text-sm font-bold truncate text-slate-800 group-hover:text-blue-600">
-                              {city.name}
+                    {filteredLocations.map((city) => {
+                      const isCurrent = currentCity?.slug === city.slug;
+                      return (
+                        <Link
+                          key={city.slug}
+                          href={`/locations/${city.country}/${city.slug}/${defaultService}`}
+                          onClick={() => handleCitySelect(city)}
+                          className={`flex items-center gap-3 w-full text-left p-2.5 rounded-xl transition-all cursor-pointer group border ${
+                            isCurrent
+                              ? "bg-blue-50/70 border-blue-300 ring-1 ring-blue-400/40"
+                              : "bg-white hover:bg-slate-50 border-slate-100 hover:border-blue-200"
+                          }`}
+                        >
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                            isCurrent
+                              ? "bg-blue-100 text-blue-700"
+                              : "bg-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600"
+                          }`}>
+                            <img src="/google-maps-icon.webp" alt="City" width={14} height={14} className="w-3.5 h-3.5 object-contain shrink-0" />
+                          </div>
+                          <div className="flex flex-col min-w-0 flex-1">
+                            <div className="flex items-center justify-between gap-1">
+                              <span className={`text-xs sm:text-sm font-bold truncate ${
+                                isCurrent ? "text-blue-800" : "text-slate-800 group-hover:text-blue-600"
+                              }`}>
+                                {city.name}
+                              </span>
+                              {isCurrent && (
+                                <span className="text-[10px] font-extrabold px-1.5 py-0.5 rounded-md bg-blue-100 text-blue-800 shrink-0">
+                                  Active
+                                </span>
+                              )}
+                            </div>
+                            <span className="text-[11px] text-slate-400 group-hover:text-slate-500 truncate">
+                              {city.countryName}
                             </span>
                           </div>
-                          <span className="text-[11px] text-slate-400 group-hover:text-slate-500 truncate">
-                            {city.countryName}
-                          </span>
-                        </div>
-                      </Link>
-                    ))}
+                        </Link>
+                      );
+                    })}
                   </div>
                 ) : (
                   <div className="text-center py-10 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
