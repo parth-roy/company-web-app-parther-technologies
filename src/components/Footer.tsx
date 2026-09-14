@@ -66,13 +66,29 @@ export default function Footer() {
 
           {/* Links Col 3 */}
           <div>
-            <h4 className="font-serif-display text-lg mb-6">Locations</h4>
+            <h4 className="font-serif-display text-lg mb-6">Global Hubs</h4>
             <ul className="flex flex-col gap-3">
-              <li><Link href="/locations/barrackpore" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Barrackpore</Link></li>
-              <li><Link href="/locations/barasat" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Barasat</Link></li>
-              <li><Link href="/locations/saltlake" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Saltlake</Link></li>
-              <li><Link href="/locations/dankuni" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Dankuni</Link></li>
+              <li><Link href="/locations/usa/raleigh/ai-development" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Raleigh, USA</Link></li>
+              <li><Link href="/locations/uae/dubai/custom-software-development" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Dubai, UAE</Link></li>
+              <li><Link href="/locations/australia/brisbane/mobile-app-development" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Brisbane, AUS</Link></li>
+              <li><Link href="/locations/canada/calgary/erp-systems" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Calgary, CAN</Link></li>
+              <li><Link href="/locations" className="text-sm text-[#0066cc] hover:text-blue-400 font-medium transition-colors inline-block py-1 min-h-[24px]">View All 50 Cities →</Link></li>
             </ul>
+          </div>
+        </div>
+
+        {/* Global Locations Grid */}
+        <div className="border-t border-gray-800 pt-8 pb-12 mb-8">
+          <h4 className="font-mono-caps text-xs text-gray-500 mb-6 tracking-widest uppercase">Global Engineering Hubs</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-3">
+            <Link href="/locations" className="text-xs text-gray-400 hover:text-white transition-colors">United States (15)</Link>
+            <Link href="/locations" className="text-xs text-gray-400 hover:text-white transition-colors">United Kingdom (8)</Link>
+            <Link href="/locations" className="text-xs text-gray-400 hover:text-white transition-colors">Canada (6)</Link>
+            <Link href="/locations" className="text-xs text-gray-400 hover:text-white transition-colors">Australia (6)</Link>
+            <Link href="/locations" className="text-xs text-gray-400 hover:text-white transition-colors">Germany (3)</Link>
+            <Link href="/locations" className="text-xs text-gray-400 hover:text-white transition-colors">Netherlands (2)</Link>
+            <Link href="/locations" className="text-xs text-gray-400 hover:text-white transition-colors">Nordics (4)</Link>
+            <Link href="/locations" className="text-xs text-gray-400 hover:text-white transition-colors">Middle East (6)</Link>
           </div>
         </div>
 

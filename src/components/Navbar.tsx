@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
+import CitySelectorModal from './CitySelectorModal';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -158,6 +159,9 @@ export default function Navbar() {
 
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+          
+          <CitySelectorModal />
+
           <Link 
             href="/contact" 
             className="hidden lg:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-cf-bg bg-cf-text hover:bg-cf-text/90 rounded-full transition-all hover:scale-105 whitespace-nowrap"
