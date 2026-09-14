@@ -164,15 +164,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
-  // ─── New 800-City Dynamic SEO Matrix ─────────────────────────
-  const { CITIES } = await import('@/lib/cities');
+  // ─── New Global 50-City Dynamic SEO Matrix ─────────────────────────
+  const { GOLDEN_CITIES } = await import('@/lib/cities');
   const { SERVICES } = await import('@/lib/services');
   
   const dynamicCityServices: MetadataRoute.Sitemap = [];
-  for (const city of CITIES) {
+  for (const city of GOLDEN_CITIES) {
     for (const service of SERVICES) {
       dynamicCityServices.push({
-        url: `${base}/${service.slug}-in-${city.slug}`,
+        url: `${base}/locations/${city.country}/${city.slug}/${service.id}`,
         lastModified: new Date().toISOString().split('T')[0],
         changeFrequency: 'weekly' as const,
         priority: 0.8,

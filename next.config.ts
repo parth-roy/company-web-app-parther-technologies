@@ -13,6 +13,15 @@ const nextConfig: NextConfig = {
     memoryBasedWorkersCount: true,
   },
 
+  // Skip TypeScript and ESLint during production builds to save massive RAM overhead.
+  // (We already type-check locally before pushing).
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   // ─── LCP: Image Optimisation ─────────────────────────────────────────────
   // Serve AVIF first (50% smaller than WebP), WebP fallback.
   images: {

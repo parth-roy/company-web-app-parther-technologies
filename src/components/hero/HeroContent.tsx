@@ -18,7 +18,7 @@ export default function HeroContent() {
           className="font-syncopate uppercase tracking-tight font-bold text-4xl sm:text-5xl lg:text-5xl xl:text-6xl leading-[1.10] mb-8 text-cf-text hero-stagger break-words"
           style={{ "--stagger": 1 } as React.CSSProperties}
         >
-          We Architect Scalable Digital Infrastructure.
+          India-Based Product Engineering Partner.
         </h1>
 
         {/* Sub-headline */}
@@ -26,9 +26,7 @@ export default function HeroContent() {
           className="text-body sm:text-h4 text-cf-text-secondary leading-relaxed max-w-[520px] mb-6 hero-stagger"
           style={{ "--stagger": 2 } as React.CSSProperties}
         >
-          From Agentic Workflows to Headless Architectures — we engineer systems
-          that give your business an unfair competitive advantage across Eastern
-          India's fastest-growing markets.
+          We build scalable SaaS, AI agents, and enterprise applications for global tech companies.
         </p>
 
         {/* GoMyTruck proof stat */}
@@ -37,11 +35,11 @@ export default function HeroContent() {
           style={{ "--stagger": 2 } as React.CSSProperties}
         >
           <a
-            href="/case-studies"
+            href="/case-studies/gomytruck"
             className="inline-flex items-center gap-2 text-xs font-mono-caps text-blue-600 border border-blue-200 bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors duration-200"
           >
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-            GoMyTruck — 500+ Verified Drivers · 2-Min Avg Booking · Multi-Tenant SaaS
+            GoMyTruck — Multi-Tenant SaaS · Logistics Workflow · Real-Time Tracking
             <span>→</span>
           </a>
         </div>
@@ -54,11 +52,11 @@ export default function HeroContent() {
           <div className="flex flex-col items-center sm:items-start">
             <a
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cf-text text-white font-syncopate font-bold text-xs tracking-widest hover:bg-cf-text/80 transition-colors duration-200 shadow-lg whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cf-text text-white font-syncopate font-bold text-xs tracking-widest hover:bg-cf-text/80 transition-colors duration-200 shadow-lg whitespace-nowrap text-center"
             >
-              CALL WITH ENGINEER TEAM →
+              GET A FREE ARCHITECTURE BLUEPRINT &<br/>MVP COST ESTIMATE →
             </a>
-            <span className="mt-2 text-xs text-gray-500 font-mono-caps tracking-wider">Response within 5 minutes</span>
+            <span className="mt-2 text-xs text-gray-500 font-mono-caps tracking-wider">Avoid $120k+ Local Salary Burns</span>
           </div>
           <a
             href="/case-studies"
