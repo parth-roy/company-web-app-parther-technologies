@@ -153,18 +153,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // ─── New Global 50-City Dynamic SEO Matrix ─────────────────────────
-  const { GOLDEN_CITIES } = await import('@/lib/cities');
+  // ─── Pan-India (800+) + Global 50-City Dynamic SEO Matrix ─────────
+  const { ALL_CITIES } = await import('@/lib/cities');
   const { SERVICES } = await import('@/lib/services');
   
   const dynamicCityServices: MetadataRoute.Sitemap = [];
-  for (const city of GOLDEN_CITIES) {
+  for (const city of ALL_CITIES) {
     for (const service of SERVICES) {
       dynamicCityServices.push({
         url: `${base}/locations/${city.country}/${city.slug}/${service.id}`,
         lastModified: new Date().toISOString().split('T')[0],
         changeFrequency: 'weekly' as const,
-        priority: 0.8,
+        priority: city.country === 'india' ? 0.75 : 0.85,
       });
     }
   }

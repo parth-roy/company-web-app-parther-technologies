@@ -1,10 +1,31 @@
+import { CITIES as RAW_INDIAN_CITIES } from './indianCities';
+
 export interface GlobalCity {
   country: string;
   countryName: string;
   name: string;
   slug: string;
   state: string;
+  tier?: number;
 }
+
+export const TOP_METROS = [
+  { name: "Mumbai", slug: "mumbai", image: "/cities/mumbai.webp", state: "Maharashtra", country: "india", countryName: "India" },
+  { name: "Delhi NCR", slug: "delhi", image: "/cities/delhi.webp", state: "Delhi", country: "india", countryName: "India" },
+  { name: "Bengaluru", slug: "bengaluru", image: "/cities/bengaluru.webp", state: "Karnataka", country: "india", countryName: "India" },
+  { name: "Hyderabad", slug: "hyderabad", image: "/cities/hyderabad.webp", state: "Telangana", country: "india", countryName: "India" },
+  { name: "Chennai", slug: "chennai", image: "/cities/chennai-icon.webp", state: "Tamil Nadu", country: "india", countryName: "India" },
+  { name: "Ahmedabad", slug: "ahmedabad", image: "/cities/ahmedabad.webp", state: "Gujarat", country: "india", countryName: "India" },
+  { name: "Pune", slug: "pune", image: "/cities/pune.webp", state: "Maharashtra", country: "india", countryName: "India" },
+  { name: "Surat", slug: "surat", image: "/cities/surat.webp", state: "Gujarat", country: "india", countryName: "India" },
+  { name: "Jaipur", slug: "jaipur", image: "/cities/jaipur-icon.webp", state: "Rajasthan", country: "india", countryName: "India" },
+  { name: "Kolkata", slug: "kolkata", image: "/cities/kolkata.webp", state: "West Bengal", country: "india", countryName: "India" },
+  { name: "Lucknow", slug: "lucknow", image: "/cities/lucknow.webp", state: "Uttar Pradesh", country: "india", countryName: "India" },
+  { name: "Coimbatore", slug: "coimbatore", image: "/cities/coimbatore-icon.webp", state: "Tamil Nadu", country: "india", countryName: "India" },
+  { name: "Indore", slug: "indore", image: "/cities/indore.webp", state: "Madhya Pradesh", country: "india", countryName: "India" },
+  { name: "Chandigarh", slug: "chandigarh", image: "/cities/chandigarh-icon.webp", state: "Punjab", country: "india", countryName: "India" },
+  { name: "Kochi", slug: "kochi", image: "/cities/kochi-icon.webp", state: "Kerala", country: "india", countryName: "India" },
+];
 
 export const GOLDEN_CITIES: GlobalCity[] = [
   {
@@ -357,4 +378,18 @@ export const GOLDEN_CITIES: GlobalCity[] = [
     "name": "Auckland",
     "state": "NZ"
   }
+];
+
+export const INDIAN_CITIES: GlobalCity[] = RAW_INDIAN_CITIES.map((c) => ({
+  country: "india",
+  countryName: "India",
+  name: c.name,
+  slug: c.slug,
+  state: c.state,
+  tier: c.tier || 3,
+}));
+
+export const ALL_CITIES: GlobalCity[] = [
+  ...GOLDEN_CITIES,
+  ...INDIAN_CITIES,
 ];
