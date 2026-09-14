@@ -6,6 +6,13 @@ const nextConfig: NextConfig = {
   // Disabled to prevent hydration crashes on production Next.js 16/React 19 builds
   cacheComponents: false,
 
+  // Prevents OOM (SIGKILL) on CI/CD servers when generating 5000+ static pages
+  experimental: {
+    cpus: 1,
+    workerThreads: false,
+    memoryBasedWorkersCount: true,
+  },
+
   // ─── LCP: Image Optimisation ─────────────────────────────────────────────
   // Serve AVIF first (50% smaller than WebP), WebP fallback.
   images: {
