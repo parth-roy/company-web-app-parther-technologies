@@ -8,7 +8,7 @@ import { ALL_CITIES, TOP_METROS, GlobalCity } from '@/lib/cities';
 import { SERVICES } from '@/lib/services';
 import { useCity } from '@/context/CityContext';
 
-export default function CitySelectorModal() {
+export default function CitySelectorModal({ variant = 'navbar' }: { variant?: 'navbar' | 'hero' }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState<'all' | 'india' | 'global'>('all');
@@ -242,11 +242,11 @@ export default function CitySelectorModal() {
             
             {filteredLocations.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                {filteredLocations.map((city) => {
+                {filteredLocations.map((city, idx) => {
                   const isCurrent = currentCity?.slug === city.slug && currentCity?.country === city.country;
                   return (
                     <Link
-                      key={`${city.country}-${city.slug}`}
+                      key={`${city.country}-${city.state || ''}-${city.slug}-${idx}`}
                       href={`/locations/${city.country}/${city.slug}/${defaultService}`}
                       onClick={() => handleCitySelect(city)}
                       className={`flex items-center gap-3 w-full text-left p-2.5 rounded-xl transition-all cursor-pointer group border ${
@@ -299,14 +299,26 @@ export default function CitySelectorModal() {
 
   return (
     <>
-      <button 
-        onClick={() => setIsOpen(true)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-xs font-semibold text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
-      >
-        <img src="/google-maps-icon.webp" alt="Location" width={14} height={14} className="w-3.5 h-3.5 object-contain" />
-        <span className="hidden sm:inline">{currentCity ? currentCity.name : 'Select Location'}</span>
-        <span className="sm:hidden">{currentCity ? currentCity.name : 'Location'}</span>
-      </button>
+      {variant === 'hero' ? (
+        <button 
+          type="button"
+          onClick={() => setIsOpen(true)}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-emerald-200/90 text-slate-800 text-xs sm:text-sm font-semibold hover:bg-emerald-50 hover:border-emerald-300 transition-all shadow-xs group cursor-pointer"
+        >
+          <img src="/google-maps-icon.webp" alt="City" width={16} height={16} className="w-4 h-4 object-contain group-hover:scale-110 transition-transform shrink-0" />
+          <span>City: <strong className="text-emerald-700 font-bold">{currentCity ? currentCity.name : 'Barrackpore'}</strong></span>
+          <span className="text-emerald-600 underline font-semibold text-xs ml-0.5 group-hover:text-emerald-700">Change</span>
+        </button>
+      ) : (
+        <button 
+          onClick={() => setIsOpen(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-xs font-semibold text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
+        >
+          <img src="/google-maps-icon.webp" alt="Location" width={14} height={14} className="w-3.5 h-3.5 object-contain" />
+          <span className="hidden sm:inline">{currentCity ? currentCity.name : 'Select Location'}</span>
+          <span className="sm:hidden">{currentCity ? currentCity.name : 'Location'}</span>
+        </button>
+      )}
 
       {typeof document !== 'undefined' && modalContent && createPortal(modalContent, document.body)}
     </>

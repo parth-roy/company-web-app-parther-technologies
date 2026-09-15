@@ -22,6 +22,7 @@ export function FloatingContact() {
           src="/call.png" 
           alt="Call" 
           fill
+          sizes="(max-width: 640px) 56px, 64px"
           className="object-contain drop-shadow-md z-10" 
         />
         
@@ -47,6 +48,7 @@ export function FloatingContact() {
           src="/whatsapp.png" 
           alt="WhatsApp" 
           fill
+          sizes="(max-width: 640px) 56px, 64px"
           className="object-contain drop-shadow-md z-10" 
         />
         

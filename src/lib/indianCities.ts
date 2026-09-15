@@ -1376,7 +1376,7 @@ export const CITIES: City[] = [
   },
   {
     "name": "Srinagar",
-    "slug": "srinagar",
+    "slug": "srinagar-uttarakhand",
     "state": "Uttarakhand",
     "tier": 3
   },
@@ -1970,7 +1970,7 @@ export const CITIES: City[] = [
   },
   {
     "name": "Aurangabad",
-    "slug": "aurangabad",
+    "slug": "aurangabad-bihar",
     "state": "Bihar",
     "tier": 3
   },
@@ -4496,7 +4496,7 @@ export const CITIES: City[] = [
   },
   {
     "name": "Ramnagar",
-    "slug": "ramnagar",
+    "slug": "ramnagar-bihar",
     "state": "Bihar",
     "tier": 3
   },
@@ -5096,7 +5096,7 @@ export const CITIES: City[] = [
   },
   {
     "name": "Udaipur",
-    "slug": "udaipur",
+    "slug": "udaipur-tripura",
     "state": "Tripura",
     "tier": 3
   },
