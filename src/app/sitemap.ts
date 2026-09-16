@@ -55,6 +55,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: `${base}/case-studies/gomytruck`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
+      url: `${base}/case-studies/acs`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
       url: `${base}/pricing`,
       lastModified: DATES.static,
       changeFrequency: 'monthly',

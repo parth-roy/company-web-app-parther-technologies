@@ -12,8 +12,21 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        // ─── Allow major search bots full access ──────────────────────────
-        userAgent: ['Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot', 'Baiduspider'],
+        // ─── Allow major search bots and AI answer engines full public access ──
+        userAgent: [
+          'Googlebot',
+          'Bingbot',
+          'Slurp',
+          'DuckDuckBot',
+          'Baiduspider',
+          'GPTBot',
+          'ChatGPT-User',
+          'PerplexityBot',
+          'anthropic-ai',
+          'Claude-Web',
+          'Googlebot-Extended',
+          'Applebot-Extended'
+        ],
         allow: '/',
         disallow: [
           '/api/',
@@ -22,17 +35,6 @@ export default function robots(): MetadataRoute.Robots {
           '/*?*',    // Block URL parameters to prevent duplicate content
           '/*.json$', // Block raw JSON responses
         ],
-      },
-      {
-        // ─── Block AI training crawlers per our privacy policy ────────────
-        userAgent: ['GPTBot', 'ChatGPT-User', 'CCBot', 'anthropic-ai', 'Claude-Web'],
-        disallow: '/',
-      },
-      {
-        // ─── Allow Google's AI search (Gemini) for GEO indexing ──────────
-        // Allowing Googlebot-Extended ensures we appear in Google AI Overviews.
-        userAgent: 'Googlebot-Extended',
-        allow: '/',
       },
     ],
     sitemap: [

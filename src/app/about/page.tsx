@@ -12,25 +12,37 @@ export default function AboutPage() {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://www.parthertech.com/#organization",
-        "name": "Parther Technologies Pvt Ltd",
-        "url": "https://www.parthertech.com",
-        "logo": "https://www.parthertech.com/logo.png",
+        "@id": "https://parthertech.com/#organization",
+        "name": "Parther Technologies Private Limited",
+        "legalName": "Parther Technologies Private Limited",
+        "identifier": "U62099WR2026PTC293183",
+        "url": "https://parthertech.com",
+        "logo": "https://parthertech.com/logo.png",
+        "foundingDate": "2026-03",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Sector V, Salt Lake City",
+          "addressLocality": "Kolkata",
+          "addressRegion": "West Bengal",
+          "postalCode": "700091",
+          "addressCountry": "IN"
+        },
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+91-94323-50334",
-          "contactType": "customer service"
+          "contactType": "customer service",
+          "email": "hello@parthertech.com"
         }
       },
       {
         "@type": "Person",
-        "@id": "https://www.parthertech.com/#founder",
-        "name": "Founder Name",
-        "jobTitle": "Founder & CEO",
+        "@id": "https://parthertech.com/#executive-leadership",
+        "name": "Parther Engineering & Executive Leadership",
+        "jobTitle": "Chief Technology & Executive Leadership",
         "worksFor": {
-          "@id": "https://www.parthertech.com/#organization"
+          "@id": "https://parthertech.com/#organization"
         },
-        "url": "https://www.parthertech.com/about"
+        "url": "https://parthertech.com/about"
       }
     ]
   };

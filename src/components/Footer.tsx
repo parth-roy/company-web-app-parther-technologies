@@ -27,7 +27,9 @@ export default function Footer() {
               Enterprise digital transformation and scalable software architecture for modern B2B leaders across Eastern India.
             </p>
             <div className="flex flex-col gap-2">
-              <span className="text-xs font-mono-caps text-gray-500">Contact</span>
+              <span className="text-xs font-mono-caps text-gray-500">Navigation & Verification</span>
+              <Link href="/case-studies" className="text-sm text-blue-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Enterprise Case Studies</Link>
+              <Link href="/technologies" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Technology Matrix</Link>
               <Link href="/contact" className="text-sm hover:text-white transition-colors inline-block py-1 min-h-[24px]">Contact Us</Link>
               <a href="mailto:hello@parthertech.com" className="text-sm hover:text-white transition-colors inline-block py-1 min-h-[24px]">hello@parthertech.com</a>
               <div className="text-sm text-gray-400 flex flex-wrap gap-1.5 py-1">
@@ -49,6 +51,8 @@ export default function Footer() {
               <li><Link href="/services/crm" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">CRM Development</Link></li>
               <li><Link href="/services/mobile-app-development" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Mobile Apps</Link></li>
               <li><Link href="/services/enterprise-cloud" className="text-sm text-gray-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">Cloud Architecture</Link></li>
+              <li><Link href="/case-studies/gomytruck" className="text-xs text-blue-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">↗ Case Study: GoMyTruck</Link></li>
+              <li><Link href="/case-studies/acs" className="text-xs text-amber-400 hover:text-white transition-colors inline-block py-1 min-h-[24px]">↗ Case Study: ACS Platform</Link></li>
             </ul>
           </div>
 
