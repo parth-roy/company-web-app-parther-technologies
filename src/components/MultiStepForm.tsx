@@ -150,14 +150,14 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
           </div>
           <Progress value={(step / 3) * 100} className="h-2 mb-4" />
           <CardTitle className="font-serif-display text-h3 text-cf-text">
-            {step === 1 && "Let's start with the basics"}
-            {step === 2 && "Tell us about your business"}
-            {step === 3 && "What's your biggest challenge?"}
+            {step === 1 && "Technical Architecture Discovery"}
+            {step === 2 && "Platform Scope & Scale"}
+            {step === 3 && "Core Bottlenecks & Stack"}
           </CardTitle>
           <CardDescription className="text-cf-text-secondary">
-            {step === 1 && "We need your email to send the technical assessment."}
-            {step === 2 && "This helps us tailor our engineering recommendations."}
-            {step === 3 && "We specialize in resolving operational bottlenecks."}
+            {step === 1 && "Direct routing to engineering leadership. Mutual NDAs executed prior to architecture scoping."}
+            {step === 2 && "Helps us calibrate architectural capacity, compliance matrices, and SLA requirements."}
+            {step === 3 && "Detail your current architecture, concurrency targets, or mission-critical bottlenecks."}
           </CardDescription>
         </CardHeader>
       )}
@@ -167,10 +167,10 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
           {step === 1 && (
             <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="space-y-2">
-                <Label htmlFor="name">Work Name</Label>
+                <Label htmlFor="name">Full Name / Technical Lead</Label>
                 <Input
                   id="name"
-                  placeholder="John Doe"
+                  placeholder="e.g. Alex Henderson"
                   {...register("name")}
                   className={errors.name ? "border-red-500 focus-visible:ring-red-500" : ""}
                 />
@@ -181,18 +181,18 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
                 <Input
                   id="email"
                   type="email"
-                  placeholder="john@company.com"
+                  placeholder="alex@enterprise.com"
                   {...register("email")}
                   className={errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}
                 />
                 {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
+                <Label htmlFor="phone">Phone / WhatsApp (Direct Line)</Label>
                 <Input
                   id="phone"
                   type="tel"
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 98765 43210 or +1 415..."
                   {...register("phone")}
                   className={errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}
                 />
@@ -204,20 +204,20 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
           {step === 2 && (
             <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="space-y-2">
-                <Label htmlFor="industry">Industry</Label>
+                <Label htmlFor="industry">Domain / Industry Vertical</Label>
                 <Input
                   id="industry"
-                  placeholder="e.g. Manufacturing, Logistics"
+                  placeholder="e.g. Logistics & Supply Chain, FinTech, Manufacturing ERP, HealthTech"
                   {...register("industry")}
                   className={errors.industry ? "border-red-500 focus-visible:ring-red-500" : ""}
                 />
                 {errors.industry && <p className="text-xs text-red-500">{errors.industry.message}</p>}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="companySize">Company Size (Revenue/Employees)</Label>
+                <Label htmlFor="companySize">Company Scale / User Concurrency</Label>
                 <Input
                   id="companySize"
-                  placeholder="e.g. 50+ employees or 10Cr+"
+                  placeholder="e.g. 500+ employees, 50k DAU, or Series A-C Scaleup"
                   {...register("companySize")}
                   className={errors.companySize ? "border-red-500 focus-visible:ring-red-500" : ""}
                 />
@@ -229,10 +229,10 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
           {step === 3 && (
             <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="space-y-2">
-                <Label htmlFor="primaryChallenge">What are you trying to solve?</Label>
+                <Label htmlFor="primaryChallenge">Architectural Objectives or Current Bottlenecks</Label>
                 <Input
                   id="primaryChallenge"
-                  placeholder="e.g. Legacy ERP is too slow..."
+                  placeholder="e.g. Modernizing monolithic ERP, event streaming with Redis/BullMQ, high-concurrency mobile app..."
                   {...register("primaryChallenge")}
                   className={errors.primaryChallenge ? "border-red-500 focus-visible:ring-red-500" : ""}
                 />
@@ -248,9 +248,9 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="font-serif-display text-h3 mb-2 text-cf-text">Analysis Requested</h3>
+              <h3 className="font-serif-display text-h3 mb-2 text-cf-text">Architecture Review Initiated</h3>
               <p className="text-cf-text-secondary mb-8">
-                We'll be in touch within 5 minutes with your preliminary technical assessment.
+                Your technical requirements have been routed directly to our engineering architects. We will connect with a technical scoping blueprint within 24 hours.
               </p>
               <Button
                 variant="outline"
@@ -278,15 +278,15 @@ export default function MultiStepForm({ sourcePage = 'Unknown', sourceIdentifier
                 <Button
                   type="submit"
                   disabled={!isValid || isSubmitting}
-                  className="bg-accent text-accent-foreground hover:bg-accent/90"
+                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-medium"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Complete Request'}
+                  {isSubmitting ? 'Routing to Architecture Team...' : 'Request Architecture Review'}
                 </Button>
               ) : (
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className="bg-accent text-accent-foreground hover:bg-accent/90"
+                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-medium"
                 >
                   Continue
                 </Button>

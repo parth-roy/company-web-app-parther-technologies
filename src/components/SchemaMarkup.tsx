@@ -62,7 +62,7 @@ export default function SchemaMarkup({ faqs, service, localBusiness }: SchemaMar
     });
   }
 
-  // LocalBusiness Schema Overrides for specific geographical hubs
+  // LocalBusiness Schema Overrides ONLY for genuine physical delivery hubs
   if (localBusiness) {
     schemas.push({
       "@context": "https://schema.org",
@@ -71,16 +71,17 @@ export default function SchemaMarkup({ faqs, service, localBusiness }: SchemaMar
       "description": localBusiness.description,
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Salt Lake Sector V",
         "addressLocality": localBusiness.locality,
         "addressRegion": "West Bengal",
-        "postalCode": localBusiness.postalCode,
+        "postalCode": localBusiness.postalCode || "700091",
         "addressCountry": "IN"
       },
-      "geo": localBusiness.latitude && localBusiness.longitude ? {
+      "geo": {
         "@type": "GeoCoordinates",
-        "latitude": localBusiness.latitude,
-        "longitude": localBusiness.longitude
-      } : undefined
+        "latitude": localBusiness.latitude || "22.5804",
+        "longitude": localBusiness.longitude || "88.4378"
+      }
     });
   }
 

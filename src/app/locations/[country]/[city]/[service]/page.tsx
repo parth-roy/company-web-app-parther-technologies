@@ -104,40 +104,51 @@ export default async function LocationServicePage({ params }: { params: Promise<
   ];
 
   const serviceSchema = {
-    name: `${serviceData.name} for ${cityData.name}`,
-    description: `Elite ${serviceData.shortName} provided by Parther Technologies for companies in ${cityData.name}, ${cityData.countryName}.`,
-    providerName: 'Parther Technologies',
-    areaServed: cityData.name,
+    name: `${serviceData.name} for ${cityData.name} Enterprises`,
+    description: `Enterprise-grade ${serviceData.shortName} engineered by Parther Technologies for high-growth enterprises and startups in ${cityData.name}, ${cityData.countryName}.`,
+    providerName: 'Parther Technologies Private Limited',
+    areaServed: `${cityData.name}, ${cityData.countryName}`,
+    serviceType: serviceData.name,
   };
 
-  const localBusiness = {
-    name: `Parther Technologies - ${cityData.name}`,
-    description: `Enterprise Product Engineering Partner serving ${cityData.name}.`,
-    locality: cityData.name,
-    postalCode: '',
-  };
+  // Only emit LocalBusiness schema if it is our genuine physical engineering hub in Kolkata / Sector V
+  const isLocalDeliveryHub = cityData.slug === 'kolkata' || cityData.slug === 'salt-lake';
+  const localBusiness = isLocalDeliveryHub ? {
+    name: `Parther Technologies - Global Engineering Hub`,
+    description: `Enterprise Product Engineering & Delivery Center serving global clients.`,
+    locality: "Kolkata",
+    postalCode: '700091',
+  } : undefined;
+
+  const technicalSpecs = [
+    { label: "Core Architecture", value: "Event-Driven Modular Microservices" },
+    { label: "Backend Runtime", value: "Node.js LTS, BullMQ, Redis, PostgreSQL" },
+    { label: "Operational Benchmark", value: "GoMyTruck (31 Modules, ULIP/VAHAN)" },
+    { label: "Uptime & Delivery SLA", value: "99.99% Availability | 2-Week Sprints" },
+  ];
 
   return (
     <GeoLandingTemplate
-      title={`${serviceData.name} for ${cityData.name} Companies`}
-      subtitle={isIndia ? `Enterprise Product Engineering & Custom Software in ${cityData.name}.` : `India-Based Product Engineering Partner for Fast-Scaling Startups in ${cityData.name}.`}
-      blufSummary={`We provide dedicated ${serviceData.name} to help companies in ${cityData.name}, ${cityData.countryName} build and scale modern digital infrastructure.`}
+      title={`${serviceData.name} for ${cityData.name} Enterprises`}
+      subtitle={isIndia ? `Enterprise Product Engineering & Custom Software Architecture in ${cityData.name}.` : `India-Based Enterprise Engineering Partner for High-Growth Companies in ${cityData.name}.`}
+      blufSummary={`Parther Technologies delivers tier-1 ${serviceData.name} for high-growth businesses in ${cityData.name}, ${cityData.countryName}. Leveraging proven high-concurrency architectures from proprietary platforms like GoMyTruck (logistics) and ACS (5,000+ distributed workforce), we provide sub-second latency, rigorous data sovereignty, and dedicated engineering pods from our Salt Lake Sector V, Kolkata hub.`}
       sourcePage={`/locations/${country}/${city}/${service}`}
       sourceIdentifier={`${service}-${city}-seo`}
       faqs={faqs}
       serviceSchema={serviceSchema}
       localBusiness={localBusiness}
+      technicalSpecs={technicalSpecs}
     >
       <div className="space-y-8">
         <section>
           <h2>The ${serviceData.shortName} Landscape in {cityData.name}</h2>
           <p>{localContext} {economicsData}</p>
-          <p>We solve the engineering bottleneck by acting as your dedicated backend. {timezoneData}</p>
+          <p>We eliminate engineering bottlenecks by acting as your dedicated backend architecture strike team. {timezoneData}</p>
         </section>
 
         <section>
-          <h2>Get a Free Architecture Blueprint & MVP Cost Estimate</h2>
-          <p>Book a strategic session with our lead architects today to map out your infrastructure, cloud pipeline, and scaling roadmap for {cityData.name}.</p>
+          <h2>Request a Technical Architecture Review for {cityData.name}</h2>
+          <p>Schedule a complimentary 45-minute whiteboarding and architecture evaluation session with our lead system architects to evaluate your data flow, API integrations, and scaling roadmap.</p>
         </section>
 
         <Reveal delay={0.1}>

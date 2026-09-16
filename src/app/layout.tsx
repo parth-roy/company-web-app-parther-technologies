@@ -23,34 +23,37 @@ const syncopate = Syncopate({
 });
 
 export const metadata: Metadata = {
-  title: "Parther Technologies | Enterprise Software & Digital Transformation in West Bengal",
+  title: "Parther Technologies | Enterprise Digital Engineering & High-Concurrency Platform Architecture",
   description:
-    "Parther Technologies architects scalable digital infrastructure — custom SaaS, ERP, Agentic Workflows, and Generative Engine Optimization (GEO) for enterprises in Eastern India.",
+    "Parther Technologies architects mission-critical digital infrastructure — custom SaaS platforms, enterprise ERPs, autonomous AI workflows, and high-concurrency cloud systems for enterprises across India, USA, UK, UAE, and globally.",
   keywords: [
-    "software development company",
-    "enterprise software development company",
-    "top software development companies",
-    "best software development companies",
-    "software dev agency",
-    "software engineering firm",
-    "saas development company",
-    "software development firms",
+    "enterprise digital engineering",
+    "high concurrency platform architecture",
+    "custom software development company",
+    "enterprise erp developers",
+    "ulip api integration company",
+    "saas platform engineering",
+    "logistics software engineering firm",
+    "autonomous ai workflow development",
+    "cross border software engineering partner",
+    "dedicated engineering pods",
+    "node.js bullmq microservices architecture",
     "enterprise application development"
   ],
   metadataBase: new URL("https://parthertech.com"),
   openGraph: {
-    title: "Parther Technologies | Digital Transformation & SaaS",
+    title: "Parther Technologies | Enterprise Digital Engineering & Architecture",
     description:
-      "Accelerate your business with enterprise software solutions built for the West Bengal industrial corridors.",
+      "Architecting mission-critical digital platforms, enterprise ERPs, and high-concurrency event-driven systems for global enterprises.",
     url: "https://parthertech.com",
     siteName: "Parther Technologies",
-    locale: "en_IN",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Parther Technologies",
-    description: "Custom software and digital transformation in Eastern India.",
+    title: "Parther Technologies | Enterprise Digital Engineering",
+    description: "Mission-critical software platforms, enterprise ERPs, and high-concurrency architectures.",
   },
   // ─── LCP: Preconnect to image CDNs ─────────────────────────────────────
   // Declared here so Next.js generates the correct <link> tags in <head>
@@ -66,68 +69,73 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // ─── Schema: Organization + LocalBusiness + SoftwareApplication ──────────
+  // ─── Schema: Organization + Dual Platform Applications (GoMyTruck & ACS) ──
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
         "@id": "https://parthertech.com/#organization",
-        name: "Parther Technologies",
+        name: "Parther Technologies Private Limited",
+        alternateName: ["Parther Technologies", "Parther"],
+        legalName: "Parther Technologies Private Limited",
+        identifier: "CIN: U62099WR2026PTC293183",
         url: "https://parthertech.com",
         logo: "https://parthertech.com/logo.png",
-        knowsAbout: [
-          "Software Development",
-          "Enterprise Software Development",
-          "Website Development",
-          "Custom Software Development",
-          "SaaS Development",
-          "CRM Systems",
-          "ERP Systems",
-          "Generative Engine Optimization"
-        ],
-        keywords: "software development company, enterprise software development, top software development companies, saas development company, bespoke software company",
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: "+91-9432350334",
-          contactType: "Customer Support",
-          areaServed: "IN",
-          availableLanguage: ["English", "Bengali", "Hindi"],
-        },
-      },
-      {
-        "@type": "LocalBusiness",
-        "@id": "https://parthertech.com/#localbusiness",
-        name: "Parther Technologies",
+        foundingDate: "2026-03",
         description:
-          "Enterprise software architecture, Agentic Workflows, Headless CMS, and Generative Engine Optimization (GEO) for MSMEs and enterprises in West Bengal, Eastern India.",
-        url: "https://parthertech.com",
-        telephone: "+91-9432350334",
-        priceRange: "₹₹₹",
+          "Parther Technologies is an enterprise digital engineering and high-concurrency platform architecture firm based in Salt Lake Sector V, Kolkata, engineering mission-critical software for supply chains, logistics, and global scaling enterprises.",
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Barrackpore",
+          streetAddress: "Salt Lake Sector V",
+          addressLocality: "Kolkata",
           addressRegion: "West Bengal",
-          postalCode: "700120",
+          postalCode: "700091",
           addressCountry: "IN",
         },
         geo: {
           "@type": "GeoCoordinates",
-          latitude: "22.7667",
-          longitude: "88.3833",
+          latitude: "22.5804",
+          longitude: "88.4378",
         },
         areaServed: [
-          "Barrackpore", "Kolkata", "Salt Lake Sector V", "New Town",
-          "Dankuni", "Howrah", "Durgapur", "Asansol", "Siliguri",
+          "Global",
+          "India",
+          "United States",
+          "United Kingdom",
+          "United Arab Emirates",
+          "Canada",
+          "Singapore",
+          "Australia",
+          "Europe"
         ],
+        knowsAbout: [
+          "Enterprise Platform Engineering",
+          "High-Concurrency Microservices",
+          "Event-Driven Architecture (BullMQ, Redis, Socket.io)",
+          "ULIP Government Logistics API Integration (VAHAN, SARATHI, FASTag)",
+          "Custom Enterprise ERP Development",
+          "Autonomous AI Agents & RAG Architecture",
+          "Cross-Platform Flutter Development for Distributed Workforces",
+          "Multi-Tenant SaaS Engineering",
+          "Zero-Trust Database Encryption & DevSecOps"
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "+91-9432350334",
+          contactType: "Customer Support & Technical Discovery",
+          areaServed: ["IN", "US", "GB", "AE", "CA"],
+          availableLanguage: ["English", "Hindi", "Bengali"],
+        },
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Enterprise Software & Digital Services",
+          name: "Enterprise Digital Engineering Services",
           itemListElement: [
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom ERP Development" } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "SaaS Platform Engineering" } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Generative Engine Optimization (GEO)" } },
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Agentic Workflow Automation" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "High-Concurrency Platform Engineering" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom ERP & Foundry Systems" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "ULIP & National Logistics API Integrations" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Autonomous AI Agents & Agentic Workflows" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Dedicated Engineering Pods" } },
           ],
         },
       },
@@ -135,10 +143,23 @@ export default function RootLayout({
         "@type": "SoftwareApplication",
         "@id": "https://parthertech.com/#gomytruck",
         name: "GoMyTruck",
-        applicationCategory: "BusinessApplication",
+        applicationCategory: "Logistics & Supply Chain Platform",
         operatingSystem: "Web, iOS, Android",
         description:
-          "Multi-tenant logistics SaaS platform engineered by Parther Technologies. 500+ verified drivers, 2-minute average booking time, driver KYC, real-time fleet tracking.",
+          "High-concurrency digital freight marketplace engineered by Parther Technologies. 31 backend Node.js modules, BullMQ queue engine, 4-wallet automated payment ledger, ULIP/VAHAN/FASTag national integration, 500+ verified drivers, sub-20 minute matching.",
+        publisher: {
+          "@type": "Organization",
+          "@id": "https://parthertech.com/#organization",
+        },
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://parthertech.com/#acs-platform",
+        name: "Advance Corporate Security (ACS) Platform",
+        applicationCategory: "Enterprise Workforce & Facility Management Platform",
+        operatingSystem: "Web, iOS, Android",
+        description:
+          "Pan-India distributed workforce management platform engineered by Parther Technologies. Real-time compliance tracking and automated dispatch for 5,000+ PSARA-licensed personnel across India with 24-72h SLA guarantees.",
         publisher: {
           "@type": "Organization",
           "@id": "https://parthertech.com/#organization",

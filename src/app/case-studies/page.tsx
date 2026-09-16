@@ -71,7 +71,7 @@ export default function CaseStudiesHubPage() {
         position: 6,
         name: 'Advance Corporate Security — 14,000+ Page PSEO Architecture',
         description: 'Next.js 16 + Express 5 platform with 14,000+ programmatic SEO routes for a 25-year-old defence and facility management enterprise.',
-        url: 'https://advancecorporatesecurity.com',
+        url: 'https://parthertech.com/case-studies/acs',
       },
       {
         '@type': 'ListItem',
@@ -528,12 +528,12 @@ export default function CaseStudiesHubPage() {
                       ))}
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <a href="https://advancecorporatesecurity.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-amber-500 text-[#0a0f1a] font-bold text-sm px-7 py-3 rounded-full hover:bg-amber-400 transition-colors">
-                        Visit ACS Portal →
-                      </a>
-                      <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-semibold text-sm px-7 py-3 rounded-full hover:bg-white/10 transition-colors">
-                        Build Enterprise Portal
+                      <Link href="/case-studies/acs" className="inline-flex items-center justify-center gap-2 bg-amber-500 text-[#0a0f1a] font-bold text-sm px-7 py-3 rounded-full hover:bg-amber-400 transition-colors">
+                        Read Full Case Study →
                       </Link>
+                      <a href="https://advancecorporatesecurity.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-semibold text-sm px-7 py-3 rounded-full hover:bg-white/10 transition-colors">
+                        Visit Live Portal ↗
+                      </a>
                     </div>
                   </div>
                 </div>
