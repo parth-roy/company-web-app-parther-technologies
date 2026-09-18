@@ -7,7 +7,31 @@ export function FloatingContact() {
   const encodedMessage = encodeURIComponent(whatsappMessage);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-6">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4 sm:gap-5">
+      {/* Email Button */}
+      <a
+        href="mailto:hello@parthertech.com"
+        className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 hover:scale-110 transition-transform duration-300 group hover:drop-shadow-xl"
+        aria-label="Email Us"
+      >
+        {/* Spreading Circular Light Effect (Ripple) */}
+        <span className="absolute inset-0 rounded-full bg-emerald-500/40 animate-ping" style={{ animationDuration: '3s' }}></span>
+        <span className="absolute inset-0 rounded-full bg-emerald-400/20 animate-ping" style={{ animationDuration: '3s', animationDelay: '1s' }}></span>
+
+        <Image 
+          src="/email.png" 
+          alt="Email hello@parthertech.com" 
+          fill
+          sizes="(max-width: 640px) 56px, 64px"
+          className="object-contain drop-shadow-md z-10" 
+        />
+        
+        {/* Tooltip */}
+        <span className="absolute right-[110%] px-3 py-2 bg-cf-card text-cf-text text-sm font-medium border border-cf-border shadow-md rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-20">
+          Email hello@parthertech.com
+        </span>
+      </a>
+
       {/* Call Button */}
       <a
         href="tel:9331488999"

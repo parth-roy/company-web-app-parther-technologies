@@ -197,7 +197,7 @@ export default function CaseStudiesHubPage() {
           </div>
 
           {/* ── CARD 2: MetroMitra Workforce ── */}
-          <div className="mt-16">
+          <div id="metromitra" className="mt-16 scroll-mt-24">
             <div className="mb-8">
               <span className="text-sm font-semibold tracking-widest text-emerald-500 uppercase font-mono-caps">
                 Gig Economy & Marketplace Platform
@@ -473,7 +473,7 @@ export default function CaseStudiesHubPage() {
           </div>
 
           {/* ── CARD 6: Advance Corporate Security (ACS) ── */}
-          <div className="mt-16">
+          <div id="acs" className="mt-16 scroll-mt-24">
             <div className="mb-8">
               <span className="text-sm font-semibold tracking-widest text-amber-500 uppercase font-mono-caps">
                 Enterprise B2B · Facility Management & PSEO

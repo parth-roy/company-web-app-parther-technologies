@@ -16,29 +16,29 @@ const caseStudies = [
     flagship: true,
   },
   {
-    tag: "ERP Implementation",
-    industry: "Manufacturing",
-    title: "Replaced 12 Spreadsheets With One Unified Platform",
+    tag: "Enterprise Platform & PSEO",
+    industry: "Defence & Corporate Security — Pan-India",
+    title: "Advance Corporate Security — Digitizing 5,000+ Personnel",
     description:
-      "End-to-end ERP system replacing disconnected spreadsheet workflows across procurement, production, and dispatch for a Durgapur manufacturing unit.",
-    metric1: { label: "Reduction in manual errors", value: "74%" },
-    metric2: { label: "Faster order processing", value: "3×" },
-    metric3: { label: "Departments unified", value: "7" },
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-    slug: "/case-studies",
+      "Full-scale digital enterprise transformation for a 25-year-old security and facility management enterprise. Built with Next.js 16 Standalone, managing 5,000+ PSARA-licensed guards, automated statutory compliance, and 14,000+ programmatic SEO routes.",
+    metric1: { label: "Active Personnel", value: "5,000+" },
+    metric2: { label: "PSEO Routes Indexed", value: "14K+" },
+    metric3: { label: "Emergency SLA", value: "<6 Hrs" },
+    image: "/case-studies/acs/hero-banner.jpg",
+    slug: "/case-studies/acs",
     flagship: false,
   },
   {
-    tag: "SEO + GEO Growth",
-    industry: "Professional Services",
-    title: "From Page 3 to AI-Cited Authority in 90 Days",
+    tag: "Gig Workforce SaaS",
+    industry: "Workforce & Home Services — 550+ Hubs",
+    title: "MetroMitra — On-Demand Gig Workforce & Services Platform",
     description:
-      "Full SEO + GEO overhaul for a Kolkata-based professional services firm. Implemented Answer Engine Optimization and semantic entity injection to get cited by ChatGPT and Google AI Overviews.",
-    metric1: { label: "Organic traffic growth", value: "290%" },
-    metric2: { label: "AI search citations", value: "Top 3" },
-    metric3: { label: "Time to result", value: "90 Days" },
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-    slug: "/case-studies",
+      "A high-concurrency gig marketplace unifying four personas into a single Flutter app with instant role-switching. Engineered with Mapbox Job Radar dispatch, ₹49 contact unlocks, RazorpayX payouts, and an 8,500-page programmatic SEO web engine.",
+    metric1: { label: "Cities Covered", value: "550+" },
+    metric2: { label: "PSEO Pages", value: "8,500+" },
+    metric3: { label: "Direct Unlock", value: "₹49" },
+    image: "/case-studies/workforce/hero-banner.webp",
+    slug: "/case-studies#metromitra",
     flagship: false,
   },
 ];
@@ -140,13 +140,13 @@ export function CaseStudiesSection() {
                   </span>
                   <span className="text-xs text-cf-text-tertiary">{cs.industry}</span>
                 </div>
-                <h3 className="font-syncopate font-bold text-base tracking-tight mb-3 group-hover:text-blue-600 transition-colors duration-200 leading-snug flex-1">
+                <h3 className="font-syncopate font-bold text-base tracking-tight mb-3 group-hover:text-blue-600 transition-colors duration-200 leading-snug">
                   {cs.title}
                 </h3>
                 <p className="text-cf-text-secondary text-sm leading-relaxed mb-5 line-clamp-2">
                   {cs.description}
                 </p>
-                <div className="grid grid-cols-3 gap-3 border-t border-cf-border pt-4">
+                <div className="grid grid-cols-3 gap-3 border-t border-cf-border pt-4 mt-auto">
                   {[cs.metric1, cs.metric2, cs.metric3].map((m) => (
                     <div key={m.label}>
                       <div className="text-xl font-bold text-blue-600 font-syncopate">{m.value}</div>

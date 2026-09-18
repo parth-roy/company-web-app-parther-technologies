@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { HeroSection } from "@/components/hero";
-import { ServicesCarousel } from "@/components/ServicesCarousel";
 import { BusinessOutcomes } from "@/components/BusinessOutcomes";
 import { IndustriesSection } from "@/components/sections/IndustriesSection";
 import { WhyPartherSection } from "@/components/sections/WhyPartherSection";
@@ -51,46 +50,31 @@ export default function Home() {
       {/* 1. Hero */}
       <HeroSection />
 
-      {/* 2. Services Carousel */}
-      <section id="services" className="relative z-10 bg-cf-card text-cf-text py-24 border-t border-cf-border shadow-2xl">
-        <div className="container-main">
-          <div className="mb-16 max-w-3xl">
-            <h2 className="font-syncopate font-bold text-4xl md:text-5xl mb-6 tracking-tight border-b-2 border-cf-text pb-4 inline-block">
-              Architectural Foundations for Growth
-            </h2>
-            <p className="text-cf-text-secondary text-xl leading-relaxed">
-              We don't just write code. We eliminate operational bottlenecks through purpose-built technology stacks.
-            </p>
-          </div>
-          <ServicesCarousel />
-        </div>
-      </section>
-
-      {/* 3. Business Outcomes */}
+      {/* 2. Business Outcomes */}
       <BusinessOutcomes />
 
-      {/* 4. Industries */}
+      {/* 3. Industries */}
       <IndustriesSection />
 
-      {/* 5. Why Parther */}
+      {/* 4. Why Parther */}
       <WhyPartherSection />
 
-      {/* 6. Case Studies */}
+      {/* 5. Case Studies */}
       <CaseStudiesSection />
 
-      {/* 7. Development Process */}
+      {/* 6. Development Process */}
       <ProcessSection />
 
-      {/* 8. Tech Stack */}
+      {/* 7. Tech Stack */}
       <TechStackSection />
 
-      {/* 9. Testimonials */}
+      {/* 8. Testimonials */}
       <TestimonialsSection />
 
-      {/* 10. FAQ */}
+      {/* 9. FAQ */}
       <FAQSection />
 
-      {/* 11. Final CTA */}
+      {/* 10. Final CTA */}
       <FinalCTASection />
 
     </main>
