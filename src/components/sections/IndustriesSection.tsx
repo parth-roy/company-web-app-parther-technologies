@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface IndustryItem {
   id: string;
@@ -20,6 +21,7 @@ interface IndustryItem {
     | "ai"
     | "education"
     | "realestate";
+  imageSrc?: string;
 }
 
 const INDUSTRIES: IndustryItem[] = [
@@ -38,6 +40,7 @@ const INDUSTRIES: IndustryItem[] = [
       "Encrypted Patient Records & Audit Trail",
     ],
     illustrationType: "healthcare",
+    imageSrc: "/industries/healthcare.webp",
   },
   {
     id: "manufacturing",
@@ -86,6 +89,7 @@ const INDUSTRIES: IndustryItem[] = [
       "Automated Order Lifecycle Notifications",
     ],
     illustrationType: "ecommerce",
+    imageSrc: "/industries/ecommerce.webp",
   },
   {
     id: "fintech",
@@ -102,6 +106,7 @@ const INDUSTRIES: IndustryItem[] = [
       "Real-Time Fraud Prevention Scoring",
     ],
     illustrationType: "fintech",
+    imageSrc: "/industries/fintech.webp",
   },
   {
     id: "ai",
@@ -236,7 +241,7 @@ function IndustryCardItem({
       </div>
 
       {/* ── BOTTOM COMPARTMENT (Interactive Stage — 2 Sliding Layers with 700ms Slower Transition) ── */}
-      <div className="relative flex-1 w-full overflow-hidden mt-4 pt-1">
+      <div className="relative flex-1 w-full overflow-hidden mt-2.5">
         
         {/*
           LAYER 1: THE ILLUSTRATION (Visible by default)
@@ -251,19 +256,34 @@ function IndustryCardItem({
           }`}
           aria-hidden="true"
         >
-          {/* Framed Vector Illustration Box */}
-          <div className="w-full flex-1 rounded-none bg-slate-50/70 border border-slate-100/90 flex items-center justify-center p-4 sm:p-5 xl:p-6">
-            {industry.illustrationType === "healthcare" && <HealthcareIllustration />}
-            {industry.illustrationType === "manufacturing" && <ManufacturingIllustration />}
-            {industry.illustrationType === "logistics" && <LogisticsIllustration />}
-            {industry.illustrationType === "ecommerce" && <EcommerceIllustration />}
-            {industry.illustrationType === "fintech" && <FintechIllustration />}
-            {industry.illustrationType === "ai" && <AiIllustration />}
-            {industry.illustrationType === "education" && <EducationIllustration />}
-            {industry.illustrationType === "realestate" && <RealEstateIllustration />}
+          {/* Main Illustration Area (Clean white canvas, no bluish tint or border box, enlarged presentation) */}
+          <div className="w-full flex-1 flex items-center justify-center relative min-h-0 overflow-hidden">
+            {industry.imageSrc ? (
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={industry.imageSrc}
+                  alt={industry.title}
+                  fill
+                  sizes="(max-width: 640px) 365px, (max-width: 1024px) 385px, (max-width: 1536px) 345px, 357px"
+                  className="object-contain scale-[1.04] sm:scale-105 transition-transform duration-700 ease-out group-hover:scale-110"
+                  priority={industry.id === "healthcare"}
+                />
+              </div>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center p-3 sm:p-4">
+                {industry.illustrationType === "healthcare" && <HealthcareIllustration />}
+                {industry.illustrationType === "manufacturing" && <ManufacturingIllustration />}
+                {industry.illustrationType === "logistics" && <LogisticsIllustration />}
+                {industry.illustrationType === "ecommerce" && <EcommerceIllustration />}
+                {industry.illustrationType === "fintech" && <FintechIllustration />}
+                {industry.illustrationType === "ai" && <AiIllustration />}
+                {industry.illustrationType === "education" && <EducationIllustration />}
+                {industry.illustrationType === "realestate" && <RealEstateIllustration />}
+              </div>
+            )}
           </div>
 
-          <div className="mt-3 text-[10px] font-bold text-slate-400 tracking-widest uppercase flex items-center gap-1.5 font-mono-caps">
+          <div className="mt-2 text-[10px] font-bold text-slate-400 tracking-widest uppercase flex items-center gap-1.5 font-mono-caps shrink-0">
             <span className="w-1.5 h-1.5 bg-slate-900" />
             <span>Parther Technologies</span>
           </div>

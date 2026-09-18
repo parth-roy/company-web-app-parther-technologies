@@ -209,16 +209,16 @@ function DualOrbit({
               title={item.name}
             >
               <div
-                className="w-full h-full rounded-full flex items-center justify-center font-bold select-none overflow-hidden bg-white"
+                className="w-full h-full rounded-full flex items-center justify-center font-bold select-none overflow-hidden bg-white/95 backdrop-blur-md transition-transform duration-200 hover:scale-110"
                 style={{
                   animation: "dual-inner-rev 15s linear infinite",
                   willChange: "transform",
-                  boxShadow: `0 4px 14px ${item.bg}55`,
-                  border: `2px solid ${item.bg}22`,
+                  boxShadow: `0 8px 20px -3px ${item.bg}44, inset 0 1px 1px 0 rgba(255, 255, 255, 0.95)`,
+                  border: "1.5px solid rgba(255, 255, 255, 0.9)",
                 }}
               >
                 {item.icon ? (
-                  <img src={item.icon} alt={item.name} className="w-10 h-10 object-contain drop-shadow-sm" />
+                  <img src={item.icon} alt={item.name} className="w-10 h-10 object-contain drop-shadow-xs" />
                 ) : (
                   <span style={{ color: item.bg, fontSize: item.symbol.length > 2 ? "12px" : "16px" }}>{item.symbol}</span>
                 )}
@@ -255,16 +255,16 @@ function DualOrbit({
               title={item.name}
             >
               <div
-                className="w-full h-full rounded-full flex items-center justify-center font-bold select-none overflow-hidden bg-white"
+                className="w-full h-full rounded-full flex items-center justify-center font-bold select-none overflow-hidden bg-white/95 backdrop-blur-md transition-transform duration-200 hover:scale-110"
                 style={{
                   animation: "dual-outer-rev 25s linear infinite",
                   willChange: "transform",
-                  boxShadow: `0 4px 14px ${item.bg}55`,
-                  border: `2px solid ${item.bg}22`,
+                  boxShadow: `0 8px 20px -3px ${item.bg}44, inset 0 1px 1px 0 rgba(255, 255, 255, 0.95)`,
+                  border: "1.5px solid rgba(255, 255, 255, 0.9)",
                 }}
               >
                 {item.icon ? (
-                  <img src={item.icon} alt={item.name} className="w-10 h-10 object-contain drop-shadow-sm" />
+                  <img src={item.icon} alt={item.name} className="w-10 h-10 object-contain drop-shadow-xs" />
                 ) : (
                   <span style={{ color: item.bg, fontSize: item.symbol.length > 2 ? "12px" : "16px" }}>{item.symbol}</span>
                 )}
@@ -274,16 +274,20 @@ function DualOrbit({
         })}
       </div>
 
-      {/* Center hub */}
+      {/* Center hub — Glossy Frosted Glass Core */}
       <div
-        className="relative z-10 w-32 h-32 rounded-full flex flex-col items-center justify-center shadow-2xl border border-white/50 bg-white/80 backdrop-blur-xl overflow-hidden"
+        className="relative z-10 w-32 h-32 rounded-full flex flex-col items-center justify-center border border-white/80 bg-white/90 backdrop-blur-2xl overflow-hidden transition-transform duration-300 hover:scale-105"
         style={{
-          boxShadow: `0 20px 40px ${color}33, inset 0 0 0 8px ${color}15`
+          boxShadow: `0 24px 44px -8px ${color}30, inset 0 1px 2px 0 rgba(255, 255, 255, 0.95), inset 0 0 0 4px ${color}15`,
+          borderTop: "1.5px solid rgba(255, 255, 255, 0.95)",
         }}
       >
-        <div className="absolute inset-0 opacity-10" style={{ backgroundColor: color }}></div>
+        <div
+          className="absolute inset-0 opacity-12 pointer-events-none"
+          style={{ background: `radial-gradient(circle, ${color} 0%, transparent 70%)` }}
+        />
         <span 
-          className="relative z-10 font-syncopate font-black text-4xl md:text-5xl tracking-tighter leading-none drop-shadow-sm" 
+          className="relative z-10 font-syncopate font-black text-4xl md:text-5xl tracking-tighter leading-none" 
           style={{ color: color }}
         >
           {centerLabel}
@@ -316,14 +320,14 @@ export function TechStackSection() {
 
           {/* Header */}
           <div className="mb-16 flex flex-col gap-4">
-            <span className="block text-sm font-semibold tracking-widest text-blue-500 uppercase">
-              Our Toolkit
+            <span className="inline-block self-start text-xs sm:text-sm font-semibold tracking-widest text-blue-600 uppercase font-mono px-3.5 py-1 bg-blue-50 border border-blue-200 rounded-full">
+              OUR TOOLKIT · PRODUCTION-PROVEN STACKS
             </span>
-            <h2 className="font-syncopate font-bold text-4xl md:text-5xl tracking-tight border-b-2 border-cf-text pb-4 self-start">
+            <h2 className="font-syncopate font-bold text-3xl sm:text-4xl md:text-5xl text-[#161616] tracking-tight">
               Technologies
             </h2>
-            <p className="text-cf-text-secondary text-xl max-w-2xl leading-relaxed">
-              We don't just use the latest tools — we choose the right tool for the right job.
+            <p className="text-cf-text-secondary text-lg sm:text-xl max-w-2xl leading-relaxed">
+              We don&apos;t just use the latest tools — we choose the right tool for the right job.
             </p>
           </div>
 
@@ -337,43 +341,74 @@ export function TechStackSection() {
             <CarouselContent className="-ml-6">
               {techCategories.map((cat) => (
                 <CarouselItem key={cat.label} className="pl-6 basis-full">
-                  {/* Card — mirrors the reference: text left, orbit right */}
-                  <div className="bg-cf-bg border border-cf-border clip-corner flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 p-8 md:p-12 min-h-[360px] w-full">
+                  {/* Card — Modern Glassmorphic Shell with Ambient Specular Refraction */}
+                  <div
+                    className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white/90 backdrop-blur-xl flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 p-8 sm:p-10 md:p-14 min-h-[420px] w-full transition-all duration-300"
+                    style={{
+                      boxShadow: "0 24px 48px -12px rgba(0, 0, 0, 0.05), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95)",
+                      borderTop: "1.5px solid rgba(255, 255, 255, 0.95)",
+                    }}
+                  >
+                    {/* Ambient Glass Aura matching category color */}
+                    <div
+                      className="pointer-events-none absolute -right-24 -top-24 w-[480px] h-[480px] rounded-full opacity-15 blur-3xl transition-colors duration-700"
+                      style={{ background: cat.color }}
+                    />
+                    <div
+                      className="pointer-events-none absolute right-12 bottom-4 w-[280px] h-[280px] rounded-full opacity-10 blur-2xl transition-colors duration-700"
+                      style={{ background: cat.color }}
+                    />
 
                     {/* Left: text content */}
-                    <div className="flex-1 flex flex-col gap-4 md:max-w-xl items-start">
-                      <span
-                        className="text-xs font-bold tracking-widest uppercase"
-                        style={{ color: cat.color }}
-                      >
-                        {cat.label}
-                      </span>
-                      <h3 className="font-syncopate font-bold text-2xl md:text-3xl tracking-tight leading-tight">
+                    <div className="relative z-10 flex-1 flex flex-col gap-5 md:max-w-xl items-start">
+                      <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-slate-200/70 shadow-2xs backdrop-blur-md">
+                        <span
+                          className="w-2 h-2 rounded-full animate-pulse shadow-xs"
+                          style={{ backgroundColor: cat.color }}
+                        />
+                        <span
+                          className="text-xs font-mono font-bold tracking-widest uppercase"
+                          style={{ color: cat.color }}
+                        >
+                          {cat.label}
+                        </span>
+                      </div>
+
+                      <h3 className="font-syncopate font-bold text-2xl sm:text-3xl lg:text-[34px] tracking-tight leading-[1.2] text-[#161616]">
                         {cat.heading}
                       </h3>
-                      <p className="text-cf-text-secondary leading-relaxed text-base">
+
+                      <p className="text-cf-text-secondary leading-relaxed text-base sm:text-lg">
                         {cat.description}
                       </p>
-                      {/* Tech name pills */}
-                      <div className="flex flex-wrap gap-2 mt-2">
+
+                      {/* Tech name pills - Micro-Glass Capsules */}
+                      <div className="flex flex-wrap gap-2.5 mt-2">
                         {[...cat.innerItems, ...cat.outerItems].map((item) => (
                           <span
                             key={item.name}
-                            className="text-xs px-2 py-1 rounded-full border font-medium"
+                            className="text-xs font-semibold px-3.5 py-1.5 rounded-full border transition-all duration-200 hover:scale-105 select-none flex items-center gap-2 shadow-2xs"
                             style={{
-                              borderColor: cat.color + "55",
-                              color: cat.color,
-                              backgroundColor: cat.color + "11",
+                              borderColor: `${cat.color}35`,
+                              color: "#1e293b",
+                              background: "rgba(255, 255, 255, 0.85)",
+                              backdropFilter: "blur(8px)",
+                              WebkitBackdropFilter: "blur(8px)",
+                              boxShadow: `inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), 0 2px 6px -1px ${cat.color}15`,
                             }}
                           >
-                            {item.name}
+                            <span
+                              className="w-1.5 h-1.5 rounded-full shrink-0"
+                              style={{ backgroundColor: item.bg || cat.color }}
+                            />
+                            <span>{item.name}</span>
                           </span>
                         ))}
                       </div>
                     </div>
 
                     {/* Right: dual orbit for this category */}
-                    <div className="shrink-0">
+                    <div className="relative z-10 shrink-0">
                       <DualOrbit
                         centerLabel={cat.centerLabel}
                         innerItems={cat.innerItems}
@@ -387,12 +422,17 @@ export function TechStackSection() {
             </CarouselContent>
 
             {/* Arrows + indicator */}
-            <div className="flex items-center gap-4 mt-6">
-              <CarouselPrevious className="relative left-0 top-0 translate-y-0 translate-x-0 h-10 w-10 border-2 border-cf-border hover:bg-cf-text hover:text-white hover:border-cf-text transition-colors duration-200" />
-              <CarouselNext className="relative left-0 top-0 translate-y-0 translate-x-0 h-10 w-10 border-2 border-cf-border hover:bg-cf-text hover:text-white hover:border-cf-text transition-colors duration-200" />
-              <span className="text-xs text-cf-text-tertiary tracking-widest">
-                AUTO-SLIDING · HOVER TO PAUSE · 7 STACKS
-              </span>
+            <div className="flex flex-wrap items-center justify-between gap-4 mt-8 pt-2">
+              <div className="flex items-center gap-3">
+                <CarouselPrevious className="relative left-0 top-0 translate-y-0 translate-x-0 h-11 w-11 rounded-full bg-white/90 hover:bg-white border border-slate-200/80 hover:border-slate-300 text-slate-800 shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer" />
+                <CarouselNext className="relative left-0 top-0 translate-y-0 translate-x-0 h-11 w-11 rounded-full bg-white/90 hover:bg-white border border-slate-200/80 hover:border-slate-300 text-slate-800 shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer" />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-2 text-xs font-mono font-medium text-slate-600 bg-white/80 border border-slate-200/70 rounded-full px-4 py-1.5 shadow-2xs backdrop-blur-md">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  AUTO-SLIDING · HOVER TO PAUSE · 7 STACKS
+                </span>
+              </div>
             </div>
           </Carousel>
 

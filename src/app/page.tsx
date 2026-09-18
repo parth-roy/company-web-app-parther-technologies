@@ -8,7 +8,7 @@ import { ProcessSection } from "@/components/sections/ProcessSection";
 import { TechStackSection } from "@/components/sections/TechStackSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { FinalCTASection } from "@/components/sections/FinalCTASection";
+// import { FinalCTASection } from "@/components/sections/FinalCTASection";
 
 // ─── Homepage SEO ────────────────────────────────────────────────────────────
 // Target: broad enterprise intent, NOT city-specific queries.
@@ -75,7 +75,7 @@ export default function Home() {
       <FAQSection />
 
       {/* 10. Final CTA */}
-      <FinalCTASection />
+      {/* <FinalCTASection /> */}
 
     </main>
   );
