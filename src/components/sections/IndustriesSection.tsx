@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 interface IndustryItem {
   id: string;
@@ -215,42 +216,74 @@ const INDUSTRIES: IndustryItem[] = [
   },
 ];
 
-export function IndustriesSection() {
+interface IndustriesSectionProps {
+  isHubPage?: boolean;
+}
+
+export function IndustriesSection({ isHubPage = false }: IndustriesSectionProps) {
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
   const toggleMobileCard = (id: string) => {
     setActiveCardId((prev) => (prev === id ? null : id));
   };
 
+  const displayedIndustries = isHubPage ? INDUSTRIES : INDUSTRIES.slice(0, 6);
+  const gridClasses = isHubPage
+    ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-6 2xl:gap-7 justify-items-center sm:justify-items-stretch"
+    : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-7 2xl:gap-8 justify-items-center sm:justify-items-stretch";
+
   return (
     <section id="industries" className="relative z-10 bg-cf-card text-cf-text py-20 sm:py-28 border-t border-cf-border">
       <div className="w-full max-w-[1580px] mx-auto px-4 sm:px-6 md:px-8 xl:px-10">
 
-        {/* Section Header — Bold, Editorial & Architectural */}
-        <div className="mb-14 sm:mb-16 flex flex-col gap-3">
-          <span className="text-xs font-bold tracking-[0.2em] text-slate-900 uppercase font-mono-caps">
-            Sector Expertise &amp; Domain Architecture
-          </span>
-          <h2 className="font-syncopate font-black text-3xl sm:text-4xl md:text-5xl tracking-tight text-slate-950">
-            Industries We Serve
-          </h2>
-          <div className="w-16 h-1 bg-slate-950 mt-1 mb-2" />
-          <p className="text-slate-600 text-base sm:text-lg max-w-3xl leading-relaxed font-normal">
-            Enterprise software engineered for sector-specific regulatory compliance, high-concurrency workloads, and mission-critical reliability across 8 core verticals.
-          </p>
+        {/* Section Header — Bold, Editorial & Architectural with Right-Side Hover-Reveal Arrow Button */}
+        <div className="mb-12 sm:mb-14 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="flex flex-col gap-3 max-w-3xl">
+            <span className="text-xs font-bold tracking-[0.2em] text-slate-900 uppercase font-mono-caps">
+              Sector Expertise &amp; Domain Architecture
+            </span>
+            {isHubPage ? (
+              <h1 className="font-syncopate font-black text-3xl sm:text-4xl md:text-5xl tracking-tight text-slate-950">
+                Industry Expertise
+              </h1>
+            ) : (
+              <h2 className="font-syncopate font-black text-3xl sm:text-4xl md:text-5xl tracking-tight text-slate-950">
+                Industries We Serve
+              </h2>
+            )}
+            <div className="w-16 h-1 bg-slate-950 mt-1 mb-2" />
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
+              {isHubPage
+                ? "Enterprise software engineered for sector-specific regulatory compliance, high-concurrency workloads, and mission-critical reliability across all 8 core verticals."
+                : "Enterprise software engineered for sector-specific regulatory compliance, high-concurrency workloads, and mission-critical reliability across our flagship verticals."}
+            </p>
+          </div>
+
+          {/* Right-Side Upper Card: Sleek Hover-Reveal Rounded Arrow Button (Homepage Only) */}
+          {!isHubPage && (
+            <div className="self-start md:self-end shrink-0 pb-1">
+              <Link
+                href="/industries"
+                aria-label="See all industries"
+                className="group inline-flex items-center gap-0 hover:gap-3.5 px-3 py-1.5 hover:px-5 hover:py-2 rounded-full border border-slate-300 bg-white hover:border-slate-900 text-slate-900 shadow-2xs hover:shadow-md transition-all duration-300 ease-out cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900/20"
+              >
+                <span className="max-w-0 opacity-0 overflow-hidden whitespace-nowrap group-hover:max-w-[200px] group-hover:opacity-100 transition-all duration-300 ease-out font-mono-caps text-xs sm:text-[13px] tracking-wider font-bold text-slate-900">
+                  See all industries
+                </span>
+                <span className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-slate-950 group-hover:text-white flex items-center justify-center transition-all duration-300 text-slate-800 shrink-0">
+                  <ArrowRight 
+                    size={15} 
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 stroke-[1.75]" 
+                  />
+                </span>
+              </Link>
+            </div>
+          )}
         </div>
 
-        {/* 
-          Accenture-Calibrated Executive Responsive Grid:
-          - Full Desktop (1536px+ / 1920x1080): 4 columns, card size exactly ~357px x 548px (1:1 with reference)
-          - Large Laptop / Standard Desktop (1280px-1535px): 4 columns, width decreases smoothly (~300px - 345px), height 540px
-          - Semi-Web / Laptop (1024px-1279px): 2 columns, width ~360px - 400px, height 530px
-          - Tablet (640px-1023px): 2 columns, width ~330px - 370px, height 515px
-          - Mobile (<640px): 1 column centered, width ~340px - 365px, height 500px
-          Every transition step decreases size gently and gracefully ("slower and slower").
-        */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-6 2xl:gap-7 justify-items-center sm:justify-items-stretch">
-          {INDUSTRIES.map((industry, index) => (
+        {/* Responsive Grid: 3 columns on homepage (6 cards), 4 columns on hub (all 8 cards) */}
+        <div className={gridClasses}>
+          {displayedIndustries.map((industry, index) => (
             <IndustryCardItem
               key={industry.id}
               industry={industry}
@@ -310,7 +343,7 @@ function IndustryCardItem({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleCardClick}
-      className="group relative w-full max-w-[365px] sm:max-w-[385px] lg:max-w-[420px] xl:max-w-none h-[500px] sm:h-[515px] lg:h-[530px] xl:h-[540px] 2xl:h-[548px] bg-white rounded-none border border-slate-200/90 shadow-xs hover:shadow-2xl hover:border-slate-400 transition-all duration-[850ms] overflow-hidden flex flex-col justify-between p-6 sm:p-7 xl:p-7 2xl:p-8 cursor-pointer select-none"
+      className="group relative w-full max-w-[380px] sm:max-w-none h-[500px] sm:h-[515px] lg:h-[530px] xl:h-[540px] 2xl:h-[548px] bg-white rounded-none border border-slate-200/90 shadow-xs hover:shadow-2xl hover:border-slate-400 transition-all duration-[850ms] overflow-hidden flex flex-col justify-between p-6 sm:p-7 xl:p-7 2xl:p-8 cursor-pointer select-none"
     >
       {/* ── TOP COMPARTMENT (Permanent Header — Always Visible & Solid Black) ── */}
       <div className="z-10 bg-white">
