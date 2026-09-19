@@ -108,7 +108,7 @@ const steps: ProcessStep[] = [
 
 export function ProcessSection() {
   return (
-    <section id="process" className="relative z-10 bg-cf-bg text-cf-text py-24 sm:py-32 border-t border-cf-border">
+    <section id="process" className="relative z-10 bg-cf-bg text-cf-text pt-12 sm:pt-16 pb-24 sm:pb-32 border-t border-cf-border">
       <div className="container-main">
 
         {/* Section Header */}

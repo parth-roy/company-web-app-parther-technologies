@@ -2,10 +2,9 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Search, X, LocateFixed, Building2, Sparkles, Check } from 'lucide-react';
 import { ALL_CITIES, TOP_METROS, GlobalCity } from '@/lib/cities';
-import { SERVICES } from '@/lib/services';
 import { useCity } from '@/context/CityContext';
 
 export default function CitySelectorModal({ variant = 'navbar' }: { variant?: 'navbar' | 'hero' }) {
@@ -15,6 +14,7 @@ export default function CitySelectorModal({ variant = 'navbar' }: { variant?: 'n
   const [isDetecting, setIsDetecting] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { currentCity, setCity } = useCity();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -41,7 +41,25 @@ export default function CitySelectorModal({ variant = 'navbar' }: { variant?: 'n
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
-  const defaultService = SERVICES[0].id;
+  /**
+   * Build the correct href when a city is selected:
+   * - If user is on a location service page (/locations/[country]/[city]/[service]),
+   *   preserve the current [service] slug and only swap [country]/[city].
+   * - Otherwise return null — no redirect, just update city context.
+   */
+  const buildCityHref = (city: GlobalCity): string | null => {
+    if (typeof window === 'undefined') return null;
+    const pathname = window.location.pathname;
+    // Match /locations/[country]/[city]/[service]
+    const locationMatch = pathname.match(/^\/locations\/[^/]+\/[^/]+\/([^/]+)/);
+    if (locationMatch) {
+      // Preserve the existing service slug, only swap country+city
+      const currentService = locationMatch[1];
+      return `/locations/${city.country}/${city.slug}/${currentService}`;
+    }
+    // Not on a location page — no redirect needed
+    return null;
+  };
 
   const handleAutoDetectClick = async () => {
     setIsDetecting(true);
@@ -55,8 +73,20 @@ export default function CitySelectorModal({ variant = 'navbar' }: { variant?: 'n
     }, 1200);
   };
 
-  const handleCitySelect = (city: GlobalCity) => {
+  /**
+   * When a city card/link is clicked:
+   * - Always update the global city context (stored in localStorage).
+   * - If on a location page, router.push() to the new URL preserving service.
+   * - Otherwise, just close the modal — user stays on their current page.
+   */
+  const handleCitySelect = (city: GlobalCity, e?: React.MouseEvent) => {
     setCity(city);
+    const href = buildCityHref(city);
+    if (href) {
+      router.push(href);
+    } else {
+      e?.preventDefault();
+    }
     setIsOpen(false);
   };
 
@@ -194,11 +224,11 @@ export default function CitySelectorModal({ variant = 'navbar' }: { variant?: 'n
                 {TOP_METROS.map((city) => {
                   const isSelected = currentCity?.slug === city.slug;
                   return (
-                    <Link
+                    <button
                       key={city.slug}
-                      href={`/locations/${city.country}/${city.slug}/${defaultService}`}
+                      type="button"
                       onClick={() => handleCitySelect(city as unknown as GlobalCity)}
-                      className={`group flex flex-col items-center justify-center gap-2 p-3 rounded-2xl transition-all border ${
+                      className={`group flex flex-col items-center justify-center gap-2 p-3 rounded-2xl transition-all border cursor-pointer ${
                         isSelected 
                           ? "bg-blue-50/80 border-blue-400 shadow-sm" 
                           : "bg-white border-slate-100 hover:border-blue-200 hover:bg-slate-50/80 hover:shadow-xs"
@@ -222,7 +252,7 @@ export default function CitySelectorModal({ variant = 'navbar' }: { variant?: 'n
                       }`}>
                         {city.name}
                       </span>
-                    </Link>
+                    </button>
                   );
                 })}
               </div>
@@ -245,9 +275,9 @@ export default function CitySelectorModal({ variant = 'navbar' }: { variant?: 'n
                 {filteredLocations.map((city, idx) => {
                   const isCurrent = currentCity?.slug === city.slug && currentCity?.country === city.country;
                   return (
-                    <Link
+                    <button
                       key={`${city.country}-${city.state || ''}-${city.slug}-${idx}`}
-                      href={`/locations/${city.country}/${city.slug}/${defaultService}`}
+                      type="button"
                       onClick={() => handleCitySelect(city)}
                       className={`flex items-center gap-3 w-full text-left p-2.5 rounded-xl transition-all cursor-pointer group border ${
                         isCurrent
@@ -279,7 +309,7 @@ export default function CitySelectorModal({ variant = 'navbar' }: { variant?: 'n
                           {city.state ? `${city.state} · ` : ''}{city.countryName}
                         </span>
                       </div>
-                    </Link>
+                    </button>
                   );
                 })}
               </div>

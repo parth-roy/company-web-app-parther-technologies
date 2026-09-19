@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -23,6 +23,58 @@ interface IndustryItem {
     | "realestate";
   imageSrc?: string;
 }
+
+interface MotionVector {
+  id: string;
+  name: string;
+  layer1Active: string;
+  layer1Resting: string;
+  layer2Active: string;
+  layer2Resting: string;
+}
+
+const MOTION_VECTORS: MotionVector[] = [
+  {
+    id: "eastbound",
+    name: "Left to Right",
+    layer1Active: "-translate-x-12 translate-y-0 scale-100 opacity-0 pointer-events-none",
+    layer1Resting: "translate-x-0 translate-y-0 scale-100 opacity-100",
+    layer2Active: "translate-x-0 translate-y-0 scale-100 opacity-100 pointer-events-auto",
+    layer2Resting: "translate-x-10 translate-y-0 scale-100 opacity-0 pointer-events-none",
+  },
+  {
+    id: "northbound",
+    name: "Bottom to Top",
+    layer1Active: "translate-x-0 -translate-y-12 scale-100 opacity-0 pointer-events-none",
+    layer1Resting: "translate-x-0 translate-y-0 scale-100 opacity-100",
+    layer2Active: "translate-x-0 translate-y-0 scale-100 opacity-100 pointer-events-auto",
+    layer2Resting: "translate-x-0 translate-y-10 scale-100 opacity-0 pointer-events-none",
+  },
+  {
+    id: "westbound",
+    name: "Right to Left",
+    layer1Active: "translate-x-12 translate-y-0 scale-100 opacity-0 pointer-events-none",
+    layer1Resting: "translate-x-0 translate-y-0 scale-100 opacity-100",
+    layer2Active: "translate-x-0 translate-y-0 scale-100 opacity-100 pointer-events-auto",
+    layer2Resting: "-translate-x-10 translate-y-0 scale-100 opacity-0 pointer-events-none",
+  },
+  {
+    id: "southbound",
+    name: "Top to Bottom",
+    layer1Active: "translate-x-0 translate-y-12 scale-100 opacity-0 pointer-events-none",
+    layer1Resting: "translate-x-0 translate-y-0 scale-100 opacity-100",
+    layer2Active: "translate-x-0 translate-y-0 scale-100 opacity-100 pointer-events-auto",
+    layer2Resting: "translate-x-0 -translate-y-10 scale-100 opacity-0 pointer-events-none",
+  },
+  {
+    id: "depth-reveal",
+    name: "Depth Zoom Reveal",
+    layer1Active: "translate-x-0 translate-y-0 scale-90 opacity-0 pointer-events-none",
+    layer1Resting: "translate-x-0 translate-y-0 scale-100 opacity-100",
+    layer2Active: "translate-x-0 translate-y-0 scale-100 opacity-100 pointer-events-auto",
+    layer2Resting: "translate-x-0 translate-y-0 scale-105 opacity-0 pointer-events-none",
+  },
+];
 
 const INDUSTRIES: IndustryItem[] = [
   {
@@ -57,6 +109,7 @@ const INDUSTRIES: IndustryItem[] = [
       "Preventive Maintenance Scheduling",
     ],
     illustrationType: "manufacturing",
+    imageSrc: "/industries/manufacturing.webp",
   },
   {
     id: "logistics",
@@ -73,6 +126,7 @@ const INDUSTRIES: IndustryItem[] = [
       "High-Concurrency Dynamic Pricing Engine",
     ],
     illustrationType: "logistics",
+    imageSrc: "/industries/logistics-freight.webp",
   },
   {
     id: "ecommerce",
@@ -123,6 +177,7 @@ const INDUSTRIES: IndustryItem[] = [
       "Rapid MVP-to-Scale Architecture",
     ],
     illustrationType: "ai",
+    imageSrc: "/industries/ai.webp",
   },
   {
     id: "education",
@@ -139,6 +194,7 @@ const INDUSTRIES: IndustryItem[] = [
       "Multi-Branch Academic Administration",
     ],
     illustrationType: "education",
+    imageSrc: "/industries/education.webp",
   },
   {
     id: "realestate",
@@ -155,6 +211,7 @@ const INDUSTRIES: IndustryItem[] = [
       "Statutory RERA Audit & Document Vault",
     ],
     illustrationType: "realestate",
+    imageSrc: "/industries/realestate.webp",
   },
 ];
 
@@ -193,10 +250,11 @@ export function IndustriesSection() {
           Every transition step decreases size gently and gracefully ("slower and slower").
         */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-6 2xl:gap-7 justify-items-center sm:justify-items-stretch">
-          {INDUSTRIES.map((industry) => (
+          {INDUSTRIES.map((industry, index) => (
             <IndustryCardItem
               key={industry.id}
               industry={industry}
+              cardIndex={index}
               isActiveOnMobile={activeCardId === industry.id}
               onMobileToggle={() => toggleMobileCard(industry.id)}
             />
@@ -210,17 +268,49 @@ export function IndustriesSection() {
 
 function IndustryCardItem({
   industry,
+  cardIndex,
   isActiveOnMobile,
   onMobileToggle,
 }: {
   industry: IndustryItem;
+  cardIndex: number;
   isActiveOnMobile: boolean;
   onMobileToggle: () => void;
 }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [vectorIndex, setVectorIndex] = useState(cardIndex % MOTION_VECTORS.length);
+  const hasInteractedRef = useRef(false);
+
+  const handleMouseEnter = () => {
+    if (hasInteractedRef.current) {
+      // Rotate dynamically to the next kinetic motion vector on subsequent hovers
+      setVectorIndex((prev) => (prev + 1) % MOTION_VECTORS.length);
+    } else {
+      hasInteractedRef.current = true;
+    }
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleCardClick = () => {
+    if (!isActiveOnMobile) {
+      setVectorIndex((prev) => (prev + 1) % MOTION_VECTORS.length);
+    }
+    onMobileToggle();
+  };
+
+  const isRevealed = isHovered || isActiveOnMobile;
+  const currentVector = MOTION_VECTORS[vectorIndex];
+
   return (
     <div
-      onClick={onMobileToggle}
-      className="group relative w-full max-w-[365px] sm:max-w-[385px] lg:max-w-[420px] xl:max-w-none h-[500px] sm:h-[515px] lg:h-[530px] xl:h-[540px] 2xl:h-[548px] bg-white rounded-none border border-slate-200/90 shadow-xs hover:shadow-2xl hover:border-slate-400 transition-all duration-700 overflow-hidden flex flex-col justify-between p-6 sm:p-7 xl:p-7 2xl:p-8 cursor-pointer select-none"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleCardClick}
+      className="group relative w-full max-w-[365px] sm:max-w-[385px] lg:max-w-[420px] xl:max-w-none h-[500px] sm:h-[515px] lg:h-[530px] xl:h-[540px] 2xl:h-[548px] bg-white rounded-none border border-slate-200/90 shadow-xs hover:shadow-2xl hover:border-slate-400 transition-all duration-[850ms] overflow-hidden flex flex-col justify-between p-6 sm:p-7 xl:p-7 2xl:p-8 cursor-pointer select-none"
     >
       {/* ── TOP COMPARTMENT (Permanent Header — Always Visible & Solid Black) ── */}
       <div className="z-10 bg-white">
@@ -240,19 +330,17 @@ function IndustryCardItem({
         </h3>
       </div>
 
-      {/* ── BOTTOM COMPARTMENT (Interactive Stage — 2 Sliding Layers with 700ms Slower Transition) ── */}
+      {/* ── BOTTOM COMPARTMENT (Interactive Stage — 2 Sliding Layers with Dynamic Kinetic Vectors) ── */}
       <div className="relative flex-1 w-full overflow-hidden mt-2.5">
         
         {/*
           LAYER 1: THE ILLUSTRATION (Visible by default)
-          - Resting: translateX(0), opacity-100
-          - On Hover: Smoothly slides out to the LEFT (-translate-x-12) with 700ms duration
+          - Resting: translateX(0), translateY(0), opacity-100, scale-100
+          - Active: Smoothly exits along the card's active kinetic vector over 850ms
         */}
         <div
-          className={`absolute inset-0 flex flex-col justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isActiveOnMobile
-              ? "-translate-x-12 opacity-0 pointer-events-none"
-              : "translate-x-0 opacity-100 lg:group-hover:-translate-x-12 lg:group-hover:opacity-0 lg:group-hover:pointer-events-none"
+          className={`absolute inset-0 flex flex-col justify-between transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity] ${
+            isRevealed ? currentVector.layer1Active : currentVector.layer1Resting
           }`}
           aria-hidden="true"
         >
@@ -265,7 +353,7 @@ function IndustryCardItem({
                   alt={industry.title}
                   fill
                   sizes="(max-width: 640px) 365px, (max-width: 1024px) 385px, (max-width: 1536px) 345px, 357px"
-                  className="object-contain scale-[1.04] sm:scale-105 transition-transform duration-700 ease-out group-hover:scale-110"
+                  className="object-contain scale-[1.04] sm:scale-105 transition-transform duration-[850ms] ease-out group-hover:scale-110"
                   priority={industry.id === "healthcare"}
                 />
               </div>
@@ -291,14 +379,12 @@ function IndustryCardItem({
 
         {/*
           LAYER 2: THE DESCRIPTION & KEY CAPABILITIES (Hidden by default)
-          - Resting: translateX-10, opacity-0, pointer-events-none
-          - On Hover: Smoothly slides IN from the right (translateX-0), opacity-100 with 700ms duration
+          - Resting: Off-stage along the card's active kinetic vector, opacity-0
+          - Active: Smoothly glides in to (0,0), opacity-100 over 850ms
         */}
         <div
-          className={`absolute inset-0 flex flex-col justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isActiveOnMobile
-              ? "translate-x-0 opacity-100 pointer-events-auto"
-              : "translate-x-10 opacity-0 pointer-events-none lg:group-hover:translate-x-0 lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto"
+          className={`absolute inset-0 flex flex-col justify-between transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity] ${
+            isRevealed ? currentVector.layer2Active : currentVector.layer2Resting
           }`}
         >
           {/* Scrollable text container */}
