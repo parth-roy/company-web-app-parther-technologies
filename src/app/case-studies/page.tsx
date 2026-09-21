@@ -29,14 +29,14 @@ export default function CaseStudiesHubPage() {
     '@type': 'ItemList',
     name: 'Parther Technologies Enterprise Software Deployments & Case Studies',
     description: 'Production software systems engineered by Parther Technologies Private Limited across logistics SaaS, gig economy, urban transit, and facility management.',
-    numberOfItems: 7,
+    numberOfItems: 8,
     itemListElement: [
       {
         '@type': 'ListItem',
         position: 1,
         name: 'GoMyTruck — Full-Stack Digital Freight Marketplace',
         description: 'Dual-mode freight marketplace with 31 backend modules, 3 Flutter apps, and ULIP government API integration.',
-        url: 'https://parthertech.com/case-studies/gomytruck',
+        url: 'https://gomytruck.com',
       },
       {
         '@type': 'ListItem',
@@ -71,7 +71,7 @@ export default function CaseStudiesHubPage() {
         position: 6,
         name: 'Advance Corporate Security — 14,000+ Page PSEO Architecture',
         description: 'Next.js 16 + Express 5 platform with 14,000+ programmatic SEO routes for a 25-year-old defence and facility management enterprise.',
-        url: 'https://parthertech.com/case-studies/acs',
+        url: 'https://advancecorporatesecurity.com',
       },
       {
         '@type': 'ListItem',
@@ -79,6 +79,13 @@ export default function CaseStudiesHubPage() {
         name: 'Yashoda Hotel — Zero-Commission Direct Accommodation Portal',
         description: 'Next.js 16 direct booking engine eliminating 25% OTA cuts with hourly day-use slots and instant WhatsApp manager alerts.',
         url: 'https://yasodahotel.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 8,
+        name: 'DonateFood.in — Hyper-Local Food Rescue & Hunger Relief Network',
+        description: 'Production food rescue dispatch platform connecting banquets, restaurants, and corporate donors with verified local hunger-relief NGOs across India.',
+        url: 'https://donatefood.in',
       },
     ],
   };
@@ -106,12 +113,12 @@ export default function CaseStudiesHubPage() {
               Enterprise Deployments
             </h1>
             <p className="text-xl text-cf-text-secondary leading-relaxed">
-              We convert intent into trust. Real architecture. Real results. Production platforms engineered from scratch by Parther Technologies across freight logistics, gig workforce, urban transit, enterprise security, and hospitality.
+              We convert intent into trust. Real architecture. Real results. Production platforms engineered from scratch by Parther Technologies across freight logistics, gig workforce, urban transit, enterprise security, social hunger relief, and hospitality.
             </p>
           </div>
           <div className="flex flex-wrap gap-8">
             {[
-              { value: '7',   label: 'Core Deployments' },
+              { value: '8',   label: 'Core Deployments' },
               { value: '31',  label: 'Backend Modules' },
               { value: '3',   label: 'Flutter Apps' },
               { value: '14K+',label: 'PSEO Pages' },
@@ -602,6 +609,75 @@ export default function CaseStudiesHubPage() {
                       </a>
                       <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-semibold text-sm px-7 py-3 rounded-full hover:bg-white/10 transition-colors">
                         Build Booking Engine
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── CARD 8: DonateFood.in ── */}
+          <div id="donatefood" className="mt-16 scroll-mt-24">
+            <div className="mb-8">
+              <span className="text-sm font-semibold tracking-widest text-emerald-500 uppercase font-mono-caps">
+                Social Impact & Food Rescue Platform
+              </span>
+            </div>
+            <div className="rounded-2xl overflow-hidden bg-[#0a0f1a] border border-white/10 shadow-2xl">
+              <div className="grid md:grid-cols-[45%_55%]">
+                <div className="relative h-64 md:h-auto min-h-[360px] overflow-hidden">
+                  <Image
+                    src="/case-studies/donate-food/hero-banner.webp"
+                    alt="DonateFood.in Hunger Relief and Food Rescue Network engineered by Parther Technologies"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 45vw"
+                    className="object-cover opacity-75"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#0a0f1a]/40 to-[#0a0f1a] hidden md:block" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] to-transparent md:hidden" />
+                </div>
+                <div className="p-10 md:p-14 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-3 mb-6 flex-wrap">
+                      <span className="text-xs font-bold tracking-widest text-emerald-400 uppercase border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 rounded-full">
+                        Hunger Relief Network
+                      </span>
+                      <span className="text-xs text-white/40">Food Rescue & CSR Telemetry — Pan-India · 100+ Food Hubs</span>
+                    </div>
+                    <h2 className="font-syncopate font-bold text-2xl md:text-3xl text-white tracking-tight mb-5 leading-snug">
+                      DonateFood.in — Hyper-Local Food Rescue & Hunger Relief Network
+                    </h2>
+                    <p className="text-white/60 text-base leading-relaxed mb-8">
+                      A production-grade, hyper-optimized Next.js 16 web application engineered to bridge the gap between food donors (banquet halls, restaurants, corporate cafeterias, households) and verified local hunger-relief NGOs across India. Features real-time emergency dispatch for perishable food, interactive multilingual support (English, Bengali, Hindi), hyper-localized programmatic SEO routes across states, districts, and cities, corporate CSR/ESG carbon offset calculators, and automated volunteer dispatch.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-10">
+                      {['Next.js 16 App Router', 'React 19', 'Tailwind CSS v4', 'TypeScript', 'Lucide React', 'Turbopack', 'PM2 Cluster', 'Nginx HTTP/2', 'DigitalOcean', 'Cloudflare SSL', 'Programmatic SEO'].map((tech) => (
+                        <span key={tech} className="bg-emerald-950/80 border border-emerald-700/50 text-emerald-300 rounded-full px-3 py-1 text-xs font-mono">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-8 mb-8">
+                      {[
+                        { value: '100+', label: 'Verified NGOs' },
+                        { value: '< 45m', label: 'Emergency Dispatch' },
+                        { value: '0 Waste', label: 'Diversion Goal' },
+                      ].map((m) => (
+                        <div key={m.label}>
+                          <div className="text-2xl font-syncopate font-bold text-emerald-400 mb-1">{m.value}</div>
+                          <div className="text-xs text-white/40 leading-tight font-mono-caps">{m.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <a href="https://donatefood.in/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-emerald-500 text-[#0a0f1a] font-bold text-sm px-7 py-3 rounded-full hover:bg-emerald-400 transition-colors">
+                        Visit Live Platform →
+                      </a>
+                      <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-semibold text-sm px-7 py-3 rounded-full hover:bg-white/10 transition-colors">
+                        Build Social Impact Platform
                       </Link>
                     </div>
                   </div>

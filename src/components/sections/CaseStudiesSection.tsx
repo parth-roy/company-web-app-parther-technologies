@@ -7,6 +7,7 @@ import {
   Shield, 
   Users, 
   Workflow, 
+  HeartHandshake,
   ArrowUpRight, 
   ArrowRight 
 } from "lucide-react";
@@ -32,7 +33,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
     title: "GoMyTruck — Digital Freight Marketplace",
     description:
       "Dual-mode freight booking, 4-wallet ledger, automated payouts, and ULIP logistics compliance.",
-    href: "/case-studies/gomytruck",
+    href: "https://gomytruck.com/",
     icon: Truck,
     isAccent: false,
   },
@@ -41,7 +42,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
     title: "Advance Corporate Security — 5,000+ Personnel Platform",
     description:
       "Enterprise guard management, automated statutory PF/ESI compliance, and 14K+ programmatic routes.",
-    href: "/case-studies/acs",
+    href: "https://advancecorporatesecurity.com/",
     icon: Shield,
     isAccent: false,
   },
@@ -50,7 +51,7 @@ const CASE_STUDIES: CaseStudyItem[] = [
     title: "MetroMitra — On-Demand Gig Workforce SaaS",
     description:
       "High-concurrency gig marketplace with instant role-switching, Mapbox radar, and 550+ city hubs.",
-    href: "/case-studies",
+    href: "https://metromitra.com/",
     icon: Users,
     isAccent: false,
   },
@@ -59,8 +60,17 @@ const CASE_STUDIES: CaseStudyItem[] = [
     title: "MetroWala & Tailored Enterprise Systems",
     description:
       "Sub-second transit routing across 10 metro networks, plus 100% custom-engineered architectures.",
-    href: "/case-studies",
+    href: "https://metrowala.com/",
     icon: Workflow,
+    isAccent: false,
+  },
+  {
+    id: "donatefood",
+    title: "DonateFood.in — Hyper-Local Food Rescue Network",
+    description:
+      "Direct donor-to-NGO surplus food dispatch, hyper-localized PSEO hubs, and zero-waste logistics.",
+    href: "https://donatefood.in/",
+    icon: HeartHandshake,
     isAccent: true,
   },
 ];
@@ -187,7 +197,7 @@ export function CaseStudiesSection() {
       tl.to({}, { duration: 0.20 });
 
       // ─── Pin distance ─────────────────────────────────────────────
-      const pinDistance = isMobile ? 900 : 1200;
+      const pinDistance = isMobile ? 1200 : 1550;
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -270,8 +280,10 @@ export function CaseStudiesSection() {
                   style={{ zIndex }}
                   className="w-full will-change-transform"
                 >
-                  <Link
+                  <a
                     href={study.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`group flex items-center justify-between gap-4 sm:gap-6 w-full rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7 transition-all duration-300 border cursor-pointer ${
                       study.isAccent
                         ? "bg-[#e2ff46] text-slate-950 border-[#c5e821] shadow-[0_-3px_12px_rgba(0,0,0,0.05),0_10px_24px_rgba(226,255,70,0.25)] hover:shadow-[0_16px_36px_rgba(226,255,70,0.35)]"
@@ -321,7 +333,7 @@ export function CaseStudiesSection() {
                         />
                       </div>
                     </div>
-                  </Link>
+                  </a>
                 </div>
               );
             })}
